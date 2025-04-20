@@ -8,9 +8,20 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     // Display all products
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        if ($request->has('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('description', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('category', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
+        $products = $query->get();
+
         return view('products.index', compact('products'));
     }
 
