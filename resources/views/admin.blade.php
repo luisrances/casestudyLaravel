@@ -140,8 +140,9 @@
             left: 0;
             margin: 2vw 3vw !important;
             min-width: 94vw !important;
-            max-height: 10vh !important;
-            min-height: 70px !important;
+            /* max-height: 10vh !important; */
+            /* min-height: 70px !important; */
+            max-height: 70px !important;
             z-index: 999;
             background-color: #4B56D2 !important;
         }
@@ -180,8 +181,12 @@
             margin: 2vw 3vw 0 3vw !important;
             padding: .5em 0 10px 0 !important;
             border-radius: 10px;
-            min-height: 20vh !important;
-            max-height: 86vh !important;
+            min-height: 50vh !important;
+            max-height: calc(100% - 100px) !important;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            overflow-y: hidden; 
         }
 
     }

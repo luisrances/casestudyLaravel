@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="tab-pane fade {{ request()->is('admin/products*') ? 'show active' : '' }}" id="products">
-    <div class="container px-4">
+    <div class="container px-4 main">
         <h1 class="text-center mb-4">All Products</h1>
 
         <div class="row justify-content-md-between mb-3">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="row d-flex justify-content-around overflow-y-auto custom-scroll main" style="min-height: 75vh; margin: 10px;">
+        <div class="row d-flex justify-content-xl-between justify-content-lg-evenly overflow-y-auto custom-scroll submain" style="max-height: 73vh; height: min-content;  margin: 10px;">
             @foreach ($products as $product)
                 <div class="card p-1 mb-3 align-self-center px-2 shadow" style="max-width: 590px;">
                     <div class="row align-items-center gx-1 my-0">
@@ -56,7 +56,7 @@
     .custom-scroll {
         max-height: 200px;
         overflow-y: scroll;
-        padding-right: -8px; /* Optional: space so content doesn't get hidden under scrollbar */
+        padding-right: -8px;
         scrollbar-width: thin;
         scrollbar-color: rgba(0,0,0,0.2) transparent;
         position: relative;
@@ -65,7 +65,12 @@
     @media (max-width: 767px) {
         .main{
             min-height: 20vh !important;
-            max-height: 60vh !important;
+            max-height: calc(100vh - 100px) !important;
+            margin: 0px !important;
+            overflow: hidden;
+        }.submain{
+            min-height: 10vh !important;
+            max-height: calc(75vh - 130px) !important;
             overflow-y: scroll !important;
             margin: 0px !important;
         }
