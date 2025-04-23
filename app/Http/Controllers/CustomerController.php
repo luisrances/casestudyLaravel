@@ -2,76 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-// class CustomerController extends Controller
-// {
-//     public function index()
-//     {
-//         // Sample data array
-//         $names = ['John Doe', 'Jane Smith', 'Alice Johnson'];
-//         $ages = [25, 30, 22];
-//         $emails = ['johndoe@example.com', 'janesmith@example.com', 'alicejohnson@example.com'];
-
-//         // Now, if you want to structure them together dynamically:
-//         $customers = [];
-//         for ($i = 0; $i < count($names); $i++) {
-//             $customers[] = [
-//                 'name' => $names[$i],
-//                 'age' => $ages[$i],
-//                 'email' => $emails[$i],
-//             ];
-//         }
-
-//         // Pass data to the view
-//         return view('customers.index', compact('customers'));
-//     }
-// }
-
-
-// sample if used in database
-// class CustomerController extends Controller
-// {
-//     public function index()
-//     {
-//         // Retrieve data from the database
-//         $names = Customer::pluck('name')->toArray();
-//         $ages = Customer::pluck('age')->toArray();
-//         $emails = Customer::pluck('email')->toArray();
-
-//         // Pass the variables to the view
-//         return view('customers.index', compact('names', 'ages', 'emails'));
-//     }
-// }
-
-// @for($i = 0; $i < count($names); $i++)
-// <tr>
-//     <td>{{ $names[$i] }}</td>
-//     <td>{{ $ages[$i] }}</td>
-//     <td>{{ $emails[$i] }}</td>
-// </tr>
-// @endfor
-
-
-
-// database usage
-use App\Models\Customer;
 class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-        // Retrieve customer data from the database with optional search
         $query = Customer::query();
 
         if ($request->has('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('email', 'LIKE', '%' . $request->search . '%')
-                    ->orWhere('age', 'LIKE', '%' . $request->search . '%');
+                    ->orWhere('age', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('sex', 'LIKE', '%' . $request->search . '%');
             });
         }
 
-        $customers = $query->get();
+        $customers = $query->latest()->paginate(10);
 
         return view('customers.index', compact('customers'));
     }
@@ -83,13 +32,27 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        Customer::create($request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'age' => 'required|integer',
-            'email' => 'required|email|unique:customers',
-        ]));
+            'email' => 'required|email|unique:customers,email',
+            'sex' => 'required|string|in:Male,Female,Other', // Add this line
+            'image_path' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('image_path')) {
+            $validated['image_path'] = $request->file('image_path')->store('images/customers', 'public');
+        }
+
+        Customer::create($validated);
 
         return redirect()->route('customers.index')->with('success', 'Customer added successfully!');
+    }
+
+    // Show a single product
+    public function show(Customer $customer)
+    {
+        return view('customers.show', compact('customer'));
     }
 
     public function edit(Customer $customer)
@@ -99,11 +62,19 @@ class CustomerController extends Controller
 
     public function update(Request $request, Customer $customer)
     {
-        $customer->update($request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'age' => 'required|integer',
             'email' => 'required|email|unique:customers,email,' . $customer->id,
-        ]));
+            'sex' => 'required|string|in:Male,Female,Other', // Add this line
+            'image_path' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('image_path')) {
+            $validated['image_path'] = $request->file('image_path')->store('images/customers', 'public');
+        }
+
+        $customer->update($validated);
 
         return redirect()->route('customers.index')->with('success', 'Customer updated successfully!');
     }
@@ -111,6 +82,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
+
         return redirect()->route('customers.index')->with('success', 'Customer deleted successfully!');
     }
 }

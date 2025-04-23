@@ -47,7 +47,6 @@
         .main{
             max-height: calc(100vh - 100px) !important;
             overflow-y: scroll;
-            border: 1px solid red;
         }.submain{
             max-height: 80vh !important;
         }

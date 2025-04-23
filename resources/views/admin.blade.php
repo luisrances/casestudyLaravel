@@ -67,6 +67,7 @@
 
 <style>
     body {
+        box-sizing: border-box;
         background-color: rgb(208, 210, 210) !important ;
     }
     #main {
@@ -74,13 +75,13 @@
         margin: 0 1em 0 0;
         overflow: hidden;
         max-height: 95vh;
-        border-radius: 20px;
+        border-radius: 10px;
         /* border: 1px solid red !important;  */
     }
     .sidebar {
-        background-color: #82C3EC !important ;
+        background-color: #4B56D2 !important ;
         margin:1em;
-        border-radius: 20px;
+        border-radius: 10px;
         max-height: 95vh;
     }
     .nav .nav-item a.nav-link, .nav-item, .nav-link {
@@ -93,7 +94,7 @@
     .nav .nav-item a.nav-link.active {
         color: black;
         background: white;
-        border-radius: 20px; 
+        border-radius: 10px; 
         border-color: #82C3EC;
     }
     .sidebar.expanded {
@@ -118,19 +119,19 @@
     #nav-footer:hover {
         color: white;
         background: #70a8cb;
-        border-radius: 20px;
+        border-radius: 10px;
         /* border-color: #82C3EC; */
         transition: all 0.1s ease;
     }.nav .nav-item a.nav-link:hover {
         color: white;
         background: #70a8cb;
-        border-radius: 20px;
+        border-radius: 10px;
         /* border-color: #82C3EC; */
         transition: all 0.1s ease;
     }.nav .nav-item a.nav-link.active:hover {
         color: black;
         background: white;
-        border-radius: 20px; 
+        border-radius: 10px; 
         border-color: #82C3EC;
     }
     @media (max-width: 767px) {

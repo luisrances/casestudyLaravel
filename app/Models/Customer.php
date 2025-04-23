@@ -10,5 +10,11 @@ class Customer extends Model
     use HasFactory;
 
     // Define fillable attributes for mass assignment
-    protected $fillable = ['name', 'age', 'email'];
+    protected $fillable = [
+        'name',
+        'age',
+        'sex',
+        'email',
+        'image_path',
+    ];
 }

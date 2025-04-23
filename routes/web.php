@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomerController;
 
 Route::get('admin', function () {
     return view('dashboard.index');
@@ -28,19 +27,15 @@ Route::get('admin/settings', function () {
 });
 
 // crud customer
-Route::get('/admin/customers', [CustomerController::class, 'index'])->name('customers.index');
-Route::get('/admin/customers/create', [CustomerController::class, 'create'])->name('customers.create');
-Route::post('/admin/customers', [CustomerController::class, 'store'])->name('customers.store');
-Route::get('/admin/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
-Route::put('/admin/customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
-Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+use App\Http\Controllers\CustomerController;
+Route::resource('/admin/customers', CustomerController::class);
 
+// crud product
 use App\Http\Controllers\ProductController;
 Route::resource('/admin/products', ProductController::class);
 
 // db check if active
 use Illuminate\Support\Facades\DB;
-
 Route::get('/db-check', function () {
     try {
         DB::connection()->getPdo();

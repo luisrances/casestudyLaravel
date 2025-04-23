@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('age');
             $table->string('email')->unique();
+            $table->enum('sex', ['male', 'female', 'other'])->nullable();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('customers');
+        Schema::dropIfExists('customers');
     }
 };
