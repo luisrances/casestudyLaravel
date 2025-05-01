@@ -38,10 +38,20 @@
                                 <tr style="vertical-align: middle;">
                                     <td style="width: 5%; vertical-align: middle;">{{ $order->id }}</td>
                                     <td style="width: 15%; vertical-align: middle;">
-                                        <p class="mb-0">{{ $order->product_id }}</p>
+                                        @foreach ($products as $product)
+                                            @if ($order->product_id == $product->id)
+                                                <p class="mb-0">{{ $product->name }}</p>
+                                            @endif
+                                        @endforeach
+                                        {{-- <p class="mb-0">{{ $order->product_id }}</p> --}}
                                     </td>
                                     <td style="width: 15%; vertical-align: middle;">
-                                        <p class="mb-0">{{ $order->customer_id }}</p>
+                                        @foreach ($customers as $customer)
+                                            @if ($order->customer_id == $customer->id)
+                                                <p class="mb-0">{{ $customer->name }}</p>
+                                            @endif
+                                        @endforeach
+                                        {{-- <p class="mb-0">{{ $order->customer_id }}</p> --}}
                                     </td>
                                     <td style="width: 10%; vertical-align: middle;">
                                         <p class="mb-0">{{ $order->quantity }}</p>

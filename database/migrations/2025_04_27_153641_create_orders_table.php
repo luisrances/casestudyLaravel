@@ -13,17 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id'); // Foreign key
-            $table->unsignedBigInteger('customer_id'); // Foreign key
-            $table->integer('quantity')->default(1);
-            $table->enum('order_status', [
-                'to pay',
-                'to ship',
-                'to receive',
-                'completed',
-                'refund',
-                'cancelled'
-            ])->default('to pay');
+            $table->integer('product_id');
+            $table->integer('customer_id');
+            $table->integer('quantity');
+            $table->string('order_status');
             $table->timestamps();
         });
     }

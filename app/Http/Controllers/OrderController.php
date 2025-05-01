@@ -12,6 +12,9 @@ class OrderController extends Controller
     // Display all orders
     public function index(Request $request)
     {
+        $products = Product::all();
+        $customers = Customer::all();
+
         $query = Order::query();
 
         if ($request->has('search')) {
@@ -24,7 +27,7 @@ class OrderController extends Controller
 
         $orders = $query->get();
 
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders.index', compact('orders', 'products', 'customers'));
     }
 
     // Show form to create a new order
@@ -40,10 +43,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'customer_id' => 'required|exists:customers,id',
-            'quantity' => 'required|integer|min:1',
-            'order_status' => 'required|in:to pay,to ship,to receive,completed,refund,cancelled',
+            'product_id' => 'required|integer',
+            'customer_id' => 'nullable|integer',
+            'quantity' => 'nullable|integer',
+            'order_status' => 'nullable|string',
         ]);
 
         Order::create($validated);
@@ -54,7 +57,10 @@ class OrderController extends Controller
     // Show a single order
     public function show(Order $order)
     {
-        return view('admin.orders.show', compact('order'));
+        $products = Product::all();
+        $customers = Customer::all();
+
+        return view('admin.orders.show', compact('order', 'products', 'customers'));
     }
 
     // Show form to edit an order
@@ -70,10 +76,10 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'customer_id' => 'required|exists:customer,id',
-            'quantity' => 'required|integer|min:1',
-            'order_status' => 'required|in:to pay,to ship,to receive,completed,refund,cancelled',
+            'product_id' => 'required|integer',
+            'customer_id' => 'nullable|integer',
+            'quantity' => 'nullable|integer',
+            'order_status' => 'nullable|string',
         ]);
 
         $order->update($validated);

@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-3">Edit Product</h1>
-    <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
+    <h1 class="text-right mb-2 px-3">Edit Order</h1>
+    <form action="{{ route('orders.update', $order) }}" method="POST">
         @csrf @method('PUT')
-        @include('admin.products.form')
+        @include('admin.orders.form')
         
         <div class="d-flex justify-content-center mt-3 column-gap-3">
             <button class="btn btn-primary" style="width: 200px">Update</button>
