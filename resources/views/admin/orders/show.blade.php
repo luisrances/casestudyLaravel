@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('admin.admin')
 
 @section('content')
 <div class="p-0 m-0 main" style="min-height: 93vh; display: flex; justify-content: center; align-items: center;">

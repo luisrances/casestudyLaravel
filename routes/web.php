@@ -3,27 +3,27 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin', function () {
-    return view('dashboard.index');
+    return view('admin.dashboard.index');
 });
 
 Route::get('admin/dashboard', function () {
-    return view('dashboard.index');
+    return view('admin.dashboard.index');
 });
 
 Route::get('admin/customers', function () {
-    return view('customers.index');
+    return view('admin.customers.index');
 });
 
 Route::get('admin/products', function () {
-    return view('products.index');
+    return view('admin.products.index');
 });
 
-Route::get('admin/transactions', function () {
-    return view('transactions.index');
+Route::get('admin/orders', function () {
+    return view('admin.orders.index');
 });
 
 Route::get('admin/settings', function () {
-    return view('settings.index');
+    return view('admin.settings.index');
 });
 
 // crud customer
@@ -33,6 +33,10 @@ Route::resource('/admin/customers', CustomerController::class);
 // crud product
 use App\Http\Controllers\ProductController;
 Route::resource('/admin/products', ProductController::class);
+
+// crud order
+use App\Http\Controllers\OrderController;
+Route::resource('/admin/orders', OrderController::class);
 
 // db check if active
 use Illuminate\Support\Facades\DB;

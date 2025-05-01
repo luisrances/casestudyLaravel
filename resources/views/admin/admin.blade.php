@@ -7,39 +7,38 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    
 </head>
 <body>
     <div class="container-fluid p-0 d-flex vh-100 text-right">
-        <div class="d-flex flex-column bg-body-tertiary sidebar expanded shadow" id="sidebar">
+        <div class="d-flex flex-column bg-body-tertiary sidebar shadow" id="sidebar">
             <ul class="nav nav-pills flex-column vh-100">
-                <li class="nav-item">
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard">
                     <a href="{{ url('admin/dashboard') }}" class="nav-link text-black {{ request()->is('admin/dashboard*') || request()->is('admin') ? 'active' : '' }}">
                         <i class="bi bi-house-door fs-4"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Customers">
                     <a href="{{ url('admin/customers') }}" class="nav-link text-black {{ request()->is('admin/customers*') ? 'active' : '' }}">
                         <i class="bi bi-people fs-4"></i> <span>Customers</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Products">
                     <a href="{{ url('admin/products') }}" class="nav-link text-black {{ request()->is('admin/products*') ? 'active' : '' }}">
                         <i class="bi bi-basket fs-4"></i> <span>Products</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/transactions') }}" class="nav-link text-black {{ request()->is('admin/transactions*') ? 'active' : '' }}">
-                        <i class="bi bi-card-list fs-4"></i> <span>Transactions</span>
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
+                    <a href="{{ url('admin/orders') }}" class="nav-link text-black {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                        <i class="bi bi-card-list fs-4"></i> <span>Orders</span>
                     </a>
                 </li>
-                <li class="nav-item mt-auto" id="toggleSidebar">
+                <li class="nav-item mt-auto" id="toggleSidebar" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Collapse">
                     <button id="nav-footer" class="nav-link btn btn-link p-3 text-dark text-decoration-none w-100">
                         <i class="bi bi-list fs-4"></i>
                         <span>Collapse</span>
                     </button>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Admin">
                     <a href="{{ url('admin/settings') }}" class="nav-link text-black {{ request()->is('admin/settings*') ? 'active' : '' }}">
                         <i class="bi bi-person-circle fs-4"></i></i><span>Admin</span>
                     </a>
@@ -62,7 +61,12 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        });
+    </script>
 </body>
 
 <style>
@@ -71,7 +75,8 @@
         background-color: rgb(208, 210, 210) !important ;
     }
     #main {
-        background-color: #F1F6F5 !important ;
+        /* background-color: #F1F6F5 !important ; */
+        background-color: #ffffff !important ;
         margin: 0 1em 0 0;
         overflow: hidden;
         max-height: 95vh;
@@ -79,7 +84,7 @@
         /* border: 1px solid red !important;  */
     }
     .sidebar {
-        background-color: #4B56D2 !important ;
+        background-color: #82C3EC !important ;
         margin:1em;
         border-radius: 10px;
         max-height: 95vh;
@@ -145,7 +150,7 @@
             /* min-height: 70px !important; */
             max-height: 70px !important;
             z-index: 999;
-            background-color: #4B56D2 !important;
+            background-color: #82C3EC !important;
         }
         .sidebar .nav {
             display: flex;
@@ -178,7 +183,8 @@
             border: unset !important;
         }
         #main {
-            background-color: #F1F6F5 !important ;
+            /* background-color: #F1F6F5 !important ; */
+            background-color: #ffffff !important ;
             margin: 2vw 3vw 0 3vw !important;
             padding: .5em 0 10px 0 !important;
             border-radius: 10px;

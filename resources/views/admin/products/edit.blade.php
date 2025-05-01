@@ -1,14 +1,14 @@
-@extends('admin')
+@extends('admin.admin')
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-3">Add Customer</h1>
-    <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @include('customers.form')
+    <h1 class="text-right mb-2 px-3">Edit Product</h1>
+    <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
+        @csrf @method('PUT')
+        @include('admin.products.form')
         
         <div class="d-flex justify-content-center mt-3 column-gap-3">
-            <button class="btn btn-success" style="width: 200px">Save</button>
+            <button class="btn btn-primary" style="width: 200px">Update</button>
             <a href="{{ url()->previous() }}" class="btn bg-danger text-white me-2" style="width: 200px">Cancel</a>
         </div>
     </form>

@@ -20,14 +20,14 @@ class CustomerController extends Controller
             });
         }
 
-        $customers = $query->latest()->paginate(10);
+        $customers = $query->get();
 
-        return view('customers.index', compact('customers'));
+        return view('admin.customers.index', compact('customers'));
     }
 
     public function create()
     {
-        return view('customers.create');
+        return view('admin.customers.create');
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:255',
             'age' => 'required|integer',
             'email' => 'required|email|unique:customers,email',
-            'sex' => 'required|string|in:Male,Female,Other', // Add this line
+            'sex' => 'required|string|in:Male,Female,Other',
             'image_path' => 'nullable|image|max:2048',
         ]);
 
@@ -52,12 +52,12 @@ class CustomerController extends Controller
     // Show a single product
     public function show(Customer $customer)
     {
-        return view('customers.show', compact('customer'));
+        return view('admin.customers.show', compact('customer'));
     }
 
     public function edit(Customer $customer)
     {
-        return view('customers.edit', compact('customer'));
+        return view('admin.customers.edit', compact('customer'));
     }
 
     public function update(Request $request, Customer $customer)

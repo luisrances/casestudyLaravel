@@ -23,13 +23,13 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     // Show form to create a product
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
     // Store a new product
@@ -46,7 +46,7 @@ class ProductController extends Controller
 
         // Handle file upload
         if ($request->hasFile('image_path')) {
-            $validated['image_path'] = $request->file('image_path')->store('images', 'public');
+            $validated['image_path'] = $request->file('image_path')->store('images/product', 'public');
         }
 
         Product::create($validated);
@@ -57,13 +57,13 @@ class ProductController extends Controller
     // Show a single product
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     // Show form to edit product
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
     // Update the product
@@ -79,7 +79,7 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image_path')) {
-            $validated['image_path'] = $request->file('image_path')->store('images', 'public');
+            $validated['image_path'] = $request->file('image_path')->store('images/products', 'public');
         }
 
         $product->update($validated);
