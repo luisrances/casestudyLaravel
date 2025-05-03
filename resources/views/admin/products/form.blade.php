@@ -38,7 +38,7 @@
 
 <style>
     .submain {
-        min-height: 75vh;
+        min-height: 70vh;
         overflow-y: auto; 
         margin: 15px; 
         background: #ffffff ; 
@@ -66,7 +66,6 @@
         .submain{
             min-height: 10vh !important;
             max-height: calc(85vh - 150px) !important;
-            border: 1px solid red;
         }
     }
 </style>

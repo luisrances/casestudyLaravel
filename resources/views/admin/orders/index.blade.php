@@ -5,28 +5,76 @@
 @section('content')
 <div class="tab-pane fade {{ request()->is('admin/orders*') ? 'show active' : '' }}" id="orders">
     <div class="container px-4 main">
-        <h1 class="text-right mb-4 px-1">Orders</h1>
 
-        <div class="row justify-content-md-between mb-3">
-            <div class="col-12 col-md-5 col-lg-3 mb-2 mb-md-0">
-                <a href="{{ route('orders.create') }}" class="btn w-100" style="background: #82C3EC;">Add Order</a>
+        <div class="row align-items-center mb-4 mt-0 mt-md-4">
+            <div class="col-md-12 col-lg-4 mb-3 mb-lg-0">
+                <h1 class="mb-0">Orders</h1>
             </div>
-            <div class="col-12 col-md-5 col-lg-3">
-                <form method="GET" action="{{ route('orders.index') }}">
-                    <input type="text" name="search" class="form-control w-100 text-black border-black border-2" placeholder="Search..." value="{{ request('search') }}">
-                </form>
+            <div class="col-md-12 col-lg-8">
+                <div class="row gx-2 justify-content-end align-items-center">
+                    <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                        <a href="{{ route('orders.create') }}" class="btn w-100 w-lg-auto" style="background: #82C3EC;"><i class="bi bi-plus"></i> Add Order</a>
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <form method="GET" action="{{ route('orders.index') }}" class="w-100">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control border-black border-1" placeholder="Search..." value="{{ request('search') }}">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
         <table class="text-center desktop-content" style="width: 99.5%; margin: 0 10px;">
-            <tr>
-                <td style="width: 5%;">ID</td>
-                <td style="width: 15%;">Product</td>
-                <td style="width: 15%;">Customer</td>
-                <td style="width: 10%;">Quantity</td>
-                <td style="width: 15%;">Order Status</td>
-                <td style="width: 30%;">Action</td>
-            </tr>
+            <thead>
+                <tr>
+                    @php
+                        $currentSortBy = request('sort_by');
+                        $currentSortDirection = request('sort_direction', 'asc'); // Default to asc
+                        $sortableColumns = [
+                            'id' => 'ID',
+                            'product_id' => 'Product',
+                            'customer_id' => 'Customer',
+                            'quantity' => 'Quantity',
+                            'order_status' => 'Order Status',
+                        ];
+                    @endphp
+
+                    {{-- Loop through sortable columns to create headers with sort links --}}
+                    @foreach ($sortableColumns as $field => $label)
+                        @php
+                            $direction = 'asc';
+                            $icon = '<i class="bi bi-arrow-down-up" style="font-size: .8rem;"></i>';
+                            $isActive = ($currentSortBy === $field);
+
+                            if ($isActive) {
+                                // If already sorted by this field, toggle direction
+                                $direction = ($currentSortDirection === 'asc') ? 'desc' : 'asc';
+                                $icon = $currentSortDirection === 'asc' ? ' ↑' : ' ↓'; // Indicate current sort direction
+                            }
+
+                            // Construct the URL for the next sort state
+                            $sortUrl = route('orders.index', array_merge(request()->except(['sort_by', 'sort_direction']), ['sort_by' => $field, 'sort_direction' => $direction]));
+                        @endphp
+                        {{-- Apply styles or classes to the td as needed --}}
+                        <td style="width: {{ match($field) {
+                                'id' => '5%',
+                                'quantity' => '10%',
+                                default => '15%', // Product, Customer, Order Status
+                            } }};">
+                            {{-- <a href="{{ $sortUrl }}" class="{{ $isActive ? 'active-sort' : '' }}" style="text-decoration: none; color: inherit; display: block;">
+                                {{ $label }}{{ $icon }}
+                            </a> --}}
+                            <a href="{{ $sortUrl }}" class="{{ $isActive ? 'active-sort' : '' }}" style="text-decoration: none; color: inherit; display: block">
+                                <span>{{ $label }}</span>
+                                {!! $icon !!}
+                            </a>
+                        </td>
+                    @endforeach
+                    <td style="width: 10%;">Action</td>
+                </tr>
+            </thead>
         </table>
 
         <div class="submain">
@@ -35,7 +83,7 @@
                     <div class="desktop-content" style="width: 100%; margin-bottom: 10px; border-radius: 10px; border: 1px solid #000000;">
                         <table class="text-center desktop-content" style="width: 100%; height: 70px;">
                             <thead>
-                                <tr style="vertical-align: middle;">
+                                <tr style="vertical-align: middle; cursor: pointer;" onclick="window.location='{{ route('orders.show', $order->id) }}';">
                                     <td style="width: 5%; vertical-align: middle;">{{ $order->id }}</td>
                                     <td style="width: 15%; vertical-align: middle;">
                                         @foreach ($products as $product)
@@ -59,19 +107,19 @@
                                     <td style="width: 15%; vertical-align: middle;">
                                         <p class="mb-0">{{ ucfirst($order->order_status) }}</p>
                                     </td>
-                                    <td style="width: 30%; vertical-align: middle;">
+                                    <td style="width: 10%; vertical-align: middle;">
                                         <div class="row d-flex justify-content-evenly d-flex align-items-center gx-0">
-                                            <div class="col-3">
+                                            {{-- <div class="col-3">
                                                 <a href="{{ route('orders.show', $order) }}" class="btn btn-sm my-1 w-100" style="background: #82C3EC;">View</a>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-3">
-                                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-sm w-100" style="background: #82C3EC;">Edit</a>
+                                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-sm w-100"><i class="bi bi-pencil-square text-info fs-4"></i></a>
                                             </div>
                                             <div class="col-3">
                                                 <form action="{{ route('orders.destroy', $order) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm w-100" style="background: #82C3EC;">Delete</button>
+                                                    <button class="btn btn-sm w-100"><i class="bi bi-trash text-info fs-4"></i></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -81,9 +129,9 @@
                         </table>
                     </div>
 
-                    <div class="card p-1 mb-3 align-self-center px-2 shadow w-100 mobile-content" style="max-width: 590px;">
+                    <div class="card p-1 mb-3 align-self-center px-2 shadow w-100 mobile-content" onclick="window.location='{{ route('orders.show', $order->id) }}';" style="max-width: 590px; cursor: pointer;">
                         <div class="row align-items-center gx-1 my-0">
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <div class="card-body pt-1 pb-0 px-2 lh-1">
                                     <p class="fw-medium" style="margin-bottom: 0.5rem; font-size: 1.25rem;">Order #{{ $order->id }}</p>
                                     <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: .9rem;">Product: {{ $order->product_id }}</p>
@@ -92,12 +140,11 @@
                                     <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: 1rem;">Order Status: {{ ucfirst($order->order_status) }}</p>
                                 </div>
                             </div>
-                            <div class="col-sm-2 d-flex flex-column">
-                                <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-info my-1 w-100">View</a>
-                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-sm btn-warning my-1 w-100">Edit</a>
+                            <div class="col-sm-4 d-flex flex-column">
+                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-sm btn-info my-1 w-100">Edit</a>
                                 <form action="{{ route('orders.destroy', $order) }}" method="POST">
                                     @csrf @method('DELETE')
-                                    <button class="btn btn-sm btn-danger my-1 w-100">Delete</button>
+                                    <button class="btn btn-sm btn-info my-1 w-100">Delete</button>
                                 </form>
                             </div>
                         </div>
@@ -111,7 +158,7 @@
 
 <style>
     .submain {
-        max-height: 65vh;
+        max-height: 69vh;
         margin: 10px;
         overflow-x: hidden;
         overflow-y: auto;

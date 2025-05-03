@@ -22,6 +22,7 @@
                             <h4 class="text-primary mb-3">₱{{ number_format($product->price * $order->quantity, 2) }}</h4>
                             <p class="text-secondary mb-2"><strong>Product:</strong> {{ $product->name }}</p>
                             <p class="text-secondary mb-2"><strong>Customer:</strong> {{ $customer->name ?? 'Guest' }}</p>
+                            <p class="text-secondary mb-2"><strong>Unit Price:</strong> {{ $product->price }}</p>
                             <p class="text-secondary mb-2"><strong>Quantity:</strong> {{ $order->quantity }}</p>
                             <p class="text-secondary mb-4"><strong>Status:</strong> {{ ucfirst($order->order_status) }}</p>
                             <hr class="my-4">

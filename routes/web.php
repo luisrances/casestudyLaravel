@@ -10,8 +10,8 @@ Route::get('admin/dashboard', function () {
     return view('admin.dashboard.index');
 });
 
-Route::get('admin/customers', function () {
-    return view('admin.customers.index');
+Route::get('admin/accounts', function () {
+    return view('admin.accounts.index');
 });
 
 Route::get('admin/products', function () {
@@ -27,8 +27,8 @@ Route::get('admin/settings', function () {
 });
 
 // crud customer
-use App\Http\Controllers\CustomerController;
-Route::resource('/admin/customers', CustomerController::class);
+use App\Http\Controllers\AccountController;
+Route::resource('/admin/accounts', AccountController::class);
 
 // crud product
 use App\Http\Controllers\ProductController;

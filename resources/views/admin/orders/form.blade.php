@@ -29,11 +29,11 @@
     <div class="mb-3">
         <label for="order_status" class="form-label">Order Status</label>
         <select class="form-control form-control-md" id="order_status" name="order_status">
-            <option value="to pay" {{ old('order_status', $order->order_status ?? '') == 'to pay' ? 'selected' : '' }}>To Pay</option>
+            {{-- <option value="to pay" {{ old('order_status', $order->order_status ?? '') == 'to pay' ? 'selected' : '' }}>To Pay</option> --}}
             <option value="to ship" {{ old('order_status', $order->order_status ?? '') == 'to ship' ? 'selected' : '' }}>To Ship</option>
             <option value="to receive" {{ old('order_status', $order->order_status ?? '') == 'to receive' ? 'selected' : '' }}>To Receive</option>
             <option value="completed" {{ old('order_status', $order->order_status ?? '') == 'completed' ? 'selected' : '' }}>Completed</option>
-            <option value="refund" {{ old('order_status', $order->order_status ?? '') == 'refund' ? 'selected' : '' }}>Refund</option>
+            <option value="refunded" {{ old('order_status', $order->order_status ?? '') == 'refund' ? 'selected' : '' }}>Refund</option>
             <option value="cancelled" {{ old('order_status', $order->order_status ?? '') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
         </select>
     </div>

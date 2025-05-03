@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Customer;
+use App\Models\Account;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,30 +13,38 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $products = Product::all();
-        $customers = Customer::all();
+        $accounts = Account::all();
 
         $query = Order::query();
 
         if ($request->has('search')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('id', 'LIKE', '%' . $request->search . '%')
-                    // ->orWhere('quantity', 'LIKE', '%' . $request->search . '%') fix
-                    ->orWhere('order_status', 'LIKE', '%' . $request->search . '%');
+            $searchTerm = strtolower($request->search);
+            $query->where(function ($q) use ($searchTerm) {
+                $q->whereRaw('LOWER(id) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(product_id) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(customer_id) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(quantity) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(order_status) LIKE ?', ["%{$searchTerm}%"]);
             });
         }
 
+        // Apply sorting (default: id ascending)
+        $sortBy = $request->get('sort_by', 'id');
+        $sortDirection = $request->get('sort_direction', 'asc');
+        $query->orderBy($sortBy, $sortDirection);
+
         $orders = $query->get();
 
-        return view('admin.orders.index', compact('orders', 'products', 'customers'));
+        return view('admin.orders.index', compact('orders', 'products', 'accounts'));
     }
 
     // Show form to create a new order
     public function create()
     {
         $products = Product::all(); // Get all products
-        $customers = Customer::all();   // Get all users (customers)
+        $accounts = Account::all();   // Get all users (accounts)
 
-        return view('admin.orders.create', compact('products', 'customers'));
+        return view('admin.orders.create', compact('products', 'accounts'));
     }
 
     // Store a new order
@@ -58,18 +66,18 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $products = Product::all();
-        $customers = Customer::all();
+        $accounts = Account::all();
 
-        return view('admin.orders.show', compact('order', 'products', 'customers'));
+        return view('admin.orders.show', compact('order', 'products', 'accounts'));
     }
 
     // Show form to edit an order
     public function edit(Order $order)
     {
         $products = Product::all();
-        $customers = Customer::all();
+        $accounts = Account::all();
 
-        return view('admin.orders.edit', compact('order', 'products', 'customers'));
+        return view('admin.orders.edit', compact('order', 'products', 'accounts'));
     }
 
     // Update the order

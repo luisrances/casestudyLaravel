@@ -13,13 +13,19 @@ class ProductController extends Controller
         $query = Product::query();
 
         if ($request->has('search')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('id', 'LIKE', '%' . $request->search . '%')
-                    ->orWhere('name', 'LIKE', '%' . $request->search . '%')
-                    ->orWhere('description', 'LIKE', '%' . $request->search . '%')
-                    ->orWhere('category', 'LIKE', '%' . $request->search . '%');
+            $searchTerm = strtolower($request->search);
+            $query->where(function ($q) use ($searchTerm) {
+                $q->whereRaw('LOWER(id) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(name) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(description) LIKE ?', ["%{$searchTerm}%"])
+                    ->orWhereRaw('LOWER(category) LIKE ?', ["%{$searchTerm}%"]);
             });
         }
+
+        // Apply sorting (default: id ascending)
+        $sortBy = $request->get('sort_by', 'id');
+        $sortDirection = $request->get('sort_direction', 'asc');
+        $query->orderBy($sortBy, $sortDirection);
 
         $products = $query->get();
 

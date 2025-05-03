@@ -10,41 +10,44 @@
 </head>
 <body>
     <div class="container-fluid p-0 d-flex vh-100 text-right">
-        <div class="d-flex flex-column bg-body-tertiary sidebar shadow" id="sidebar">
-            <ul class="nav nav-pills flex-column vh-100">
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard">
-                    <a href="{{ url('admin/dashboard') }}" class="nav-link text-black {{ request()->is('admin/dashboard*') || request()->is('admin') ? 'active' : '' }}">
-                        <i class="bi bi-house-door fs-4"></i> <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Customers">
-                    <a href="{{ url('admin/customers') }}" class="nav-link text-black {{ request()->is('admin/customers*') ? 'active' : '' }}">
-                        <i class="bi bi-people fs-4"></i> <span>Customers</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Products">
-                    <a href="{{ url('admin/products') }}" class="nav-link text-black {{ request()->is('admin/products*') ? 'active' : '' }}">
-                        <i class="bi bi-basket fs-4"></i> <span>Products</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
-                    <a href="{{ url('admin/orders') }}" class="nav-link text-black {{ request()->is('admin/orders*') ? 'active' : '' }}">
-                        <i class="bi bi-card-list fs-4"></i> <span>Orders</span>
-                    </a>
-                </li>
-                <li class="nav-item mt-auto" id="toggleSidebar" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Collapse">
-                    <button id="nav-footer" class="nav-link btn btn-link p-3 text-dark text-decoration-none w-100">
-                        <i class="bi bi-list fs-4"></i>
-                        <span>Collapse</span>
-                    </button>
-                </li>
-                <li class="nav-item"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Admin">
-                    <a href="{{ url('admin/settings') }}" class="nav-link text-black {{ request()->is('admin/settings*') ? 'active' : '' }}">
-                        <i class="bi bi-person-circle fs-4"></i></i><span>Admin</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="main-sidebar">
+            <div class="d-flex flex-column bg-body-tertiary sidebar shadow" id="sidebar">
+                <ul class="nav nav-pills flex-column vh-100">
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard">
+                        <a href="{{ url('admin/dashboard') }}" class="nav-link text-black {{ request()->is('admin/dashboard*') || request()->is('admin') ? 'active' : '' }}">
+                            <i class="bi bi-house-door fs-4"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Accounts">
+                        <a href="{{ url('admin/accounts') }}" class="nav-link text-black {{ request()->is('admin/accounts*') ? 'active' : '' }}">
+                            <i class="bi bi-people fs-4"></i> <span>Accounts</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Products">
+                        <a href="{{ url('admin/products') }}" class="nav-link text-black {{ request()->is('admin/products*') ? 'active' : '' }}">
+                            <i class="bi bi-basket fs-4"></i> <span>Products</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
+                        <a href="{{ url('admin/orders') }}" class="nav-link text-black {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                            <i class="bi bi-card-list fs-4"></i> <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-auto" id="toggleSidebar" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Collapse">
+                        <button id="nav-footer" class="nav-link btn btn-link p-3 text-dark text-decoration-none w-100">
+                            <i class="bi bi-list fs-4"></i>
+                            <span>Collapse</span>
+                        </button>
+                    </li>
+                    <li class="nav-item"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Admin">
+                        <a href="{{ url('admin/settings') }}" class="nav-link text-black {{ request()->is('admin/settings*') ? 'active' : '' }}">
+                            <i class="bi bi-person-circle fs-4"></i></i><span>Admin</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
 
         <div id="main" class="tab-content w-100 my-3 py-2 shadow">
             @yield('content')
@@ -83,11 +86,23 @@
         border-radius: 10px;
         /* border: 1px solid red !important;  */
     }
+    .main-sidebar {
+        background-color: #ffffff !important ;
+        margin: 1em -1em 1em 1em;
+        /* margin-right: -2em; */
+        border-radius: 10px;
+        /* border: 1em solid #ffffff; */
+        max-height: 95vh;
+        z-index: 999;
+    }
     .sidebar {
         background-color: #82C3EC !important ;
-        margin:1em;
+        margin: 1em;
+        /* margin-right: -2em; */
         border-radius: 10px;
-        max-height: 95vh;
+        /* border: 1em solid #ffffff; */
+        max-height: 90vh;
+        z-index: 999;
     }
     .nav .nav-item a.nav-link, .nav-item, .nav-link {
         padding: 10px 15px;

@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-3">Add Customer</h1>
-    <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
+    <h1 class="text-right mb-2 px-3 mt-md-4">Add Accounts</h1>
+    <form action="{{ route('accounts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @include('admin.customers.form')
+        @include('admin.accounts.form')
         
         <div class="d-flex justify-content-center mt-3 column-gap-3">
             <button class="btn btn-success" style="width: 200px">Save</button>

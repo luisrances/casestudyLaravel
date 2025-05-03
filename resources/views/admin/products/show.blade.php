@@ -10,7 +10,7 @@
                         <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="img-fluid" style="object-fit: contain; max-height: 100%; max-width: 100%;">
                     </div>
                 @else
-                    <i class="bi bi-person rounded-lg overflow-hidden d-flex justify-content-center align-items-md-center align-items-end" style="font-size: 200px; color: black;"></i>
+                    <i class="bi bi-bag-dash rounded-lg overflow-hidden d-flex justify-content-center align-items-md-center align-items-end" style="font-size: 200px; color: black;"></i>
                 @endif
             </div>
             <div class="col-md-7 p-4 pt-0 pt-md-4">

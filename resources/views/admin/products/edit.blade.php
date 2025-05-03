@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-3">Edit Product</h1>
+    <h1 class="text-right mb-2 px-3 mt-md-4">Edit Product</h1>
     <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
         @csrf @method('PUT')
         @include('admin.products.form')
