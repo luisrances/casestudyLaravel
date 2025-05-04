@@ -2,28 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('admin', function () {
-    return view('admin.dashboard.index');
-});
-
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard.index');
-});
-
-Route::get('admin/accounts', function () {
-    return view('admin.accounts.index');
-});
-
-Route::get('admin/products', function () {
-    return view('admin.products.index');
-});
-
-Route::get('admin/orders', function () {
-    return view('admin.orders.index');
-});
-
-Route::get('admin/settings', function () {
-    return view('admin.settings.index');
+// admin page
+Route::prefix('admin')->group(function () {
+    Route::view('/', 'admin.dashboard.index');
+    Route::view('/dashboard', 'admin.dashboard.index');
+    Route::view('/accounts', 'admin.accounts.index');
+    Route::view('/products', 'admin.products.index');
+    Route::view('/orders', 'admin.orders.index');
+    Route::view('/carts', 'admin.carts.index');
 });
 
 // crud customer
@@ -37,6 +23,10 @@ Route::resource('/admin/products', ProductController::class);
 // crud order
 use App\Http\Controllers\OrderController;
 Route::resource('/admin/orders', OrderController::class);
+
+// crud cart
+use App\Http\Controllers\CartController;
+Route::resource('/admin/carts', CartController::class);
 
 // db check if active
 use Illuminate\Support\Facades\DB;

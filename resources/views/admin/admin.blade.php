@@ -18,31 +18,58 @@
                             <i class="bi bi-house-door fs-4"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Accounts">
+                    {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Accounts">
                         <a href="{{ url('admin/accounts') }}" class="nav-link text-black {{ request()->is('admin/accounts*') ? 'active' : '' }}">
                             <i class="bi bi-people fs-4"></i> <span>Accounts</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Products">
                         <a href="{{ url('admin/products') }}" class="nav-link text-black {{ request()->is('admin/products*') ? 'active' : '' }}">
                             <i class="bi bi-basket fs-4"></i> <span>Products</span>
                         </a>
                     </li>
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
+                    {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
                         <a href="{{ url('admin/orders') }}" class="nav-link text-black {{ request()->is('admin/orders*') ? 'active' : '' }}">
                             <i class="bi bi-card-list fs-4"></i> <span>Orders</span>
                         </a>
+                    </li> --}}
+
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order Flow">
+                        <a class="nav-link text-black {{ request()->is('admin/orders*') || request()->is('admin/carts*') || request()->is('admin/wishlists*') ? 'active' : '' }}" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-box2 fs-4"></i> <span>Order Flow</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ordersDropdown">
+                            <li><a class="dropdown-item" href="{{ url('admin/orders') }}">
+                                <i class="bi bi-card-list fs-4"></i> Orders
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/carts') }}">
+                                <i class="bi bi-cart fs-4"></i> Carts
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/wishlists') }}">
+                                <i class="bi bi-heart fs-4"></i> Wishlists
+                            </a></li>
+                        </ul>
                     </li>
+
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Account Flow">
+                        <a class="nav-link text-black {{ request()->is('admin/accounts*') ? 'active' : '' }}" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-rolodex fs-4"></i> <span>Account Flow</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><a class="dropdown-item" href="{{ url('admin/accounts') }}">
+                                <i class="bi bi-people fs-4"></i> Accounts
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/payment-details') }}">
+                                <i class="bi bi-credit-card fs-4"></i> Payment Details
+                            </a></li>
+                        </ul>
+                    </li>
+                    
                     <li class="nav-item mt-auto" id="toggleSidebar" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Collapse">
                         <button id="nav-footer" class="nav-link btn btn-link p-3 text-dark text-decoration-none w-100">
                             <i class="bi bi-list fs-4"></i>
                             <span>Collapse</span>
                         </button>
-                    </li>
-                    <li class="nav-item"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Admin">
-                        <a href="{{ url('admin/settings') }}" class="nav-link text-black {{ request()->is('admin/settings*') ? 'active' : '' }}">
-                            <i class="bi bi-person-circle fs-4"></i></i><span>Admin</span>
-                        </a>
                     </li>
                 </ul>
             </div>

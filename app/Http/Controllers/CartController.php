@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Account;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CartController extends Controller
 {
-    // Display all orders
+    // Display all Carts
     public function index(Request $request)
     {
         $products = Product::all();
         $accounts = Account::all();
 
-        $query = Order::query();
+        $query = Cart::query();
 
         if ($request->has('search')) {
             $searchTerm = strtolower($request->search);
@@ -23,8 +23,7 @@ class OrderController extends Controller
                 $q->whereRaw('LOWER(id) LIKE ?', ["%{$searchTerm}%"])
                     ->orWhereRaw('LOWER(product_id) LIKE ?', ["%{$searchTerm}%"])
                     ->orWhereRaw('LOWER(account_id) LIKE ?', ["%{$searchTerm}%"])
-                    ->orWhereRaw('LOWER(quantity) LIKE ?', ["%{$searchTerm}%"])
-                    ->orWhereRaw('LOWER(order_status) LIKE ?', ["%{$searchTerm}%"]);
+                    ->orWhereRaw('LOWER(quantity) LIKE ?', ["%{$searchTerm}%"]);
             });
         }
 
@@ -33,72 +32,70 @@ class OrderController extends Controller
         $sortDirection = $request->get('sort_direction', 'asc');
         $query->orderBy($sortBy, $sortDirection);
 
-        $orders = $query->get();
+        $carts = $query->get();
 
-        return view('admin.orders.index', compact('orders', 'products', 'accounts'));
+        return view('admin.carts.index', compact('carts', 'products', 'accounts'));
     }
 
-    // Show form to create a new order
+    // Show form to create a new cart
     public function create()
     {
         $products = Product::all(); // Get all products
-        $accounts = Account::all();   // Get all users (accounts)
+        $accounts = Account::all();   // Get all accounts
 
-        return view('admin.orders.create', compact('products', 'accounts'));
+        return view('admin.carts.create', compact('products', 'accounts'));
     }
 
-    // Store a new order
+    // Store a new cart
     public function store(Request $request)
     {
         $validated = $request->validate([
             'product_id' => 'required|integer',
             'account_id' => 'nullable|integer',
             'quantity' => 'nullable|integer',
-            'order_status' => 'nullable|string',
         ]);
 
-        Order::create($validated);
+        Cart::create($validated);
 
-        return redirect()->route('orders.index')->with('success', 'Order created successfully.');
+        return redirect()->route('carts.index')->with('success', 'Cart created successfully.');
     }
 
-    // Show a single order
-    public function show(Order $order)
+    // Show a single cart
+    public function show(Cart $cart)
     {
         $products = Product::all();
         $accounts = Account::all();
 
-        return view('admin.orders.show', compact('order', 'products', 'accounts'));
+        return view('admin.carts.show', compact('cart', 'products', 'accounts'));
     }
 
-    // Show form to edit an order
-    public function edit(Order $order)
+    // Show form to edit an cart
+    public function edit(Cart $cart)
     {
         $products = Product::all();
         $accounts = Account::all();
 
-        return view('admin.orders.edit', compact('order', 'products', 'accounts'));
+        return view('admin.carts.edit', compact('cart', 'products', 'accounts'));
     }
 
-    // Update the order
-    public function update(Request $request, Order $order)
+    // Update the cart
+    public function update(Request $request, Cart $cart)
     {
         $validated = $request->validate([
             'product_id' => 'required|integer',
             'account_id' => 'nullable|integer',
             'quantity' => 'nullable|integer',
-            'order_status' => 'nullable|string',
         ]);
 
-        $order->update($validated);
+        $cart->update($validated);
 
-        return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
+        return redirect()->route('carts.index')->with('success', 'Cart updated successfully.');
     }
 
-    // Delete an order
-    public function destroy(Order $order)
+    // Delete an cart
+    public function destroy(Cart $cart)
     {
-        $order->delete();
-        return redirect()->route('orders.index')->with('success', 'Order deleted successfully.');
+        $cart->delete();
+        return redirect()->route('carts.index')->with('success', 'Cart deleted successfully.');
     }
 }

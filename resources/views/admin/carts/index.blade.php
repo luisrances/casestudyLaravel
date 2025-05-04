@@ -1,22 +1,22 @@
 @extends('admin.admin')
 
-@section('title', 'Orders')
+@section('title', 'Carts')
 
 @section('content')
-<div class="tab-pane fade {{ request()->is('admin/orders*') ? 'show active' : '' }}" id="orders">
+<div class="tab-pane fade {{ request()->is('admin/carts*') ? 'show active' : '' }}" id="carts">
     <div class="container px-4 main">
 
         <div class="row align-items-center mb-4 mt-0 mt-md-4">
             <div class="col-md-12 col-lg-4 mb-3 mb-lg-0">
-                <h1 class="mb-0">Orders</h1>
+                <h1 class="mb-0">Carts</h1>
             </div>
             <div class="col-md-12 col-lg-8">
                 <div class="row gx-2 justify-content-end align-items-center">
                     <div class="col-12 col-lg-auto mb-3 mb-lg-0">
-                        <a href="{{ route('orders.create') }}" class="btn w-100 w-lg-auto" style="background: #82C3EC;"><i class="bi bi-plus"></i> Add Order</a>
+                        <a href="{{ route('carts.create') }}" class="btn w-100 w-lg-auto" style="background: #82C3EC;"><i class="bi bi-plus"></i> Add Cart</a>
                     </div>
                     <div class="col-12 col-lg-5">
-                        <form method="GET" action="{{ route('orders.index') }}" class="w-100">
+                        <form method="GET" action="{{ route('carts.index') }}" class="w-100">
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control border-black border-1" placeholder="Search..." value="{{ request('search') }}">
                             </div>
@@ -37,7 +37,6 @@
                             'product_id' => 'Product',
                             'account_id' => 'Customer',
                             'quantity' => 'Quantity',
-                            'order_status' => 'Order Status',
                         ];
                     @endphp
 
@@ -55,13 +54,13 @@
                             }
 
                             // Construct the URL for the next sort state
-                            $sortUrl = route('orders.index', array_merge(request()->except(['sort_by', 'sort_direction']), ['sort_by' => $field, 'sort_direction' => $direction]));
+                            $sortUrl = route('carts.index', array_merge(request()->except(['sort_by', 'sort_direction']), ['sort_by' => $field, 'sort_direction' => $direction]));
                         @endphp
                         {{-- Apply styles or classes to the td as needed --}}
                         <td style="width: {{ match($field) {
                                 'id' => '5%',
                                 'quantity' => '10%',
-                                default => '15%', // Product, Customer, Order Status
+                                default => '15%',
                             } }};">
                             {{-- <a href="{{ $sortUrl }}" class="{{ $isActive ? 'active-sort' : '' }}" style="text-decoration: none; color: inherit; display: block;">
                                 {{ $label }}{{ $icon }}
@@ -79,44 +78,41 @@
 
         <div class="submain">
             <div class="d-flex justify-content-center flex-column custom-scroll">
-                @foreach ($orders as $order)
+                @foreach ($carts as $cart)
                     <div class="desktop-content" style="width: 100%; margin-bottom: 10px; border-radius: 10px; border: 1px solid #000000;">
                         <table class="text-center desktop-content" style="width: 100%; height: 70px;">
                             <thead>
-                                <tr style="vertical-align: middle; cursor: pointer;" onclick="window.location='{{ route('orders.show', $order->id) }}';">
-                                    <td style="width: 5%; vertical-align: middle;">{{ $order->id }}</td>
+                                <tr style="vertical-align: middle; cursor: pointer;" onclick="window.location='{{ route('carts.show', $cart->id) }}';">
+                                    <td style="width: 5%; vertical-align: middle;">{{ $cart->id }}</td>
                                     <td style="width: 15%; vertical-align: middle;">
                                         @foreach ($products as $product)
-                                            @if ($order->product_id == $product->id)
+                                            @if ($cart->product_id == $product->id)
                                                 <p class="mb-0">{{ $product->name }}</p>
                                             @endif
                                         @endforeach
-                                        {{-- <p class="mb-0">{{ $order->product_id }}</p> --}}
+                                        {{-- <p class="mb-0">{{ $cart->product_id }}</p> --}}
                                     </td>
                                     <td style="width: 15%; vertical-align: middle;">
                                         @foreach ($accounts as $account)
-                                            @if ($order->account_id == $account->id)
+                                            @if ($cart->account_id == $account->id)
                                                 <p class="mb-0">{{ $account->first_name }} {{ $account->last_name }}</p>
                                             @endif
                                         @endforeach
-                                        {{-- <p class="mb-0">{{ $order->account_id }}</p> --}}
+                                        {{-- <p class="mb-0">{{ $cart->account_id }}</p> --}}
                                     </td>
                                     <td style="width: 10%; vertical-align: middle;">
-                                        <p class="mb-0">{{ $order->quantity }}</p>
-                                    </td>
-                                    <td style="width: 15%; vertical-align: middle;">
-                                        <p class="mb-0">{{ ucfirst($order->order_status) }}</p>
+                                        <p class="mb-0">{{ $cart->quantity }}</p>
                                     </td>
                                     <td style="width: 10%; vertical-align: middle;">
                                         <div class="row d-flex justify-content-evenly d-flex align-items-center gx-0">
                                             {{-- <div class="col-3">
-                                                <a href="{{ route('orders.show', $order) }}" class="btn btn-sm my-1 w-100" style="background: #82C3EC;">View</a>
+                                                <a href="{{ route('carts.show', $cart) }}" class="btn btn-sm my-1 w-100" style="background: #82C3EC;">View</a>
                                             </div> --}}
                                             <div class="col-3">
-                                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-sm w-100"><i class="bi bi-pencil-square text-info fs-4"></i></a>
+                                                <a href="{{ route('carts.edit', $cart) }}" class="btn btn-sm w-100"><i class="bi bi-pencil-square text-info fs-4"></i></a>
                                             </div>
                                             <div class="col-3">
-                                                <form action="{{ route('orders.destroy', $order) }}" method="POST">
+                                                <form action="{{ route('carts.destroy', $cart) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm w-100"><i class="bi bi-trash text-info fs-4"></i></button>
@@ -129,20 +125,19 @@
                         </table>
                     </div>
 
-                    <div class="card p-1 mb-3 align-self-center px-2 shadow w-100 mobile-content" onclick="window.location='{{ route('orders.show', $order->id) }}';" style="max-width: 590px; cursor: pointer;">
+                    <div class="card p-1 mb-3 align-self-center px-2 shadow w-100 mobile-content" onclick="window.location='{{ route('carts.show', $cart->id) }}';" style="max-width: 590px; cursor: pointer;">
                         <div class="row align-items-center gx-1 my-0">
                             <div class="col-sm-8">
                                 <div class="card-body pt-1 pb-0 px-2 lh-1">
-                                    <p class="fw-medium" style="margin-bottom: 0.5rem; font-size: 1.25rem;">Order #{{ $order->id }}</p>
-                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: .9rem;">Product: {{ $order->product_id }}</p>
-                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: .9rem;">Customer: {{ $order->customer_id }}</p>
-                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: 1rem;">Quantity: {{ $order->quantity }}</p>
-                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: 1rem;">Order Status: {{ ucfirst($order->order_status) }}</p>
+                                    <p class="fw-medium" style="margin-bottom: 0.5rem; font-size: 1.25rem;">Cart #{{ $cart->id }}</p>
+                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: .9rem;">Product: {{ $cart->product_id }}</p>
+                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: .9rem;">Customer: {{ $cart->customer_id }}</p>
+                                    <p class="fw-normal" style="margin-bottom: 0.5rem; font-size: 1rem;">Quantity: {{ $cart->quantity }}</p>
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex flex-column">
-                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-sm btn-info my-1 w-100">Edit</a>
-                                <form action="{{ route('orders.destroy', $order) }}" method="POST">
+                                <a href="{{ route('carts.edit', $cart) }}" class="btn btn-sm btn-info my-1 w-100">Edit</a>
+                                <form action="{{ route('carts.destroy', $cart) }}" method="POST">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-info my-1 w-100">Delete</button>
                                 </form>
