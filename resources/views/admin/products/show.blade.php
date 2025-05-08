@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="p-0 m-0 main" style="min-height: 93vh; display: flex; justify-content: center; align-items: center;">
-    <div class="rounded-3  w-lg-75 w-xl-60 w-md-90 overflow-y-auto submain" style="max-width: 90%;">
+    <div class="rounded-3  w-lg-75 w-xl-60 w-md-90 overflow-y-auto submain" style="max-width: 100%;">
         <div class="row g-0 flex-column flex-md-row">
             <div class="col-md-5 p-4  pb-md-4 border-md-right d-flex justify-content-center align-items-md-center align-items-end picture">
                 @if ($product->image_path)
@@ -19,25 +19,25 @@
                 <p class="text-secondary mb-4" style="line-height: 1.7;">{{ $product->description }}</p>
                 <hr class="my-4">
                 <div class="d-flex align-items-center mb-3">
-                    <span class="text-muted mr-2"><i class="bi bi-box-seam mr-1"></i> Stock:</span>
+                    <span class="text-muted me-2"><i class="bi bi-box-seam mr-1"></i> Stock:</span>
                     <span class="font-weight-medium">{{ $product->stock }}</span>
                     <span class="mx-3 text-muted">|</span>
-                    <span class="text-muted mr-2"><i class="bi bi-tag mr-1"></i> Category:</span>
+                    <span class="text-muted me-2"><i class="bi bi-tag mr-1"></i> Category:</span>
                     <span class="font-weight-medium">{{ $product->category }}</span>
                 </div>
 
-<div class="mt-4 row gx-3">
-    <div class="col-6">
-        <a href="{{ route('products.edit', $product) }}" class="btn btn-primary w-100 h-100 rounded-pill px-1 py-2 shadow-sm text-justify d-block">
-            <i class="bi bi-pencil me-1"></i> Edit Product
-        </a>
-    </div>
-    <div class="col-6">
-        <a href="{{ route('products.index') }}" class="btn btn-outline-secondary w-100 h-100 rounded-pill px-1 py-2 shadow-sm text-justify d-block">
-            <i class="bi bi-arrow-left me-1"></i> Back to Products
-        </a>
-    </div>
-</div>
+                <div class="mt-4 row gx-3">
+                    <div class="col-6">
+                        <a href="{{ route('products.edit', $product) }}" class="btn btn-primary w-100 h-100 rounded-pill px-1 py-2 shadow-sm text-justify d-block">
+                            <i class="bi bi-pencil me-1"></i> Edit
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{{ route('products.index') }}" class="btn btn-outline-secondary w-100 h-100 rounded-pill px-1 py-2 shadow-sm text-justify d-block">
+                            <i class="bi bi-arrow-left me-1"></i> Back
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

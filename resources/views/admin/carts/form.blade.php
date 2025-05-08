@@ -27,15 +27,35 @@
     </div>
 
 <style>
+    .submain {
+        min-height: 70vh;
+        overflow-y: auto; 
+        margin: 15px; 
+        background: #ffffff ; 
+        border-radius: 5px;
+    } 
+    
+    .custom-scroll {
+        max-height: 200px;
+        overflow-y: scroll;
+        padding-right: -8px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0,0,0,0.2) transparent;
+        position: relative;
+        border-radius: 10px;
+    }
     @media (max-width: 767px) {
-        .main{
-            min-height: 20vh !important;
-            max-height: calc(100vh - 100px) !important;
+        .submain{
+            min-height: 10vh !important;
+            max-height: calc(85vh - 130px) !important;
+            overflow-y: scroll !important;
             margin: 0px !important;
-            overflow: hidden;
-            justify-content: center; 
-            align-items: center;
-            overflow-y: hidden; 
+        }
+    }
+    @media (max-height: 700px) and (max-width: 767px) {
+        .submain{
+            min-height: 10vh !important;
+            max-height: calc(85vh - 150px) !important;
         }
     }
 </style>

@@ -10,6 +10,8 @@ Route::prefix('admin')->group(function () {
     Route::view('/products', 'admin.products.index');
     Route::view('/orders', 'admin.orders.index');
     Route::view('/carts', 'admin.carts.index');
+    Route::view('/carts', 'admin.wishlists.index');
+    Route::view('/payment_details', 'admin.payment_details.index');
 });
 
 // crud customer
@@ -27,6 +29,15 @@ Route::resource('/admin/orders', OrderController::class);
 // crud cart
 use App\Http\Controllers\CartController;
 Route::resource('/admin/carts', CartController::class);
+
+// crud wiishlist
+use App\Http\Controllers\WishlistController;
+Route::resource('/admin/wishlists', WishlistController::class);
+
+// crud wiishlist
+use App\Http\Controllers\PaymentDetailsController;
+Route::resource('/admin/payment_details', PaymentDetailsController::class);
+
 
 // db check if active
 use Illuminate\Support\Facades\DB;

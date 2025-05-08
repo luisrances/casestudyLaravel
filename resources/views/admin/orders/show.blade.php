@@ -21,13 +21,13 @@
                             <h2 class="font-weight-semibold text-dark mb-3">Order #{{ $order->id }}</h2>
                             <h4 class="text-primary mb-3">₱{{ number_format($product->price * $order->quantity, 2) }}</h4>
                             <p class="text-secondary mb-2"><strong>Product:</strong> {{ $product->name }}</p>
-                            <p class="text-secondary mb-2"><strong>Account:</strong> {{ $account->first_name ?? 'Guest' }} {{ $account->last_name }}</p>
+                            <p class="text-secondary mb-2"><strong>Customer:</strong> {{ $account->first_name ?? 'Guest' }} {{ $account->last_name ?? '' }}</p>
                             <p class="text-secondary mb-2"><strong>Unit Price:</strong> {{ $product->price }}</p>
                             <p class="text-secondary mb-2"><strong>Quantity:</strong> {{ $order->quantity }}</p>
                             <p class="text-secondary mb-4"><strong>Status:</strong> {{ ucfirst($order->order_status) }}</p>
                             <hr class="my-4">
                             <div class="d-flex align-items-center mb-3">
-                                <span class="text-muted mr-2"><i class="bi bi-calendar3 mr-1"></i> Ordered on: </span>
+                                <span class="text-muted me-2"><i class="bi bi-calendar3 mr-1"></i> Ordered on: </span>
                                 <span class="font-weight-medium">{{ $order->created_at ? $order->created_at->format('F d, Y h:i A') : 'N/A' }}</span>
                             </div>
 
