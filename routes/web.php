@@ -1,5 +1,14 @@
+
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\PaymentDetailsController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // admin page
@@ -14,33 +23,49 @@ Route::prefix('admin')->group(function () {
     Route::view('/payment_details', 'admin.payment_details.index');
 });
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.admin');
+// })->middleware(['auth'])->name('admin.dashboard');
+
+Route::get('/admin', function () {
+    return view('admin.dashboard.index');
+})->middleware(['auth'])->name('admin');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 // crud customer
-use App\Http\Controllers\AccountController;
 Route::resource('/admin/accounts', AccountController::class);
 
 // crud product
-use App\Http\Controllers\ProductController;
 Route::resource('/admin/products', ProductController::class);
 
 // crud order
-use App\Http\Controllers\OrderController;
 Route::resource('/admin/orders', OrderController::class);
 
 // crud cart
-use App\Http\Controllers\CartController;
 Route::resource('/admin/carts', CartController::class);
 
 // crud wiishlist
-use App\Http\Controllers\WishlistController;
 Route::resource('/admin/wishlists', WishlistController::class);
 
 // crud wiishlist
-use App\Http\Controllers\PaymentDetailsController;
+
 Route::resource('/admin/payment_details', PaymentDetailsController::class);
 
 
 // db check if active
-use Illuminate\Support\Facades\DB;
 Route::get('/db-check', function () {
     try {
         DB::connection()->getPdo();
@@ -49,3 +74,4 @@ Route::get('/db-check', function () {
         return "Not connected: " . $e->getMessage();
     }
 });
+require __DIR__.'/auth.php';

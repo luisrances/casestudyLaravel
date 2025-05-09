@@ -1,5 +1,5 @@
 <?php
-
+// BUILT IN SA BREEZE, DI GINAMIT
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
