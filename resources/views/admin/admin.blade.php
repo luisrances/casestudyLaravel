@@ -34,9 +34,9 @@
                         </a>
                     </li> --}}
 
-                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order Flow">
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order Processes">
                         <a class="nav-link text-black {{ request()->is('admin/orders*') || request()->is('admin/carts*') || request()->is('admin/wishlists*') ? 'active' : '' }}" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-box2 fs-4"></i> <span>Order Flow</span>
+                            <i class="bi bi-box2 fs-4"></i> <span>Order Processes</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ordersDropdown">
                             <li><a class="dropdown-item" href="{{ url('admin/orders') }}">
@@ -51,9 +51,9 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Account Flow">
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Account Processes">
                         <a class="nav-link text-black {{ request()->is('admin/accounts*') || request()->is('admin/payment_details*') ? 'active' : '' }}" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-rolodex fs-4"></i> <span>Account Flow</span>
+                            <i class="bi bi-person-rolodex fs-4"></i> <span>Account Processes</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="accountDropdown">
                             <li><a class="dropdown-item" href="{{ url('admin/accounts') }}">
@@ -70,6 +70,16 @@
                             <i class="bi bi-list fs-4"></i>
                             <span>Collapse</span>
                         </button>
+                    </li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Logout">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ route('logout') }}" 
+                               onclick="event.preventDefault(); this.closest('form').submit();" 
+                               class="nav-link text-black">
+                                <i class="bi bi-box-arrow-left fs-4"></i> <span>Logout</span>
+                            </a>
+                        </form>
                     </li>
                 </ul>
             </div>
