@@ -7,6 +7,21 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    
+<!-- Datatables css -->
+<link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Datatables js -->
+<script src="assets/vendor/datatables.net/js/dataTables.min.js"></script>
+<script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+
+<!-- Datatable Init js -->
+<script src="assets/js/pages/demo.datatable-init.js"></script>
 </head>
 <body>
     <div class="container-fluid p-0 d-flex vh-100 text-right">
