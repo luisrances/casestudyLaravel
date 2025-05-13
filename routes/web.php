@@ -7,8 +7,11 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PaymentDetailsController;
+use App\Http\Controllers\UserProfilingController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // admin page
 Route::prefix('admin')->group(function () {
@@ -20,6 +23,7 @@ Route::prefix('admin')->group(function () {
     Route::view('/carts', 'admin.carts.index');
     Route::view('/carts', 'admin.wishlists.index');
     Route::view('/payment_details', 'admin.payment_details.index');
+    Route::view('/user_profilings', 'admin.user_profilings.index');
 });
 
 Route::get('/', function () {
@@ -40,24 +44,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// crud customer
+// crud
 Route::resource('/admin/accounts', AccountController::class);
-
-// crud product
 Route::resource('/admin/products', ProductController::class);
-
-// crud order
 Route::resource('/admin/orders', OrderController::class);
-
-// crud cart
 Route::resource('/admin/carts', CartController::class);
-
-// crud wiishlist
 Route::resource('/admin/wishlists', WishlistController::class);
-
-// crud wiishlist
-
 Route::resource('/admin/payment_details', PaymentDetailsController::class);
+Route::resource('/admin/user_profilings', UserProfilingController::class);
+Route::resource('/admin/dashboard', DashboardController::class);
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
+
 
 
 // db check if active

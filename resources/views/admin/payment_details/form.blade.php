@@ -2,6 +2,7 @@
     <div class="mb-3">
         <label for="account_id" class="form-label">Customer</label>
         <select class="form-control form-control-md" id="account_id" name="account_id" required>
+            <option value="">Select</option>
             @foreach ($accounts as $account)
                 <option value="{{ $account->id }}" {{ old('account_id', $paymentDetail->account_id ?? '') == $account->id ? 'selected' : '' }}>
                     [ID: {{ $account->id }}] {{ $account->first_name }} {{ $account->last_name }}

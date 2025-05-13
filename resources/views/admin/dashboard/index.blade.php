@@ -3,110 +3,149 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="tab-pane fade {{ request()->is('admin/dashboard*') || request()->is('admin') ? 'show active' : '' }}" id="dashboard">
-    <div class="container px-4 main">
-        <div class="row align-items-center mb-4 mt-0 mt-md-4">
-            <div class="col-md-12 col-lg-4 mb-3 mb-lg-0">
-                <h1 class="mb-0">Dashboard</h1>
-            </div>
-        <div class="col-md-12 col-lg-8">
-            <div class="row gx-2 justify-content-end align-items-center">
-                <div class="col-12 col-lg-auto mb-3 mb-lg-0">
-                    {{-- <a href="{{ route('orders.create') }}" class="btn w-100 w-lg-auto" style="background: #82C3EC;"><i class="bi bi-plus"></i> Add Order</a> --}}
-                </div>
-                <div class="col-12 col-lg-5">
-                    {{-- <form method="GET" action="{{ route('orders.index') }}" class="w-100"> --}}
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control border-black border-1" placeholder="Search..." value="{{ request('search') }}">
+<div class="tab-pane fade {{ request()->is('admin/dashboard*') ? 'show active' : '' }}" id="dashboard">
+    <div class="p-4 pt-0 main">
+        <h1 class="mt-4">Dashboard</h1>
+
+        <div class="container submain">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Revenue</div>
+                                    <div class="h2 mb-0 font-weight-bold text-gray-800">$ {{ $totalRevenue }} </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+        
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        {{-- Orders Pending --}}
+                                        Total Orders
+                                    </div>
+                                    <div class="h2 mb-0 font-weight-bold text-gray-800">{{ $totalOrders }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Total Products</div>
+                                    <div class="h2 mb-0 font-weight-bold text-gray-800">{{$totalProducts}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-box-open fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Total Customers</div>
+                                    <div class="h2 mb-0 font-weight-bold text-gray-800">{{$totalUsers}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-6 col-md-12 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Monthly Revenue</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pending Orders</div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="modern_datatable" class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Product</th>
+                                            <th>Customer</th>
+                                            <th>Quantity</th>
+                                            <th>Order Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pendings as $pending)
+                                            <tr style="cursor: pointer;" onclick="window.location='{{ route('orders.show', $pending->id) }}';">
+                                                <td class="name-cell">{{ $pending->id }}</td>
+                                                <td>
+                                                    @foreach ($products as $product)
+                                                        @if ($pending->product_id == $product->id)
+                                                            <p class="mb-0">{{ $product->name }}</p>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach ($accounts as $account)
+                                                        @if ($pending->account_id == $account->id)
+                                                            <p class="mb-0">{{ $account->first_name }} {{ $account->last_name }}</p>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ $pending->quantity }}</td>
+                                                <td>{{ ucfirst($pending->order_status) }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        {{-- Add more content here, like tables for recent orders, charts, etc. --}}
+
     </div>
-
-    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<script>
-    $(document).ready(function() {
-        $('#basic-datatable').DataTable(); // Initialize the DataTable
-    });
-</script>
-
-
-<style>
-    .submain {
-        max-height: 69vh;
-        margin: 10px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        margin-right: -2px;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0,0,0,0.2) transparent;
-    }
-    .custom-scroll {
-        position: relative;
-        border-radius: 10px;
-    }
-    @media (max-width: 767px) {
-        .main{
-            min-width: 90vw !important;
-            min-height: 20vh !important;
-            max-height: calc(100vh - 100px) !important;
-            margin: 0px !important;
-            overflow: hidden;
-        }.submain{
-            min-height: 10vh !important;
-            max-height: calc(75vh - 130px) !important;
-            overflow-y: scroll !important;
-            margin: 0px !important;
-            font-size:inherit;
-        }
-    }
-
-    .mobile-content {
-        display: none;
-    }.desktop-content {
-            display: auto;
-        }
-    @media (max-width: 1024px) {
-        .desktop-content {
-            display: none;
-        }
-
-        .mobile-content {
-            display: block;
-        }
-    }
-</style>
 
 @endsection

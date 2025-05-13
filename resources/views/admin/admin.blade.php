@@ -7,21 +7,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-
-    
-<!-- Datatables css -->
-<link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-
-<!-- Datatables js -->
-<script src="assets/vendor/datatables.net/js/dataTables.min.js"></script>
-<script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-<script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-
-<!-- Datatable Init js -->
-<script src="assets/js/pages/demo.datatable-init.js"></script>
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 </head>
 <body>
     <div class="container-fluid p-0 d-flex vh-100 text-right">
@@ -33,21 +23,11 @@
                             <i class="bi bi-house-door fs-4"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Accounts">
-                        <a href="{{ url('admin/accounts') }}" class="nav-link text-black {{ request()->is('admin/accounts*') ? 'active' : '' }}">
-                            <i class="bi bi-people fs-4"></i> <span>Accounts</span>
-                        </a>
-                    </li> --}}
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Products">
                         <a href="{{ url('admin/products') }}" class="nav-link text-black {{ request()->is('admin/products*') ? 'active' : '' }}">
                             <i class="bi bi-basket fs-4"></i> <span>Products</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
-                        <a href="{{ url('admin/orders') }}" class="nav-link text-black {{ request()->is('admin/orders*') ? 'active' : '' }}">
-                            <i class="bi bi-card-list fs-4"></i> <span>Orders</span>
-                        </a>
-                    </li> --}}
 
                     <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order Processes">
                         <a class="nav-link text-black {{ request()->is('admin/orders*') || request()->is('admin/carts*') || request()->is('admin/wishlists*') ? 'active' : '' }}" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,6 +56,9 @@
                             </a></li>
                             <li><a class="dropdown-item" href="{{ url('admin/payment_details') }}">
                                 <i class="bi bi-credit-card fs-4"></i> Payment Details
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/user_profilings') }}">
+                                <i class="bi bi-person fs-4"></i> User Profiling
                             </a></li>
                         </ul>
                     </li>
@@ -124,6 +107,7 @@
     </script>
 </body>
 
+{{-- main page --}}
 <style>
     body {
         box-sizing: border-box;
@@ -137,6 +121,7 @@
         max-height: 95vh;
         border-radius: 10px;
         /* border: 1px solid red !important;  */
+        /* overflow: auto; */
     }
     .main-sidebar {
         background-color: #ffffff !important ;
@@ -263,6 +248,232 @@
             overflow-y: hidden; 
         }
 
+    }
+</style>
+
+{{-- table --}}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .card {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+    }
+    
+    .card-header {
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-top-left-radius: 16px !important;
+        border-top-right-radius: 16px !important;
+        padding: 20px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .card-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #343a40;
+    }
+    
+    .card-body {
+        padding: 25px;
+        padding-top: 0;
+        max-height: 83vh;
+        overflow: auto;
+    }
+
+    #modern_datatable{
+        /* overflow-x: scroll; */
+    }
+    
+    table.dataTable {
+        border-collapse: separate !important;
+        border-spacing: 0 8px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    table.dataTable thead th {
+        font-weight: 600;
+        color: #000000;
+        border-bottom: none;
+        padding: 12px 15px;
+        font-size: 0.875rem;
+        letter-spacing: 0.5px;
+    }
+    
+    table.dataTable tbody tr {
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    table.dataTable tbody tr:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    table.dataTable tbody td {
+        padding: 16px 15px;
+        border-top: none;
+        vertical-align: middle;
+    }
+    
+    table.dataTable tbody tr td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    
+    table.dataTable tbody tr td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    
+    /* Search and length control styling */
+    div.dataTables_wrapper div.dataTables_length label,
+    div.dataTables_wrapper div.dataTables_filter label {
+        font-weight: 500;
+        color: #6c757d;
+    }
+    div.dataTables_wrapper div.dataTables_length,
+    div.dataTables_wrapper div.dataTables_filter {
+        width: 100%;
+    }
+    div.dataTables_wrapper div.dataTables_length label {
+        margin-left: 20px;
+    }
+    div.dataTables_wrapper {
+    }
+    #add {
+        margin: -2px 0 15px 0;
+        padding: 0 20px;
+        height: 40px;
+    }
+    
+    div.dataTables_wrapper div.dataTables_length select:focus,
+    div.dataTables_wrapper div.dataTables_filter input:focus {
+        outline: none;
+        border: 1px solid black;
+        box-shadow: none;
+    }
+    
+    div.dataTables_wrapper div.dataTables_length select {
+        border-radius: 8px;
+        padding: 8px 30px 8px 15px;
+        border: 1px solid #dee2e6;
+        background-color: #fff;
+        margin: 0 10px;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: calc(100% - 12px) center;
+    }
+    
+    div.dataTables_wrapper div.dataTables_filter input {
+        border-radius: 8px;
+        padding: 8px 15px;
+        border: 1px solid #dee2e6;
+        background-color: #fff;
+        margin-left: 10px;
+        width: 220px;
+    }
+    
+    /* Pagination styling */
+    div.dataTables_wrapper div.dataTables_paginate {
+        margin-top: 20px;
+    }
+    
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        margin: 0;
+        margin-top: -50px;
+    }
+    
+    div.dataTables_wrapper div.dataTables_paginate .page-item .page-link {
+        border: none;
+        border-radius: 8px;
+        padding: 8px 14px;
+        margin: 0 3px;
+        color: #6c757d;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    
+    div.dataTables_wrapper div.dataTables_paginate .page-item.active .page-link {
+        background-color: #82C3EC;
+        color: white;
+    }
+    
+    div.dataTables_wrapper div.dataTables_paginate .page-item .page-link:hover {
+        background-color: #e9ecef;
+    }
+    
+    div.dataTables_info {
+        color: #6c757d;
+        padding-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+            margin: 0;
+        }
+    }
+</style>
+
+{{-- desktop mobile content --}}
+<style>
+    .submain {
+        max-height: 69vh;
+        margin: 10px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin-right: -2px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0,0,0,0.2) transparent;
+    }
+    .custom-scroll {
+        position: relative;
+        border-radius: 10px;
+    }
+    @media (max-width: 767px) {
+        .main{
+            min-width: 90vw !important;
+            min-height: 20vh !important;
+            max-height: calc(100vh - 100px) !important;
+            margin: 0px !important;
+            overflow: hidden;
+        }.submain{
+            min-height: 10vh !important;
+            max-height: calc(90vh - 150px) !important;
+            overflow-y: scroll !important;
+            margin: 0px !important;
+            font-size:inherit;
+        }
+    }
+
+    .mobile-content {
+        display: none;
+    }.desktop-content {
+            display: auto;
+        }
+    @media (max-width: 1024px) {
+        .desktop-content {
+            display: none;
+        }
+
+        .mobile-content {
+            display: block;
+        }
     }
 </style>
 

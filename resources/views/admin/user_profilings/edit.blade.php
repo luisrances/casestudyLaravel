@@ -2,18 +2,17 @@
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-3 mt-md-4">Add Order</h1>
-    <form action="{{ route('orders.store') }}" method="POST">
-        @csrf
-        @include('admin.orders.form')
-            
+    <h1 class="text-right mb-2 px-1 mt-md-4">Edit User Profiling</h1>
+    <form action="{{ route('user_profilings.update', $userProfiling) }}" method="POST">
+        @csrf @method('PUT')
+        @include('admin.user_profilings.form')
+        
         <div class="d-flex justify-content-center mt-3 column-gap-3">
-            <button class="btn btn-success" style="width: 200px">Save</button>
+            <button class="btn btn-primary" style="width: 200px">Update</button>
             <a href="{{ url()->previous() }}" class="btn bg-danger text-white me-2" style="width: 200px">Cancel</a>
         </div>
     </form>
 </div>
-
 <style>
     @media (max-width: 767px) {
         .main{
