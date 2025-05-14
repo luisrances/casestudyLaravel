@@ -10,20 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-    {{-- <div class="container">
-        <h2>Complete Your Profile</h2>
-
-        <form action="{{ route('user_profilings.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="account_id" value="{{ $account_id }}">
-            @foreach ($accounts as $account)
-                @if ($account_id == $account->id)
-                    <h2 class="mb-0">{{ $account->first_name }} {{ $account->last_name }}</h2>
-                @endif
-            @endforeach
-        </form> --}}
-
-
 <div class="container d-flex justify-content-center vh-100 py-5">
     <div class="card p-3 px-5 shadow-lg" style="height:600px; width:550px">
         <h3 class="mb-2 fw-bold">User Profiling</h3>
@@ -165,112 +151,6 @@
         </form>
     </div>
 </div>
-            
-            <div class="main p-4" style="height: 93vh; background-color: #f8f9fa;">
-                <div class="container py-5 w-100 w-md-75 w-lg-70">
-                    <div class="card shadow-lg rounded-lg border-0">
-                        <div class="row g-0">
-                            <div class="col-md-5 bg-primary text-white p-4 rounded-4">
-                                @foreach ($accounts as $account)
-                                    @if ($account_id == $account->id)
-                                        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                                            @if ($account->image)
-                                                <div class="overflow-hidden rounded-circle border border-primary" style="width: 150px; height: 150px;">
-                                                    <img src="{{ asset('storage/' . $account->image) }}" alt="{{ $account->first_name }} {{ $account->last_name }}" class="w-100 h-100 object-cover">
-                                                </div>
-                                            @else
-                                                <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 150px; height: 150px; font-size: 70px;">
-                                                    <i class="bi bi-person-fill"></i>
-                                                </div>
-                                            @endif
-                                            <h4 class="mt-3 text-center">{{ $account->first_name ?? 'Guest' }} {{ $account->last_name ?? '' }}</h4>
-                                            <p class="text-light text-center mb-0">Account ID: {{ $account->id }}</p>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="col-md-7 p-4">
-                                <h2 class="font-weight-semibold text-dark mb-4">Profile Details</h2>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Account ID:</strong>
-                                        <p class="mb-0">{{ $account_id }}</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Birthdate:</strong>
-                                        <div>
-                                            <label for="birthdate" class="block text-gray-700 text-sm font-semibold mb-2">Birthday</label>
-                                            <input type="date" name="birthdate" id="birthdate" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500">
-                                            @error('birthdate')
-                                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Sex:</strong>
-                                        {{-- <p class="mb-0">{{ $userProfiling->sex ?? 'N/A' }}</p> --}}
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Height:</strong>
-                                        {{-- <p class="mb-0">{{ $userProfiling->height ? $userProfiling->height . ' cm' : 'N/A' }}</p> --}}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Weight:</strong>
-                                        {{-- <p class="mb-0">{{ $userProfiling->weight ? $userProfiling->weight . ' kg' : 'N/A' }}</p> --}}
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Activity Type:</strong>
-                                        <p class="mb-0">
-                                            {{-- {{ is_array(json_decode($userProfiling->activity_type)) ? implode(', ', json_decode($userProfiling->activity_type)) : 'N/A' }} --}}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Preferred Terrain:</strong>
-                                        <p class="mb-0">
-                                            {{-- {{ is_array(json_decode($userProfiling->terrain)) ? implode(', ', json_decode($userProfiling->terrain)) : 'N/A' }} --}}
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Experience Level:</strong>
-                                        {{-- <p class="mb-0">{{ $userProfiling->experience_level ?? 'N/A' }}</p> --}}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Maintenance:</strong>
-                                        {{-- <p class="mb-0">{{ $userProfiling->maintenance ? 'Yes' : 'No' }}</p> --}}
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <strong class="text-muted">Uses Custom Parts:</strong>
-                                        {{-- <p class="mb-0">{{ $userProfiling->custom_parts ? 'Yes' : 'No' }}</p> --}}
-                                    </div>
-                                </div>
-            
-                                <hr class="my-4">
-            
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-12 col-md-6">
-                                        <i class="bi bi-calendar3 text-muted me-1"></i>
-                                        <span class="text-muted">Created on:</span>
-                                        <span class="font-weight-medium">
-                                            {{-- {{ $userProfiling->created_at ? $userProfiling->created_at->format('F d, Y h:i A') : 'N/A' }} --}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- The rest of your form fields go here -->
-        </form>
-    </div>
 </body>
 
 </html>
