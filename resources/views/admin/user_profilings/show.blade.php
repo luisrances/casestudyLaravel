@@ -29,7 +29,7 @@
                     <div class="row mb-3">
                         <div class="col-sm-6">
                             <strong class="text-muted">Account ID:</strong>
-                            <p class="mb-0">{{ $userProfiling->id }}</p>
+                            <p class="mb-0">{{ $userProfiling->account_id }}</p>
                         </div>
                         <div class="col-sm-6">
                             <strong class="text-muted">Birthdate:</strong>

@@ -25,25 +25,6 @@ Route::prefix('admin')->group(function () {
     Route::view('/payment_details', 'admin.payment_details.index');
     Route::view('/user_profilings', 'admin.user_profilings.index');
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/admin', function () {
-    return view('admin.dashboard.index');
-})->name('admin');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 // crud
 Route::resource('/admin/accounts', AccountController::class);
 Route::resource('/admin/products', ProductController::class);
@@ -53,9 +34,32 @@ Route::resource('/admin/wishlists', WishlistController::class);
 Route::resource('/admin/payment_details', PaymentDetailsController::class);
 Route::resource('/admin/user_profilings', UserProfilingController::class);
 Route::resource('/admin/dashboard', DashboardController::class);
+Route::resource('/admin', DashboardController::class);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
+Route::get('/user-profiling/{account_id}', [UserProfilingController::class, 'createFromRegistration'])
+    ->name('create_user_profiling.index'); // for creating user-profiling after signup
+Route::post('/user-profiling/register', [UserProfilingController::class, 'storeFormRegistration'])
+    ->name('storeFormRegistration.index'); // for submitting the user-profilling
 
+
+Route::get('/', function () { // login page
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () { // dashboard after login
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/admin', function () {
+//     return view('admin.dashboard.index');
+// })->name('admin');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 // db check if active
 Route::get('/db-check', function () {

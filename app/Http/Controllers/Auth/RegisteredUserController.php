@@ -47,6 +47,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($account);
 
-        return redirect(route('dashboard', absolute: false));
+        // return redirect(route('dashboard', absolute: false));
+        
+        // Redirect to user-profiling with account_id
+        return redirect()->route('create_user_profiling.index', ['account_id' => $account->id]);
     }
 }

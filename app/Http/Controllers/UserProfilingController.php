@@ -105,4 +105,35 @@ class UserProfilingController extends Controller
         $userProfiling->delete();
         return redirect()->route('user_profilings.index')->with('success', 'User profile deleted successfully.');
     }
+
+    // create a user-profile after signup
+    public function createFromRegistration($account_id)
+    {
+        $accounts = Account::all();
+        return view('create_user_profiling.index', compact('accounts', 'account_id'));
+    }
+    public function storeFormRegistration(Request $request)
+    {
+        $validated = $request->validate([
+            'account_id' => 'required|integer',
+            'birthdate' => 'nullable|date',
+            'sex' => 'nullable|string',
+            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric',
+            'activity_type' => 'nullable|array',
+            'terrain' => 'nullable|array',
+            'experience_level' => 'nullable|string',
+            'maintenance' => 'nullable|in:yes,no',
+            'custom_parts' => 'nullable|in:yes,no',
+        ]);
+
+        $validated['activity_type'] = json_encode($request->activity_type ?? []);
+        $validated['terrain'] = json_encode($request->terrain ?? []);
+        $validated['maintenance'] = $request->maintenance === 'yes';
+        $validated['custom_parts'] = $request->custom_parts === 'yes';
+
+        UserProfiling::create($validated);
+
+        return redirect()->route('dashboard')->with('success', 'User profile created successfully.');
+    }
 }

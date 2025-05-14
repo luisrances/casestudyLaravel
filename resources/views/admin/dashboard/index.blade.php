@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="tab-pane fade {{ request()->is('admin/dashboard*') ? 'show active' : '' }}" id="dashboard">
+<div class="tab-pane fade {{ request()->is('admin/dashboard*') || request()->is('admin') ? 'show active' : '' }}" id="dashboard">
     <div class="p-4 pt-0 main">
         <h1 class="mt-4">Dashboard</h1>
 
