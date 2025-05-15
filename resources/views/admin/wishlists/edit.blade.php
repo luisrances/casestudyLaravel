@@ -3,7 +3,7 @@
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
     <h1 class="text-right mb-2 px-1 mt-md-4">Edit Wishlist</h1>
-    <form action="{{ route('wishlists.update', $cart) }}" method="POST">
+    <form action="{{ route('wishlists.update', $wishlist) }}" method="POST">
         @csrf @method('PUT')
         @include('admin.wishlists.form')
         
