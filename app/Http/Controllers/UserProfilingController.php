@@ -134,6 +134,8 @@ class UserProfilingController extends Controller
 
         UserProfiling::create($validated);
 
+        // Clear the profiling session flag
+        session()->forget('needs_profiling');
         return redirect()->route('dashboard')->with('success', 'User profile created successfully.');
     }
 }
