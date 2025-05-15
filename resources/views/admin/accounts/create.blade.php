@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-3 mt-md-4">Add Accounts</h1>
+    <h1 class="text-right mb-2 px-3 mt-md-4">Add Account</h1>
     <form action="{{ route('accounts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('admin.accounts.form')

@@ -1,7 +1,7 @@
 <div class="card shadow p-3 custom-scroll submain">
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control form-control-md" id="name" name="name" value="{{ old('name', $product->name ?? '') }}" placeholder="Enter product name">
+        <input type="text" class="form-control form-control-md" id="name" name="name" value="{{ old('name', $product->name ?? '') }}" placeholder="Enter product name" required>
     </div>
 
     <div class="mb-3">
@@ -13,13 +13,13 @@
         <label for="price" class="form-label">Price</label>
         <div class="input-group">
             <span class="input-group-text">$</span>
-            <input type="number" step="0.01" class="form-control form-control-md" id="price" name="price" value="{{ old('price', $product->price ?? '') }}" placeholder="0.00">
+            <input type="number" step="0.01" class="form-control form-control-md" id="price" name="price" value="{{ old('price', $product->price ?? '') }}" placeholder="0.00" required>
         </div>
     </div>
 
     <div class="mb-3">
         <label for="stock" class="form-label">Stock</label>
-        <input type="number" class="form-control form-control-md" id="stock" name="stock" value="{{ old('stock', $product->stock ?? '') }}" placeholder="Available quantity">
+        <input type="number" class="form-control form-control-md" id="stock" name="stock" value="{{ old('stock', $product->stock ?? '') }}" placeholder="Available quantity" required>
     </div>
 
     <div class="mb-3">

@@ -2,8 +2,9 @@
     <div class="mb-3">
         <label for="product_id" class="form-label">Product</label>
         <select class="form-control form-control-md" id="product_id" name="product_id" required>
+            <option value="">Select</option>
             @foreach ($products as $product)
-                <option value={{ $product->id }} {{ old('product_id', $product->id ?? '') == $product->id ? 'selected' : '' }}>
+                <option value={{ $product->id }} {{ old('product_id', $cart->product_id ?? '') == $product->id ? 'selected' : '' }}>
                         [ID: {{ $product->id }}] {{ $product->name }}
                 </option>
             @endforeach
@@ -13,8 +14,9 @@
     <div class="mb-3">
         <label for="account_id" class="form-label">Customer</label>
         <select class="form-control form-control-md" id="account_id" name="account_id" required>
+            <option value="">Select</option>
             @foreach($accounts as $account)
-                <option value={{ $account->id }} {{ old('account_id') == $account->id ? 'selected' : '' }}>
+                <option value="{{ $account->id }}" {{ old('account_id', $cart->account_id ?? '') == $account->id ? 'selected' : '' }}>
                     [ID: {{ $account->id }}] {{ $account->first_name }} {{ $account->last_name }}
                 </option>
             @endforeach
@@ -25,6 +27,7 @@
         <label for="quantity" class="form-label">Quantity</label>
         <input type="number" class="form-control form-control-md" id="quantity" name="quantity" value="{{ old('quantity', $cart->quantity ?? '') }}" placeholder="Enter quantity" required>
     </div>
+</div>
 
 <style>
     .submain {
