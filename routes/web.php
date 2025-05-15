@@ -24,7 +24,15 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('Home');
+
+Route::get('/shop', function () {
+    return view('Shop');
+})->name('Shop');
+
+Route::get('/feedback', function () {
+    return view('Feedback');
+})->name('Feedback');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

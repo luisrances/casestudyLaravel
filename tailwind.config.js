@@ -4,11 +4,17 @@ import forms from '@tailwindcss/forms';
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+    './resources/**/*.blade.php',
+    './resources/**/*.js',                
+    './resources/**/*.vue',               
+    './node_modules/preline/dist/*.js',
     ],
-
+    safelist: [
+  'hs-carousel-active:bg-blue-700',
+  'hs-carousel-active:border-blue-700',
+  'dark:hs-carousel-active:bg-blue-500',
+  'dark:hs-carousel-active:border-blue-500',
+    ],
     theme: {
         extend: {
             fontFamily: {
