@@ -45,7 +45,15 @@ Route::post('/user-profiling/register', [UserProfilingController::class, 'storeF
 
 Route::get('/', function () { // login page
     return view('welcome');
-});
+})->name('Home');
+
+Route::get('/shop', function () {
+    return view('Shop');
+})->name('Shop');
+
+Route::get('/feedback', function () {
+    return view('Feedback');
+})->name('Feedback');
 
 Route::get('/dashboard', function () { // dashboard after login
     return view('dashboard');
