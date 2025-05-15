@@ -44,7 +44,7 @@
 <body>
     <!-- Logo -->
     <div class="logo">
-            <img src="/images/logo.png" alt="Go Pedal PH Logo" class="w-[200px]">
+        <img src="/images/logo.png" alt="Go Pedal PH Logo" class="w-[200px]">
     </div>
 
     <!-- Form Container -->
@@ -57,31 +57,14 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6">
-                        <div>
-                            <label for="birthdate" class="form-label" style="margin-bottom: -5px">Birthday</label>
-                            <input type="date" class="form-control" name="birthdate" id="birthdate">
-                        </div>
-                        <div>
-                            <label class="form-label d-block">Gender</label>
-                            <div class="form-check form-check-inline ps-5">
-                                <input class="form-check-input" type="radio" name="sex" id="female" value="female">
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sex" id="male" value="male">
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                        </div>
+                        <label for="birthdate" class="form-label" style="margin-bottom: -5px">Birthday</label>
+                        <input type="date" class="form-control" name="birthdate" id="birthdate">
                     </div>
                     <div class="col-md-6">
-                        <div>
-                            <label for="height" class="form-label" style="margin-bottom: -5px">Height (cm)</label>
-                            <input type="number" class="form-control" name="height" id="height" min="0">
-                        </div>
-                        <div>
-                            <label for="weight" class="form-label" style="margin-bottom: -5px">Weight (kg)</label>
-                            <input type="number" class="form-control" name="weight" id="weight" min="0">
-                        </div>
+                        <label for="height" class="form-label" style="margin-bottom: -5px">Height (cm)</label>
+                        <input type="number" class="form-control" name="height" id="height" min="0">
+                        <label for="weight" class="form-label" style="margin-bottom: -5px">Weight (kg)</label>
+                        <input type="number" class="form-control" name="weight" id="weight" min="0">
                     </div>
                 </div>
 
