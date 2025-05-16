@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container container-fluid main" style="max-height: 100%;">
-    <h1 class="text-right mb-2 px-1 mt-md-4">Add Wishlist</h1>
+    <h1 class="text-right mb-2 px-3 mt-md-4">Add Wishlist</h1>
     <form action="{{ route('wishlists.store') }}" method="POST">
         @csrf
         @include('admin.wishlists.form')

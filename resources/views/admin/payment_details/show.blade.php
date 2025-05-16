@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="p-4 main" style="min-height: 93vh; display: flex; justify-content: center; align-items: center;">
-    <div class="card rounded-3 shadow-sm w-lg-75 w-xl-60 w-md-90" style="max-width: 90%;">
+    <div class="card" style="min-width: 50vw;">
         <div class="card-body p-4">
             <h2 class="font-weight-semibold text-dark mb-4">Payment Detail #{{ $paymentDetail->id }}</h2>
             @foreach ($accounts as $account)
@@ -29,19 +29,21 @@
                 </div>
 
 
-                    <div class="d-flex align-items-center mb-3">
+                <div class="row g-4 flex-column flex-md-row">
+                    <div class="col-12 col-md-6 d-flex align-items-center">
                         <span class="text-muted me-2"><i class="bi bi-calendar3 me-1"></i> Added on: </span>
                         <span class="font-weight-medium">{{ $paymentDetail->created_at ? $paymentDetail->created_at->format('F d, Y h:i A') : 'N/A' }}</span>
                     </div>
 
-                    <div class="mt-4 d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('payment_details.edit', $paymentDetail) }}" class="btn btn-primary rounded-pill px-3 py-2 shadow-sm">
+                    <div class="col-12 col-md-6 gap-3 d-flex align-items-center justify-content-center justify-content-md-end">
+                        <a href="{{ route('payment_details.edit', $paymentDetail) }}" class="btn btn-primary rounded-pill px-3 py-2 d-flex justify-content-center align-items-center shadow-sm" style="width:50%; height: 50px;">
                             <i class="bi bi-pencil me-1"></i> Edit
                         </a>
-                        <a href="{{ route('payment_details.index') }}" class="btn btn-outline-secondary rounded-pill px-3 py-2 shadow-sm">
+                        <a href="{{ route('payment_details.index') }}" class="btn btn-outline-secondary rounded-pill px-3 py-2 d-flex justify-content-center align-items-center shadow-sm" style="width:50%; height: 50px;">
                             <i class="bi bi-arrow-left me-1"></i> Back
                         </a>
                     </div>
+                </div>
                 @endif
             @endforeach
         </div>

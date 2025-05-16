@@ -23,11 +23,11 @@
 
         <hr class="my-4 border-secondary">
 
-        <div class="d-grid gap-3 d-md-flex justify-content-md-end">
-            <a href="{{ route('accounts.edit', $account) }}" class="btn btn-primary rounded-pill px-4 py-3 shadow fs-5">
+        <div class="gap-3 d-md-flex justify-content-evenly">
+            <a href="{{ route('accounts.edit', $account) }}" class="btn btn-primary rounded-pill d-flex justify-content-center align-items-center shadow fs-6 w-100 mb-2 mb-md-0" style="height: 50px;">
                 <i class="bi bi-pencil me-2"></i> Edit
             </a>
-            <a href="{{ route('accounts.index') }}" class="btn btn-outline-secondary rounded-pill px-4 py-3 shadow fs-5">
+            <a href="{{ route('accounts.index') }}" class="btn btn-outline-secondary d-flex justify-content-center align-items-center rounded-pill px-4 py-3 shadow fs-6 w-100  " style="height: 50px;">
                 <i class="bi bi-arrow-left me-2"></i> Back
             </a>
         </div>
