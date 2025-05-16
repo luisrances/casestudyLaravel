@@ -99,4 +99,17 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    public function home_page(Product $product)
+    {
+        return view('welcome', compact('product'));
+    }
+    public function shop_page(Product $product)
+    {
+        return view('Shop', compact('product'));
+    }
+    public function feedback_page(Product $product)
+    {
+        return view('Feedback', compact('product'));
+    }
 }

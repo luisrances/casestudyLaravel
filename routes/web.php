@@ -42,26 +42,13 @@ Route::get('/user-profiling/{account_id}', [UserProfilingController::class, 'cre
 Route::post('/user-profiling/register', [UserProfilingController::class, 'storeFormRegistration'])
     ->name('storeFormRegistration.index'); // for submitting the user-profilling
 
-
-Route::get('/', function () { // login page
-    return view('welcome');
-})->name('Home');
-
-Route::get('/shop', function () {
-    return view('Shop');
-})->name('Shop');
-
-Route::get('/feedback', function () {
-    return view('Feedback');
-})->name('Feedback');
+Route::get('/', [ProductController::class, 'home_page'])->name('Home');
+Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');
+Route::get('/feedback', [ProductController::class, 'feedback_page'])->name('Feedback');
 
 Route::get('/dashboard', function () { // dashboard after login
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::get('/admin', function () {
-//     return view('admin.dashboard.index');
-// })->name('admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
