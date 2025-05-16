@@ -63,6 +63,7 @@ class ProductController extends Controller
     // Show a single product
     public function show(Product $product)
     {
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -100,6 +101,7 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 
+    //Main Page
     public function home_page(Product $product)
     {
         return view('welcome', compact('product'));
