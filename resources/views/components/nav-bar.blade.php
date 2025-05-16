@@ -16,7 +16,7 @@
       <div class="flex flex-col gap-[50px] mt-5 sm:flex-row sm:items-center sm:mt-0 sm:ps-5 w-full h-full">
         <!-- Left-aligned links -->
         <div class="flex flex-col sm:flex-row gap-[50px] text-[18px]">
-          <a class="font-medium text-blue-500 focus:outline-hidden" href="{{ route('Home') }}" aria-current="page">Home</a>
+          <a class="font-medium text-gray-600 focus:outline-hidden" href="{{ route('Home') }}" aria-current="page">Home</a>
           <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400" href="{{ route('Shop') }}">Shop</a>
           <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400" href="{{ route('Feedback') }}">Feedback</a>
         </div>
@@ -66,3 +66,7 @@
     </div>
   </nav>
 </header>
+
+<script>
+  
+</script>
