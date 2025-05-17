@@ -79,3 +79,15 @@ Route::get('/db-check', function () {
     }
 });
 require __DIR__.'/auth.php';
+
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::get('/wishlist', [CartController::class, 'showWishlist'])->name('wishlist.show');
+
+Route::get('/purchase-history', [CartController::class, 'showPurchaseHistory'])->name('purchase.history');
+Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/bulk-delete', [CartController::class, 'bulkDelete'])->name('cart.bulkDelete');
+Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/checkout/{id}', [CartController::class, 'checkoutSingle'])->name('checkout.single');
+
+Route::get('/checkout', [CartController::class, 'showCheckout'])->name('checkout.show');
