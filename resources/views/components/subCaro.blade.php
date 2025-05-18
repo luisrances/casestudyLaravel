@@ -7,40 +7,52 @@
     "lg": 3
   }
 }' class="relative">
-  <div class="hs-carousel w-full h-[190px] overflow-hidden bg-white rounded-lg ">
+  <div class="hs-carousel w-full h-[190px] overflow-hidden bg-white rounded-lg">
     <div class="relative min-h-72 -mx-1">
-      <!-- transition-transform duration-700 -->
       <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap opacity-0 transition-transform duration-700">
+
         <div class="hs-carousel-slide px-1">
-          <div class="flex justify-center h-full bg-[#202020] p-6">
-            <span class="self-center text-sm text-red-800 transition duration-700">First slide</span>
+          <div onclick="openProductModal('First Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 20, 999.99)"
+            class="flex justify-center h-full bg-[#d9d9d9] p-6 cursor-pointer hover:bg-[#c5c5c5] transition">
+            <span class="self-center text-sm text-black-800">First Product</span>
           </div>
         </div>
+
         <div class="hs-carousel-slide px-1">
-          <div class="flex justify-center h-full bg-gray-200 p-6 dark:bg-neutral-800">
-            <span class="self-center text-sm text-gray-800 transition duration-700">Second slide</span>
+          <div onclick="openProductModal('Second Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 12, 749.99)"
+            class="flex justify-center h-full bg-[#d9d9d9] p-6 cursor-pointer hover:bg-[#c5c5c5] transition">
+            <span class="self-center text-sm text-black-800">Second Product</span>
           </div>
         </div>
+
         <div class="hs-carousel-slide px-1">
-          <div class="flex justify-center h-full bg-gray-300 p-6 dark:bg-neutral-700">
-            <span class="self-center text-sm text-gray-800 transition duration-700">Third slide</span>
+          <div onclick="openProductModal('Third Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 5, 499.99)"
+            class="flex justify-center h-full bg-[#d9d9d9] p-6 cursor-pointer hover:bg-[#c5c5c5] transition">
+            <span class="self-center text-sm text-black-800">Third Product</span>
           </div>
         </div>
+
         <div class="hs-carousel-slide px-1">
-          <div class="flex justify-center h-full bg-gray-100 p-6 dark:bg-neutral-900">
-            <span class="self-center text-sm text-gray-800 transition duration-700">Fourth slide</span>
+          <div onclick="openProductModal('Fourth Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 8, 299.99)"
+            class="flex justify-center h-full bg-[#d9d9d9] p-6 cursor-pointer hover:bg-[#c5c5c5] transition">
+            <span class="self-center text-sm text-black-800">Fourth Product</span>
           </div>
         </div>
+
         <div class="hs-carousel-slide px-1">
-          <div class="flex justify-center h-full bg-gray-200 p-6 dark:bg-neutral-800">
-            <span class="self-center text-sm text-gray-800 transition duration-700">Fifth slide</span>
+          <div onclick="openProductModal('Fifth Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 15, 899.99)"
+            class="flex justify-center h-full bg-[#d9d9d9] p-6 cursor-pointer hover:bg-[#c5c5c5] transition">
+            <span class="self-center text-sm text-black-800">Fifth Product</span>
           </div>
         </div>
+
         <div class="hs-carousel-slide px-1">
-          <div class="flex justify-center h-full bg-gray-300 p-6 dark:bg-neutral-700">
-            <span class="self-center text-sm text-gray-800 transition duration-700">Sixth slide</span>
+          <div onclick="openProductModal('Sixth Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 0, 199.99)"
+            class="flex justify-center h-full bg-[#d9d9d9] p-6 cursor-pointer hover:bg-[#c5c5c5] transition">
+            <span class="self-center text-sm text-black-800">Sixth Product</span>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -61,7 +73,5 @@
       </svg>
     </span>
   </button>
-
-  <!-- <div class="hs-carousel-pagination flex justify-center absolute bottom-3 start-0 end-0 flex gap-x-2"></div> -->
 </div>
 <!-- End Slider -->
