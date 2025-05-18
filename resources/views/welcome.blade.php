@@ -23,18 +23,46 @@
     </div>
 
     <div class="banner">
-        <img src="./Images/Banner.png" alt="Banner" width="1568" height="240" class="mt-[35px] shadow-xl rounded-xl"/>
+        <img src="./Images/Banner.png" alt="Banner" width="1568" height="240" class="mt-[35px] shadow-xl rounded-xl" />
     </div>
 
     <div class="mt-[35px]">
         <h1 class="font-bold opacity-50 text-[36px]">Recommendation</h1>
-        <p class="text-[22px]">Accessories</p>
-        <x-subCaro></x-subCaro>
-        <p class="text-[22px]">Accessories</p>
-        <x-subCaro></x-subCaro>
-        <p class="text-[22px]">Accessories</p>
-        <x-subCaro></x-subCaro>
-        <p class="text-[22px]">Accessories</p>
-        <x-subCaro></x-subCaro>
+
+        <!-- Accessories Category Group -->
+        <div class="mb-[24px]">
+            <div class="flex justify-between items-center">
+                <p class="text-[22px]">Accessories</p>
+                <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#attachments">See more...</a>
+            </div>
+            <x-subCaro />
+        </div>
+
+        <!-- Parts Category Group -->
+        <div class="mb-[24px]">
+            <div class="flex justify-between items-center">
+                <p class="text-[22px]">Parts</p>
+                <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#cockpit">See more...</a>
+            </div>
+            <x-subCaro />
+        </div>
+
+        <!-- Tools Category Group -->
+        <div class="mb-[24px]">
+            <div class="flex justify-between items-center">
+                <p class="text-[22px]">Tools</p>
+                <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#tools">See more...</a>
+            </div>
+            <x-subCaro />
+        </div>
+
+        <!-- Bikes Category Group -->
+        <div class="mb-[24px]">
+            <div class="flex justify-between items-center">
+                <p class="text-[22px]">Bikes</p>
+                <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#mtb">See more...</a>
+            </div>
+            <x-subCaro />
+        </div>
     </div>
 </x-layout>
