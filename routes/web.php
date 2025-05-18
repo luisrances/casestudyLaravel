@@ -9,6 +9,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PaymentDetailsController;
 use App\Http\Controllers\UserProfilingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -24,8 +25,10 @@ Route::prefix('admin')->group(function () {
     Route::view('/carts', 'admin.wishlists.index');
     Route::view('/payment_details', 'admin.payment_details.index');
     Route::view('/user_profilings', 'admin.user_profilings.index');
+    Route::view('/feedbacks', 'admin.feedback.index');
 });
 // crud
+Route::resource('/admin', DashboardController::class);
 Route::resource('/admin/accounts', AccountController::class);
 Route::resource('/admin/products', ProductController::class);
 Route::resource('/admin/orders', OrderController::class);
@@ -34,7 +37,7 @@ Route::resource('/admin/wishlists', WishlistController::class);
 Route::resource('/admin/payment_details', PaymentDetailsController::class);
 Route::resource('/admin/user_profilings', UserProfilingController::class);
 Route::resource('/admin/dashboard', DashboardController::class);
-Route::resource('/admin', DashboardController::class);
+Route::resource('/admin/feedbacks', FeedbackController::class);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
 Route::get('/user-profiling/{account_id}', [UserProfilingController::class, 'createFromRegistration'])
