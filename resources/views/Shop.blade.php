@@ -64,25 +64,27 @@
               @php
                 $price = rand(100, 999);
                 $stock = rand(0, 20);
+                $shortDescription = 'Lorem ipsum dolor sit amet, consectetur...';
+                $longDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
               @endphp
               <div class="bg-white shadow-md rounded-xl overflow-hidden">
                 <img src="https://via.placeholder.com/300x200?text={{ ucfirst($category) }}+{{ $i }}" alt="" class="w-full h-40 object-cover">
                 <div class="p-4">
                   <h3 class="text-lg font-semibold">Product {{ $i }}</h3>
-                  <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet.</p>
+                  <p class="text-sm text-gray-600 truncate" title="{{ $longDescription }}">{{ $shortDescription }}</p>
                   <p class="text-blue-600 font-semibold mt-2">Php {{ $price }}.00</p>
                   <p class="text-sm mt-1 {{ $stock > 0 ? 'text-green-600' : 'text-red-600' }}">
                     Stock: {{ $stock > 0 ? $stock : 'Out of Stock' }}
                   </p>
                   <button 
                     class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
-                    onclick="openModal({
-                      name: 'Product {{ $i }}',
-                      price: 'Php {{ $price }}.00',
-                      stock: {{ $stock }},
-                      description: 'Lorem ipsum dolor sit amet.',
-                      image: 'https://via.placeholder.com/300x200?text={{ ucfirst($category) }}+{{ $i }}'
-                    })"
+                    onclick="openProductModal(
+                      'Product {{ $i }}',
+                      `{{ $longDescription }}`,
+                      {{ $stock }},
+                      {{ $price }},
+                      'https://via.placeholder.com/300x200?text={{ ucfirst($category) }}+{{ $i }}'
+                    )"
                   >
                     View Details
                   </button>
@@ -95,41 +97,24 @@
     </main>
   </div>
 
+  <!-- Remove the old modal and its script below -->
   <!-- Modal -->
-  <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  {{-- <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
     <div class="bg-white p-6 rounded-lg max-w-3xl w-full relative">
       <button class="absolute top-2 right-2 text-xl" onclick="document.getElementById('product-modal').classList.add('hidden')">&times;</button>
       <div id="product-content"></div>
     </div>
-  </div>
+  </div> --}}
 
-  <!-- Script -->
-  <script>
+  <!-- Remove the old openModal JS function -->
+  {{-- <script>
     function openModal(data) {
-      const modal = document.getElementById('product-modal');
-      const content = document.getElementById('product-content');
-
-      content.innerHTML = `
-        <div class="flex flex-col md:flex-row gap-6">
-          <img src="${data.image}" alt="${data.name}" class="w-full md:w-1/2 rounded">
-          <div class="flex-1">
-            <h2 class="text-2xl font-bold text-blue-700">${data.name}</h2>
-            <p class="text-gray-600 my-2">${data.description}</p>
-            <p class="text-2xl font-semibold mb-1">${data.price}</p>
-            <p class="text-sm ${data.stock > 0 ? 'text-green-600' : 'text-red-600'} mb-4">
-              Stock: ${data.stock > 0 ? data.stock : 'Out of Stock'}
-            </p>
-            <div class="mt-4 flex gap-4">
-              <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" ${data.stock == 0 ? 'disabled class="opacity-50 cursor-not-allowed"' : ''}>Add to Cart</button>
-              <button class="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500" ${data.stock == 0 ? 'disabled class="opacity-50 cursor-not-allowed"' : ''}>Buy Now</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      modal.classList.remove('hidden');
+      // ...old code...
     }
-
+    // ...rest of script...
+  </script> --}}
+  <!-- Keep the scroll spy script only -->
+  <script>
     // Scroll Spy Script
     document.addEventListener('DOMContentLoaded', function () {
       const mainContent = document.getElementById('main-content');
