@@ -70,24 +70,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-1 mb-3 align-self-center px-2 shadow w-100" onclick="window.location='{{ route('feedbacks.show', $feedback->id) }}';" style="max-width: 590px; cursor: pointer;">
-                    <div class="row align-items-center gx-1 my-0">
-                        <div class="col-sm-8">
-                            <div class="card-body pt-1 pb-0 px-2 lh-1">
-                                <p class="fw-medium mb-1 fs-5">Feedback #{{ $feedback->id }}</p>
-                                <p class="fw-normal mb-1 fs-6">Account ID: {{ $feedback->account_id }}</p>
-                                <p class="fw-normal mb-1 fs-6">Comment: {{ $feedback->comment }}</p>
+                @foreach ($feedback as $feedback)
+                    <div class="card p-1 mb-3 align-self-center px-2 shadow w-100" onclick="window.location='{{ route('feedbacks.show', $feedback->id) }}';" style="max-width: 590px; cursor: pointer;">
+                        <div class="row align-items-center gx-1 my-0">
+                            <div class="col-sm-8">
+                                <div class="card-body pt-1 pb-0 px-2 lh-1">
+                                    <p class="fw-medium mb-1 fs-5">Feedback #{{ $feedback->id }}</p>
+                                    <p class="fw-normal mb-1 fs-6">Account ID: {{ $feedback->account_id }}</p>
+                                    <p class="fw-normal mb-1 fs-6">Comment: {{ $feedback->comment }}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 d-flex flex-column">
+                                <a href="{{ route('feedbacks.edit', $feedback) }}" class="btn btn-sm btn-info my-1 w-100">Edit</a>
+                                <form action="{{ route('feedbacks.destroy', $feedback) }}" method="POST">
+                                    @csrf @method('DELETE')
+                                    <button class="btn btn-sm btn-info my-1 w-100">Delete</button>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-sm-4 d-flex flex-column">
-                            <a href="{{ route('feedbacks.edit', $feedback) }}" class="btn btn-sm btn-info my-1 w-100">Edit</a>
-                            <form action="{{ route('feedbacks.destroy', $feedback) }}" method="POST">
-                                @csrf @method('DELETE')
-                                <button class="btn btn-sm btn-info my-1 w-100">Delete</button>
-                            </form>
-                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
 
