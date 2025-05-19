@@ -7,18 +7,22 @@
   <div class="hs-carousel relative overflow-hidden w-full min-h-96 bg-white rounded-lg">
     <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
       <div class="hs-carousel-slide">
-        <div class="flex justify-center h-full bg-gray-100 p-6 dark:bg-neutral-900">
-          <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">First slide</span>
+        <div class="flex justify-center h-full">
+          <!-- <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">First slide</span> -->
+          <img src="./Images/P1.png" alt="P1" class="object-contain w-full h-full" />
         </div>
       </div>
       <div class="hs-carousel-slide">
-        <div class="flex justify-center h-full bg-gray-200 p-6 dark:bg-neutral-800">
-          <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">Second slide</span>
+        <div class="flex justify-center h-full">
+          <!-- <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">Second slide</span> -->
+          <img src="./Images/P2.png" alt="P2" class="object-contain w-full h-full" />
         </div>
       </div>
       <div class="hs-carousel-slide">
-        <div class="flex justify-center h-full bg-gray-300 p-6 dark:bg-neutral-700">
-          <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">Third slide</span>
+        <!-- bg-gray-300 dark:bg-neutral-700 -->
+        <div class="flex justify-center h-full"> 
+          <!-- <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">Third slide</span> -->
+          <img src="./Images/P3.png" alt="P3" class="object-contain w-full h-full" />
         </div>
       </div>
     </div>
