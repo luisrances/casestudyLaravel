@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
     Route::view('/user_profilings', 'admin.user_profilings.index');
     Route::view('/feedbacks', 'admin.feedback.index');
 });
-// crud
+// admin crud
 Route::resource('/admin', DashboardController::class);
 Route::resource('/admin/accounts', AccountController::class);
 Route::resource('/admin/products', ProductController::class);
@@ -38,13 +38,25 @@ Route::resource('/admin/payment_details', PaymentDetailsController::class);
 Route::resource('/admin/user_profilings', UserProfilingController::class);
 Route::resource('/admin/dashboard', DashboardController::class);
 Route::resource('/admin/feedbacks', FeedbackController::class);
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
+// user profiling page
 Route::get('/user-profiling/{account_id}', [UserProfilingController::class, 'createFromRegistration'])
     ->name('create_user_profiling.index'); // for creating user-profiling after signup
 Route::post('/user-profiling/register', [UserProfilingController::class, 'storeFormRegistration'])
     ->name('storeFormRegistration.index'); // for submitting the user-profilling
 
+// cart page
+Route::get('/cart', [CartController::class, 'cart_user'])->name('cart.user');
+Route::post('/cart/update-quantity/{id}', [CartController::class, 'update_quantity_ajax']);
+Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::put('/cart/{id}', [CartController::class, 'update_quantity'])->name('cart.modify');
+
+//checkout page
+Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/checkout/update-quantity/{id}', [CartController::class, 'update_quantity_ajax']);
+Route::post('/checkout/process', [CartController::class, 'processCheckout'])->name('checkout.process');
+
+// main page
 Route::get('/', [ProductController::class, 'home_page'])->name('Home');
 Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');
 Route::get('/feedback', [ProductController::class, 'feedback_page'])->name('Feedback');
@@ -58,6 +70,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
+
+
+
 
 // db check if active
 Route::get('/db-check', function () {
