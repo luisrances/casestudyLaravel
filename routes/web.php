@@ -56,6 +56,9 @@ Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/update-quantity/{id}', [CartController::class, 'update_quantity_ajax']);
 Route::post('/checkout/process', [CartController::class, 'processCheckout'])->name('checkout.process');
 
+//account setting
+Route::get('/account-setting', function () {return view('account_setting');})->name('account.setting');
+
 // main page
 Route::get('/', [ProductController::class, 'home_page'])->name('Home');
 Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');
@@ -87,6 +90,3 @@ Route::get('/db-check', function () {
     }
 });
 require __DIR__.'/auth.php';
-
-//account setting
-Route::get('/account-setting', function () {return view('account_setting');})->name('account.setting');

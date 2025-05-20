@@ -42,13 +42,34 @@
                       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                     </svg>
                   </a>
-                  <a href="{{ url('/dashboard') }}" class="flex items-center gap-2 font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400" href="#">
-                    {{ Auth::check() ? Auth::user()->first_name . ' ' . Auth::user()->last_name : 'Account' }}
+                  <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex items-center gap-2 font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400" 
+                    type="button">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                       <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                     </svg>
-                  </a>
+                  </button>
+                  <!-- Dropdown menu -->
+                  <div id="dropdown" class="z-10 hidden bg-gray-100 rounded-lg shadow-sm w-40">
+                      <ul class="py-3 text-md text-black" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                          <a href="{{ route('account.setting') }}" 
+                            class="block px-4 py-3 text-base rounded-lg text-gray-700 hover:bg-gray-200">
+                              Account Settings
+                          </a>
+                        </li>
+                        <li>
+                          <form method="POST" action="{{ route('logout') }}">
+                              @csrf
+                              <button type="submit" 
+                                      class="block w-full text-left px-4 py-3 text-base rounded-lg text-gray-700 hover:bg-gray-200">
+                                  Log Out
+                              </button>
+                          </form>
+                        </li>
+                      </ul>
+                  </div>
+                </div>
           @else
                   {{-- not logged in --}}
                   <a  onclick="showLoginAlert()" class="mr-8 flex items-center gap-2 font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400" href="#">

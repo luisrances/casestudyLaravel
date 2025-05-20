@@ -2,8 +2,8 @@
     <main class="container mx-auto px-4 py-3 pt-0 flex-grow h-[140vh] lg:h-auto">
         <div class="ml-4 text-[18px]">
             <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px] border-b border-gray-500">Cart</a>
-            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('Home') }}">Home</a>
-            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('Shop') }}">Shop</a>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="#">Wishlist</a>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="#">Purchase History</a>
           </div>
 
         <div class="flex flex-col lg:flex-row gap-8 mt-5 lg:max-h-[500px] max-h-[800px]">
