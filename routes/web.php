@@ -69,3 +69,6 @@ Route::get('/db-check', function () {
     }
 });
 require __DIR__.'/auth.php';
+
+//account setting
+Route::get('/account-setting', function () {return view('account_setting');})->name('account.setting');
