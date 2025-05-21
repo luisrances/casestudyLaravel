@@ -108,7 +108,8 @@ class ProductController extends Controller
     }
     public function shop_page(Product $product)
     {
-        return view('Shop', compact('product'));
+        $products = Product::all()->groupBy('category');
+        return view('Shop', compact('products'));
     }
     public function feedback_page(Product $product)
     {
