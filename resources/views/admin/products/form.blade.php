@@ -12,7 +12,7 @@
     <div class="mb-3">
         <label for="price" class="form-label">Price</label>
         <div class="input-group">
-            <span class="input-group-text">$</span>
+            <span class="input-group-text">₱</span>
             <input type="number" step="0.01" class="form-control form-control-md" id="price" name="price" value="{{ old('price', $product->price ?? '') }}" placeholder="0.00" required>
         </div>
     </div>
@@ -24,14 +24,27 @@
 
     <div class="mb-3">
         <label for="category" class="form-label">Category</label>
-        <input type="text" class="form-control form-control-md" id="category" name="category" value="{{ old('category', $product->category ?? '') }}" placeholder="e.g., Electronics, Books">
+        <select class="form-select form-select-md" id="category" name="category">
+            <option value="" disabled selected>Select a category</option>
+            @foreach ([
+            'attachments', 'apparel', 'gear',
+            'cockpit', 'drivetrain', 'braking-system', 'wheels-tires', 'frame-fork', 'seating-area',
+            'tools',
+            'mtb', 'time-trial', 'road-bike', 'gravel-bike'
+            ] as $category)
+            <option value="{{ $category }}" {{ old('category', $product->category ?? '') == $category ? 'selected' : '' }}>
+                {{ ucwords(str_replace('-', ' ', $category)) }}
+            </option>
+            @endforeach
+        </select>
     </div>
+
 
     <div class="mb-3">
         <label for="image_path" class="form-label">Image</label>
         <input type="file" class="form-control form-control-md" id="image_path" name="image_path">
         @if (!empty($product->image_path))
-            <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product Image" class="img-thumbnail mt-3" style="max-width: 150px;">
+        <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product Image" class="img-thumbnail mt-3" style="max-width: 150px;">
         @endif
     </div>
 </div>
@@ -39,31 +52,33 @@
 <style>
     .submain {
         min-height: 70vh;
-        overflow-y: auto; 
-        margin: 15px; 
-        background: #ffffff ; 
+        overflow-y: auto;
+        margin: 15px;
+        background: #ffffff;
         border-radius: 5px;
-    } 
-    
+    }
+
     .custom-scroll {
         max-height: 200px;
         overflow-y: scroll;
         padding-right: -8px;
         scrollbar-width: thin;
-        scrollbar-color: rgba(0,0,0,0.2) transparent;
+        scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
         position: relative;
         border-radius: 10px;
     }
+
     @media (max-width: 767px) {
-        .submain{
+        .submain {
             min-height: 10vh !important;
             max-height: calc(85vh - 130px) !important;
             overflow-y: scroll !important;
             margin: 0px !important;
         }
     }
+
     @media (max-height: 700px) and (max-width: 767px) {
-        .submain{
+        .submain {
             min-height: 10vh !important;
             max-height: calc(85vh - 150px) !important;
         }

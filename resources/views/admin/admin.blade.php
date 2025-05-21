@@ -47,7 +47,7 @@
                     </li>
 
                     <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Account Processes">
-                        <a class="nav-link text-black {{ request()->is('admin/accounts*') || request()->is('admin/payment_details*') ? 'active' : '' }}" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link text-black {{ request()->is('admin/accounts*') || request()->is('admin/payment_details*') || request()->is('admin/user_profilings*') || request()->is('admin/feedbacks*') ? 'active' : '' }}" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-rolodex fs-4"></i> <span>Account Processes</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="accountDropdown">
@@ -59,6 +59,9 @@
                             </a></li>
                             <li><a class="dropdown-item" href="{{ url('admin/user_profilings') }}">
                                 <i class="bi bi-person fs-4"></i> User Profiling
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/feedbacks') }}">
+                                <i class="bi bi-chat-text fs-4"></i> Feedback
                             </a></li>
                         </ul>
                     </li>

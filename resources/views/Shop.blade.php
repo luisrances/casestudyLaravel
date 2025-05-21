@@ -51,50 +51,68 @@
 
     <!-- Main Content -->
     <main id="main-content" class="flex-1 overflow-y-auto p-8 space-y-10 h-screen scroll-smooth">
-      @foreach ([
-        'attachments', 'apparel', 'gear',
-        'cockpit', 'drivetrain', 'braking-system', 'wheels-tires', 'frame-fork', 'seating-area',
-        'tools',
-        'mtb', 'time-trial', 'road-bike', 'gravel-bike'
-      ] as $category)
-        <section id="{{ $category }}" class="scroll-mt-32">
-          <h2 class="text-2xl font-bold capitalize mb-4">{{ str_replace('-', ' ', $category) }}</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            @for ($i = 1; $i <= 6; $i++)
-              <div class="bg-white shadow-md rounded-xl overflow-hidden">
-                <img src="https://via.placeholder.com/300x200?text={{ ucfirst($category) }}+{{ $i }}" alt="" class="w-full h-40 object-cover">
-                <div class="p-4">
-                  <h3 class="text-lg font-semibold">Product {{ $i }}</h3>
-                  <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet.</p>
-                  <p class="text-blue-600 font-semibold mt-2">Php {{ rand(100, 999) }}.00</p>
-                  <button class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">View Details</button>
-                </div>
-              </div>
-            @endfor
+      @foreach ($products as $category => $categoryProducts)
+      <section id="{{ $category }}" class="scroll-mt-32">
+        <h2 class="text-2xl font-bold capitalize mb-4">{{ str_replace('-', ' ', $category) }}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          @foreach ($categoryProducts as $product)
+          <div class="bg-white shadow-md rounded-xl overflow-hidden">
+            <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}" alt="" class="w-full h-40 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
+              <p class="text-sm text-gray-600 truncate" title="{{ $product->description }}">{{ $product->description }}</p>
+              <p class="text-blue-600 font-semibold mt-2">Php {{ number_format($product->price, 2) }}</p>
+              <p class="text-sm mt-1 {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
+                Stock: {{ $product->stock > 0 ? $product->stock : 'Out of Stock' }}
+              </p>
+              <button
+                class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+                onclick="openProductModal(
+                      '{{ addslashes($product->name) }}',
+                      `{{ addslashes($product->description) }}`,
+                      {{ $product->stock }},
+                      {{ $product->price }},
+                      '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}'
+                    )">
+                View Details
+              </button>
+            </div>
           </div>
-        </section>
+          @endforeach
+        </div>
+      </section>
       @endforeach
     </main>
   </div>
 
-  <!-- Improved Scroll Spy Script -->
+  <!-- Modal -->
+  {{-- <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white p-6 rounded-lg max-w-3xl w-full max-h-3xl h-full relative">
+      <button class="absolute top-2 right-2 text-xl" onclick="document.getElementById('product-modal').classList.add('hidden')">&times;</button>
+      <div id="product-content"></div>
+    </div>
+  </div> --}}
+
+  {{-- <script>
+    function openModal(data) {..}
+  </script> --}}
+
+  <!-- Keep the scroll spy script only -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    // Scroll Spy Script
+    document.addEventListener('DOMContentLoaded', function() {
       const mainContent = document.getElementById('main-content');
       const sections = mainContent.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.nav-link');
 
       function onScroll() {
         let currentSection = '';
+        let minOffset = Number.POSITIVE_INFINITY;
 
         sections.forEach(section => {
-          const sectionRect = section.getBoundingClientRect();
-          const containerRect = mainContent.getBoundingClientRect();
-
-          if (
-            sectionRect.top >= containerRect.top &&
-            sectionRect.top < containerRect.bottom - 100
-          ) {
+          const offset = Math.abs(section.getBoundingClientRect().top - mainContent.getBoundingClientRect().top - 100);
+          if (offset < minOffset) {
+            minOffset = offset;
             currentSection = section.id;
           }
         });
@@ -107,12 +125,12 @@
         });
       }
 
-      mainContent.addEventListener('scroll', onScroll);
-      onScroll(); // Initial highlight on load
 
-      // Smooth scroll to section
+      mainContent.addEventListener('scroll', onScroll);
+      onScroll();
+
       navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
+        link.addEventListener('click', function(e) {
           e.preventDefault();
           const id = this.getAttribute('href').substring(1);
           const target = document.getElementById(id);
