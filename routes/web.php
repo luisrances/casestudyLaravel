@@ -56,6 +56,13 @@ Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/update-quantity/{id}', [CartController::class, 'update_quantity_ajax']);
 Route::post('/checkout/process', [CartController::class, 'processCheckout'])->name('checkout.process');
 
+
+//wishlist
+Route::get('/wishlist', function () {return view('order-flow/wishlist');});
+
+//purchase history
+Route::get('/purchase_history', function () {return view('order-flow/purchase_history');});
+
 //account setting
 Route::get('/account-setting', function () {return view('account_setting');})->name('account.setting');
 
