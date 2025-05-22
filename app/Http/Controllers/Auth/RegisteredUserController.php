@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
             if (session('needs_profiling', false)) {
                 return redirect()->route('create_user_profiling.index', ['account_id' => Auth::id()]);
             }
-            return redirect()->route('dashboard');
+            return redirect()->route('create_user_profiling.index', ['account_id' => Auth::id()]);
         }
         return view('auth.register');
     }

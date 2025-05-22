@@ -2,8 +2,8 @@
     <main class="container mx-auto px-4 py-3 pt-0 flex-grow h-[140vh] lg:h-auto">
         <div class="ml-4 text-[18px]">
             <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px] border-b border-gray-500">Cart</a>
-            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="#">Wishlist</a>
-            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="#">Purchase History</a>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('wishlist.user') }}">Wishlist</a>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('purchase_history') }}">Purchase History</a>
           </div>
 
         <div class="flex flex-col lg:flex-row gap-8 mt-5 lg:max-h-[500px] max-h-[800px]">
@@ -49,7 +49,7 @@
                                                         </svg>
                                                     @endif
                                                 </td>
-                                                <td class=" mr-0 px-6 py-4 font-normal text-gray-900">
+                                                <td class="px-6 py-4 font-normal text-gray-900">
                                                     @if ($cart->product_id == $product->id)
                                                         <p class="mb-0">{{ $product->name }}</p>
                                                     @endif
@@ -71,7 +71,7 @@
                                                         </button>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 font-normal text-gray-900">
+                                                <td class="px-6 py-4 w-[150px] font-normal text-gray-900">
                                                     ₱ {{ number_format($product->price, 2) }}
                                                 </td>
                                                 <td class="px-6 py-4">

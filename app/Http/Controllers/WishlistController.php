@@ -6,6 +6,7 @@ use App\Models\Wishlist;
 use App\Models\Product;
 use App\Models\Account;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -97,5 +98,37 @@ class WishlistController extends Controller
     {
         $wishlist->delete();
         return redirect()->route('wishlists.index')->with('success', 'Wishlist deleted successfully.');
+    }
+
+    // shop to add wislist
+    public function add_wishlist(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|integer',
+        ]);
+
+        $validated['account_id'] = Auth::user()->id;
+
+        Wishlist::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product added to wishlist successfully'
+        ]);
+    }
+
+    // wishlist user page
+    public function wishlist_user(Request $request)
+    {
+        $products = Product::all();
+        $accounts = Account::all();
+        $wishlists = Wishlist::where('account_id', Auth::user()->id)->get();
+
+        return view('order-flow.wishlist', compact('wishlists', 'products', 'accounts'));
+    }
+    public function remove($id)
+    {
+        Wishlist::destroy($id);
+        return redirect()->route('wishlist.user');
     }
 }

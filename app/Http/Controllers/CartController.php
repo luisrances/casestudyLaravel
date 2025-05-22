@@ -102,6 +102,24 @@ class CartController extends Controller
         return redirect()->route('carts.index')->with('success', 'Cart deleted successfully.');
     }
 
+    // shop to add cart
+    public function add_cart(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|integer',
+        ]);
+
+        $validated['account_id'] = Auth::user()->id;
+        $validated['quantity'] = 1;
+
+        Cart::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product added to cart successfully'
+        ]);
+    }
+
 
     // cart user page
     public function cart_user(Request $request)
