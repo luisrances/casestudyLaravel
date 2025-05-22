@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('create_user_profiling.index', ['account_id' => $account->id]);
         }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('Shop', absolute: false));
     }
     /**
      * Destroy an authenticated session.

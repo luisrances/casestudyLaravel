@@ -136,6 +136,6 @@ class UserProfilingController extends Controller
 
         // Clear the profiling session flag
         session()->forget('needs_profiling');
-        return redirect()->route('dashboard')->with('success', 'User profile created successfully.');
+        return redirect()->route('Shop')->with('success', 'User profile created successfully.');
     }
 }
