@@ -49,25 +49,47 @@
       </div>
     </aside>
 
-    <!-- Card -->
+    <!-- Main Content -->
     <main id="main-content" class="flex-1 overflow-y-auto p-8 space-y-10 h-screen scroll-smooth">
       @foreach ($products as $category => $categoryProducts)
       <section id="{{ $category }}" class="scroll-mt-32">
         <h2 class="text-2xl font-bold capitalize mb-4">{{ str_replace('-', ' ', $category) }}</h2>
+
+        @if ($categoryProducts->isEmpty())
+        <div class="w-full py-8 text-center bg-gray-50 border border-gray-300 text-gray-700 rounded-md">
+          ⚠️ No products available.
+        </div>
+        @else
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           @foreach ($categoryProducts as $product)
           <div class="bg-white shadow-md rounded-xl overflow-hidden">
-            <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}" alt="" class="w-full h-40 object-cover">
+            <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}"
+              alt="{{ $product->name }}"
+              class="w-full h-40 object-cover">
             <div class="p-4">
               <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
-              <p class="text-sm text-gray-600 truncate" title="{{ $product->description }}">{{ $product->description }}</p>
-              <p class="text-blue-600 font-semibold mt-2">Php {{ number_format($product->price, 2) }}</p>
+              @php
+              $cleanDescription = preg_replace('/#\w[\w-]*/', '', $product->description);
+              @endphp
+              <p class="text-sm text-gray-600 truncate" title="{{ $cleanDescription }}">
+                {{ $cleanDescription }}
+              </p>
+              <p class="text-blue-600 font-semibold mt-2">
+                Php {{ number_format($product->price, 2) }}
+              </p>
               <p class="text-sm mt-1 {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
                 Stock: {{ $product->stock > 0 ? $product->stock : 'Out of Stock' }}
               </p>
-              <button
-                class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+              <button class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
                 onclick="openProductModal(
+<<<<<<< HEAD
+                        '{{ addslashes($product->name) }}',
+                        `{{ addslashes($product->description) }}`,
+                        {{ $product->stock }},
+                        {{ $product->price }},
+                        '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}'
+                      )">
+=======
                       '{{ addslashes($product->name) }}',
                       `{{ addslashes($product->description) }}`,
                       {{ $product->stock }},
@@ -75,31 +97,21 @@
                       '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
                       {{ $product->id }}
                     )">
+>>>>>>> ff66a068f4235c276ea0033e212fb8d176734737
                 View Details
               </button>
             </div>
           </div>
           @endforeach
         </div>
+        @endif
       </section>
       @endforeach
     </main>
   </div>
 
-  <!-- Modal -->
-  {{-- <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white p-6 rounded-lg max-w-3xl w-full max-h-3xl h-full relative">
-      <button class="absolute top-2 right-2 text-xl" onclick="document.getElementById('product-modal').classList.add('hidden')">&times;</button>
-      <div id="product-content"></div>
-    </div>
-  </div> --}}
-
-  {{-- <script>
-    function openModal(data) {..}
-  </script> --}}
-
+  <!-- Scroll Spy + Smooth Scroll -->
   <script>
-    // Scroll Spy Script
     document.addEventListener('DOMContentLoaded', function() {
       const mainContent = document.getElementById('main-content');
       const sections = mainContent.querySelectorAll('section');
@@ -124,7 +136,6 @@
           }
         });
       }
-
 
       mainContent.addEventListener('scroll', onScroll);
       onScroll();
