@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -102,15 +103,152 @@ class ProductController extends Controller
     }
 
     //Main Page
-    public function home_page(Product $product)
+    public function home_page()
     {
-        return view('welcome', compact('product'));
+        $categoryMap = [
+            'Accessories' => ['attachments', 'apparel', 'gear'],
+            'Parts' => ['cockpit', 'drivetrain', 'braking-system', 'wheels-tires', 'frame-fork', 'seating-area'],
+            'Tools' => ['tools'],
+            'Bikes' => ['mtb', 'time-trial', 'road-bike', 'gravel-bike']
+        ];
+
+        $bikeUseCaseMap = [
+            'mtb' => ['off-roading', 'leisure', 'mountains', 'trails'],
+            'road-bike' => ['racing', 'commuting', 'coastal roads', 'smooth pavement'],
+            'time-trial' => ['racing', 'flat terrain', 'coastal roads'],
+            'gravel-bike' => ['commuting', 'leisure', 'off-roading', 'mixed terrain', 'light trails']
+        ];
+
+        $recommended = [];
+        $isLoggedIn = Auth::check();
+        $userProfile = $isLoggedIn ? \App\Models\UserProfiling::where('account_id', Auth::user()->id)->first() : null;
+
+        $expTag = null;
+        $userRecommendedBikeCategory = null;
+        $height = null;
+        $activityType = null;
+        $terrain = null;
+
+        if ($userProfile) {
+            $height = $userProfile->height;
+            $expTag = '#' . strtolower(trim($userProfile->experience_level));
+            $activityType = strtolower(trim($userProfile->activity_type));
+            $terrain = strtolower(trim($userProfile->terrain));
+
+            // Recommend bike type based on activity or terrain
+            foreach ($bikeUseCaseMap as $bike => $useCases) {
+                if (in_array($activityType, $useCases) || in_array($terrain, $useCases)) {
+                    $userRecommendedBikeCategory = $bike;
+                    break;
+                }
+            }
+        }
+
+        foreach ($categoryMap as $group => $subCategories) {
+            $query = \App\Models\Product::query();
+            $query->whereIn('category', $subCategories);
+
+            $products = collect(); // ensure it's always defined
+
+            if ($isLoggedIn && $userProfile) {
+                $query->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"]);
+
+                if ($group === 'Bikes' && $userRecommendedBikeCategory) {
+                    $query->where('category', $userRecommendedBikeCategory);
+
+                    // Determine size tag
+                    $bikeSizeTag = null;
+
+                    if ($userRecommendedBikeCategory === 'mtb') {
+                        if ($height >= 150 && $height < 160) $bikeSizeTag = '#size-26';
+                        elseif ($height >= 160 && $height < 170) $bikeSizeTag = '#size-27.5';
+                        else $bikeSizeTag = '#size-29';
+                    } else {
+                        if ($height >= 150 && $height < 160) $bikeSizeTag = '#size-xs';
+                        elseif ($height >= 160 && $height < 170) $bikeSizeTag = '#size-s';
+                        elseif ($height >= 170 && $height < 180) $bikeSizeTag = '#size-m';
+                        elseif ($height >= 180 && $height < 185) $bikeSizeTag = '#size-l';
+                        elseif ($height >= 185 && $height < 190) $bikeSizeTag = '#size-xl';
+                        else $bikeSizeTag = '#size-xxl';
+                    }
+
+                    if ($bikeSizeTag) {
+                        $query->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
+                    }
+
+                    $products = $query->inRandomOrder()->take(6)->get();
+
+                    if ($products->count() < 3) {
+                        $fallback = collect();
+
+                        foreach ($bikeUseCaseMap as $altBike => $useCases) {
+                            if (
+                                $altBike !== $userRecommendedBikeCategory &&
+                                (in_array($activityType, $useCases) || in_array($terrain, $useCases))
+                            ) {
+
+                                $related = \App\Models\Product::where('category', $altBike)
+                                    ->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"])
+                                    ->inRandomOrder()->take(6)->get();
+
+                                $fallback = $fallback->merge($related);
+                            }
+                        }
+
+                        $products = $products->merge($fallback)->unique('id')->take(6);
+                    }
+                } else {
+                    $products = $query->inRandomOrder()->take(6)->get();
+                }
+            } else {
+                $products = $query->inRandomOrder()->take(6)->get();
+            }
+
+            while ($products->count() < 6) {
+                $products->push(null);
+            }
+
+            $recommended[$group] = $products;
+        }
+
+        $latestUpdatedProducts = \App\Models\Product::whereIn('category', ['mtb', 'time-trial', 'road-bike', 'gravel-bike'])
+            ->orderBy('updated_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('welcome', compact('recommended', 'latestUpdatedProducts'));
     }
-    public function shop_page(Product $product)
+
+
+    public function shop_page()
     {
-        $products = Product::all()->groupBy('category');
-        return view('Shop', compact('products'));
+        $categoryMap = [
+            'attachments',
+            'apparel',
+            'gear',
+            'cockpit',
+            'drivetrain',
+            'braking-system',
+            'wheels-tires',
+            'frame-fork',
+            'seating-area',
+            'tools',
+            'mtb',
+            'time-trial',
+            'road-bike',
+            'gravel-bike'
+        ];
+
+        $productsBySubcategory = [];
+
+        foreach ($categoryMap as $subcategory) {
+            $productsBySubcategory[$subcategory] = \App\Models\Product::whereRaw('LOWER(category) = ?', [strtolower($subcategory)])->get();
+        }
+
+        return view('Shop', ['products' => collect($productsBySubcategory)]);
     }
+
+
     public function feedback_page(Product $product)
     {
         return view('Feedback', compact('product'));

@@ -114,8 +114,12 @@
 
     <script>
         function openProductModal(name, description, stock, price, imageUrl = '') {
+
+            // Remove hashtags from the description
+            const cleanDescription = description.replace(/#\w[\w-]*/g, '').trim();
+
             document.getElementById('modal-product-name').innerText = name;
-            document.getElementById('modal-product-description').innerText = description;
+            document.getElementById('modal-product-description').innerText = cleanDescription;
             document.getElementById('modal-product-stock').innerText = 'Stock: ' + stock;
             document.getElementById('modal-product-price').innerText = '₱' + parseFloat(price).toFixed(2);
             document.getElementById('modal-product-image').src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
