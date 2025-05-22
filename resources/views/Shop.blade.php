@@ -49,7 +49,7 @@
       </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Card -->
     <main id="main-content" class="flex-1 overflow-y-auto p-8 space-y-10 h-screen scroll-smooth">
       @foreach ($products as $category => $categoryProducts)
       <section id="{{ $category }}" class="scroll-mt-32">
@@ -97,7 +97,6 @@
     function openModal(data) {..}
   </script> --}}
 
-  <!-- Keep the scroll spy script only -->
   <script>
     // Scroll Spy Script
     document.addEventListener('DOMContentLoaded', function() {
