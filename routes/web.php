@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentDetailsController;
 use App\Http\Controllers\UserProfilingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -22,7 +23,7 @@ Route::prefix('admin')->group(function () {
     Route::view('/products', 'admin.products.index');
     Route::view('/orders', 'admin.orders.index');
     Route::view('/carts', 'admin.carts.index');
-    Route::view('/carts', 'admin.wishlists.index');
+    Route::view('/wishlists', 'admin.wishlists.index');
     Route::view('/payment_details', 'admin.payment_details.index');
     Route::view('/user_profilings', 'admin.user_profilings.index');
     Route::view('/feedbacks', 'admin.feedback.index');
@@ -50,6 +51,7 @@ Route::get('/cart', [CartController::class, 'cart_user'])->name('cart.user');
 Route::post('/cart/update-quantity/{id}', [CartController::class, 'update_quantity_ajax']);
 Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::put('/cart/{id}', [CartController::class, 'update_quantity'])->name('cart.modify');
+Route::post('/cart/add', [CartController::class, 'add_cart'])->name('cart.add');
 
 //checkout page
 Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
@@ -58,10 +60,13 @@ Route::post('/checkout/process', [CartController::class, 'processCheckout'])->na
 
 
 //wishlist
-Route::get('/wishlist', function () {return view('order-flow/wishlist');});
+Route::get('/wishlist', [WishlistController::class, 'wishlist_user'])->name('wishlist.user');
+Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+Route::post('/wishlist/add', [WishlistController::class, 'add_wishlist'])->name('wishlist.add');
+Route::post('/wishlist/cart', [WishlistController::class, 'add_cart_wishlist'])->name('wishlist.cart.add');
 
 //purchase history
-Route::get('/purchase_history', function () {return view('order-flow/purchase_history');});
+Route::get('/purchase_history', function () {return view('order-flow/purchase_history');})->name('purchase_history');
 
 //account setting
 Route::get('/account-setting', function () {return view('account_setting');})->name('account.setting');
@@ -72,7 +77,7 @@ Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');
 Route::get('/feedback', [ProductController::class, 'feedback_page'])->name('Feedback');
 
 Route::get('/dashboard', function () { // dashboard after login
-    return view('dashboard');
+    return view('welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

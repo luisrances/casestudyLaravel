@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Shop</title>
     @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -77,26 +78,26 @@
                     <p class="text-[20px] text-green-600 font-semibold mb-2" id="modal-product-stock">Stock: 0</p>
                     <p class="text-[22px] text-gray-800 font-medium">Price:</p>
                     <p class="text-[28px] text-blue-700 font-bold mb-6" id="modal-product-price">₱0.00</p>
+                    <p class="hidden" id="modal-product-id">0</p>
                 </div>
 
                 <div class="flex items-center space-x-6 mt-auto">
-                    <button class="bg-sky-300 p-3 rounded-xl flex items-center justify-center"
-                        onclick="showSuccess('Added to Wishlist!', 'Product has been added to your wishlist.')">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 
-                   6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 
-                   2.61C11.09 5.01 12.76 4 14.5 4 17 
-                   4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 
-                   11.54L12 21.35z" />
-                        </svg>
-                    </button>
-
-                    <button class="bg-sky-300 text-black text-base font-medium px-6 py-3 rounded-xl w-40 hover:bg-sky-400 transition"
-                        onclick="showSuccess('Added to Cart!', 'Product has been added to your cart.')">
-                        Add to Cart
-                    </button>
+                    <form id="addToWishlistForm" onsubmit="handleAddToWishlist(event)">
+                        @csrf
+                        <input type="hidden" name="product_id" id="wishlist_product_id"> <!-- Changed ID to avoid conflict -->
+                        <button type="submit" class="bg-sky-300 p-3 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+                    </form>
+                    <form id="addToCartForm" onsubmit="handleAddToCart(event)">
+                        @csrf
+                        <input type="hidden" name="product_id" id="product_id">
+                        <button type="submit" class="bg-sky-300 text-black text-base font-medium px-6 py-3 rounded-xl w-40 hover:bg-sky-400 transition">
+                            Add to Cart
+                        </button>
+                    </form>
 
                     <button class="bg-sky-300 text-black text-base font-medium px-6 py-3 rounded-xl w-40 hover:bg-sky-400 transition">
                         Buy Now
@@ -113,15 +114,21 @@
     </div>
 
     <script>
+<<<<<<< HEAD
         function openProductModal(name, description, stock, price, imageUrl = '') {
 
             // Remove hashtags from the description
             const cleanDescription = description.replace(/#\w[\w-]*/g, '').trim();
 
+=======
+        function openProductModal(name, description, stock, price, imageUrl = '', id) {
+>>>>>>> ff66a068f4235c276ea0033e212fb8d176734737
             document.getElementById('modal-product-name').innerText = name;
             document.getElementById('modal-product-description').innerText = cleanDescription;
             document.getElementById('modal-product-stock').innerText = 'Stock: ' + stock;
             document.getElementById('modal-product-price').innerText = '₱' + parseFloat(price).toFixed(2);
+            document.getElementById('product_id').value = id;
+            document.getElementById('wishlist_product_id').value = id;
             document.getElementById('modal-product-image').src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
             document.getElementById('product-modal').style.display = 'flex';
 
@@ -145,6 +152,69 @@
             setTimeout(() => {
                 alert.style.display = 'none';
             }, 2000);
+        }
+        function handleAddToCart(event) {
+            event.preventDefault();
+            const productId = document.getElementById('product_id').value;
+            showSuccess_cart('Added to Cart!', 'Product has been added to your cart.', productId);
+        }
+        function showSuccess_cart(title, message,  productId = null) {
+            closeProductModal();
+            fetch('{{ route('cart.add') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('success-alert-title').innerText = title;
+                    document.getElementById('success-alert-message').innerText = data.message;
+                    const alert = document.getElementById('success-alert');
+                    alert.style.display = 'block';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 2000);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }        
+        function handleAddToWishlist(event) {
+            event.preventDefault();
+            const productId = document.getElementById('wishlist_product_id').value;
+            showSuccess_wishlist('Added to Wishlist!', 'Product has been added to your wishlist.', productId);
+        }
+        function showSuccess_wishlist(title, message,  productId = null) {
+            closeProductModal(); // Close modal first
+            fetch('{{ route('wishlist.add') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('success-alert-title').innerText = title;
+                    document.getElementById('success-alert-message').innerText = data.message;
+                    const alert = document.getElementById('success-alert');
+                    alert.style.display = 'block';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 2000);
+                }
+            })
+            .catch(error => console.error('Error:', error));
         }
     </script>
 </body>

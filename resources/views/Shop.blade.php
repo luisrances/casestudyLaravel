@@ -82,12 +82,22 @@
               </p>
               <button class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
                 onclick="openProductModal(
+<<<<<<< HEAD
                         '{{ addslashes($product->name) }}',
                         `{{ addslashes($product->description) }}`,
                         {{ $product->stock }},
                         {{ $product->price }},
                         '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}'
                       )">
+=======
+                      '{{ addslashes($product->name) }}',
+                      `{{ addslashes($product->description) }}`,
+                      {{ $product->stock }},
+                      {{ $product->price }},
+                      '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
+                      {{ $product->id }}
+                    )">
+>>>>>>> ff66a068f4235c276ea0033e212fb8d176734737
                 View Details
               </button>
             </div>

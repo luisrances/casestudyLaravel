@@ -1,13 +1,10 @@
 <x-layout>
-    <main class="container mx-auto px-4 py-3 mb-4 pt-0 flex-grow">
-        purchase history
-    <main class="container mx-auto px-4 py-6 mb-10 flex-grow">
-        <!-- Tabs -->
-        <div class="flex space-x-6 text-lg font-semibold border-b border-gray-300 pb-2">
-            <button class="text-black">Cart</button>
-            <button class="text-black">Wish list</button>
-            <button class="border-b-2 border-black">Purchase History</button>
-        </div>
+    <main class="container mx-auto px-4 py-3 pt-0 flex-grow h-[140vh] lg:h-auto">
+        <div class="ml-4 text-[18px]">
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('cart.user') }}">Cart</a>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('wishlist.user') }}">Wishlist</a>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px] border-b border-gray-500">Purchase History</a>
+          </div>
 
         <!-- Purchase History Card -->
         <div class="mt-6 bg-white rounded-md shadow-md p-6">
