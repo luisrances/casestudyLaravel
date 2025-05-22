@@ -114,17 +114,9 @@
     </div>
 
     <script>
-<<<<<<< HEAD
-        function openProductModal(name, description, stock, price, imageUrl = '') {
-
-            // Remove hashtags from the description
-            const cleanDescription = description.replace(/#\w[\w-]*/g, '').trim();
-
-=======
         function openProductModal(name, description, stock, price, imageUrl = '', id) {
->>>>>>> ff66a068f4235c276ea0033e212fb8d176734737
             document.getElementById('modal-product-name').innerText = name;
-            document.getElementById('modal-product-description').innerText = cleanDescription;
+            document.getElementById('modal-product-description').innerText = description;
             document.getElementById('modal-product-stock').innerText = 'Stock: ' + stock;
             document.getElementById('modal-product-price').innerText = '₱' + parseFloat(price).toFixed(2);
             document.getElementById('product_id').value = id;

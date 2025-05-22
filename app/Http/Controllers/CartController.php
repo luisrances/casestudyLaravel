@@ -165,7 +165,7 @@ class CartController extends Controller
 
 
     //checkout page
-    public function checkout(Request $request)
+    public function checkout_cart(Request $request)
     {
         // Get the logged in account
         $account = Auth::user();
@@ -239,5 +239,4 @@ class CartController extends Controller
 
         return redirect()->route('Shop')->with('success', 'Order placed successfully! Please complete the payment.');
     }
-    
 }

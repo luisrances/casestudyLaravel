@@ -3,10 +3,10 @@
         <div class="ml-4 text-[18px]">
             <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('cart.user') }}">Cart</a>
             <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px] border-b border-gray-500">Wishlist</a>
-            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('purchase_history') }}">Purchase History</a>
-          </div>
+            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('purchase_history.user') }}">Purchase History</a>
+        </div>
 
-          <div class="flex flex-col lg:flex-row gap-8 mt-5 lg:max-h-[500px] max-h-[800px]">
+        <div class="flex flex-col lg:flex-row gap-8 mt-5 lg:max-h-[500px] max-h-[800px]">
             <section class="flex-1 bg-white p-0 rounded-lg overflow-y-auto [box-shadow:0_0_10px_rgba(0,0,0,0.2)]">
             <div class="relative lg:min-h-[500px] rounded-lg flex items-start justify-center">
                 <table class="w-[90%] text-sm text-left text-center text-gray-500">
@@ -31,7 +31,7 @@
                                     @foreach ($products as $product)
                                         @if (Auth::user()->id==$wishlist->account_id && $wishlist->product_id == $product->id)
                                             <tr class="bg-white border-b hover:bg-gray-50">
-                                                <td class="pl-[100px] py-4 ml-0 w-[220px] h-24">
+                                                <td class="pl-[50px] py-4 ml-0 w-[150px] h-24">
                                                     @if ($wishlist->product_id == $product->id && $product->image_path)
                                                         <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-16 md:w-32 max-w-full max-h-full object-contain  inline-flex justify-center">
                                                     @else
@@ -45,7 +45,7 @@
                                                         <p class="mb-0">{{ $product->name }}</p>
                                                     @endif
                                                 </td>
-                                                <td class="px-6 py-4 w-[150px] font-normal text-gray-900">
+                                                <td class="px-6 py-4 min-w-[max-content] font-normal text-gray-900">
                                                     ₱ {{ number_format($product->price, 2) }}
                                                 </td>
                                                 <td class="flex justify-center space-x-4 px-2 py-10 h-24">
