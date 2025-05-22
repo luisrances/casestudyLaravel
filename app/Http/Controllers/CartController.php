@@ -112,11 +112,26 @@ class CartController extends Controller
         $validated['account_id'] = Auth::user()->id;
         $validated['quantity'] = 1;
 
-        Cart::create($validated);
+        // Check if product already exists in user's cart
+        $existingCart = Cart::where([
+            'product_id' => $validated['product_id'],
+            'account_id' => $validated['account_id']
+        ])->first();
+
+        if ($existingCart) {
+            // If exists, increment quantity by 1
+            $existingCart->quantity += 1;
+            $existingCart->save();
+            $message = 'Product quantity updated in cart';
+        } else {
+            // If doesn't exist, create new cart item
+            Cart::create($validated);
+            $message = 'Product added to cart successfully';
+        }
 
         return response()->json([
             'success' => true,
-            'message' => 'Product added to cart successfully'
+            'message' => $message
         ]);
     }
 

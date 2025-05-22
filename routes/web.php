@@ -62,7 +62,8 @@ Route::post('/checkout/process', [CartController::class, 'processCheckout'])->na
 //wishlist
 Route::get('/wishlist', [WishlistController::class, 'wishlist_user'])->name('wishlist.user');
 Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
-Route::post('/wishlist/add', [CartController::class, 'add_wishlist'])->name('wishlist.add');
+Route::post('/wishlist/add', [WishlistController::class, 'add_wishlist'])->name('wishlist.add');
+Route::post('/wishlist/cart', [WishlistController::class, 'add_cart_wishlist'])->name('wishlist.cart.add');
 
 //purchase history
 Route::get('/purchase_history', function () {return view('order-flow/purchase_history');})->name('purchase_history');

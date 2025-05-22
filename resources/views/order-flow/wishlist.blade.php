@@ -53,7 +53,7 @@
                                                         @csrf @method('DELETE')
                                                         <button class="min-w-[max-content] font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
                                                     </form>
-                                                    <form action="{{ route('cart.add') }}" method="POST">
+                                                    <form onsubmit="handleWishlistToCart(event, {{ $product->id }})" class="add-to-cart-form">
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -74,22 +74,47 @@
                 </table>
             </div>
             </section>
-
-            <!-- Item List -->
-            {{-- @for ($i = 0; $i < 3; $i++)
-                <div class="grid grid-cols-3 text-center items-center py-4 border-b border-gray-100">
-                    <div>
-                        <div class="font-semibold">MICHELIN TIRES</div>
-                        <div class="text-sm text-gray-600">Power Gravel 700x40c</div>
-                    </div>
-                    <div class="text-gray-700 font-medium">₱ 1,0000.89</div>
-                    <div>
-                        <button class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-md">
-                            Add To Cart
-                        </button>
-                    </div>
-                </div>
-            @endfor --}}
         </div>
     </main>
+    <div id="success-alert" class="fixed left-[70%] top-8 transform -translate-x-1/2 z-[9999] w-full max-w-xs md:max-w-md" style="display: none;">
+        <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 shadow-lg">
+            <h3 id="success-alert-title" class="text-lg font-medium text-teal-800"></h3>
+            <p id="success-alert-message" class="text-sm text-teal-600"></p>
+        </div>
+    </div>
+    <script>
+        function handleWishlistToCart(event, productId) {
+            event.preventDefault();
+            
+            fetch('{{ route('wishlist.cart.add') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    document.getElementById('success-alert-title').innerText = 'Added to Cart!';
+                    document.getElementById('success-alert-message').innerText = 'Product has been added to your cart.';
+                    const alert = document.getElementById('success-alert');
+                    alert.style.display = 'block';
+            
+            // Set timeout for both hiding alert and redirecting
+            setTimeout(() => {
+                alert.style.display = 'none';
+                // Redirect to cart page after alert is hidden
+                window.location.href = '{{ route('cart.user') }}';
+            }, 1000);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        </script>
 </x-layout>

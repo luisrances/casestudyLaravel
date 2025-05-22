@@ -84,9 +84,11 @@
                 <div class="flex items-center space-x-6 mt-auto">
                     <form id="addToWishlistForm" onsubmit="handleAddToWishlist(event)">
                         @csrf
-                        <input type="hidden" name="product_id" id="product_id">
-                        <button class="bg-sky-300 p-3 rounded-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
+                        <input type="hidden" name="product_id" id="wishlist_product_id"> <!-- Changed ID to avoid conflict -->
+                        <button type="submit" class="bg-sky-300 p-3 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
                         </button>
                     </form>
                     <form id="addToCartForm" onsubmit="handleAddToCart(event)">
@@ -118,6 +120,7 @@
             document.getElementById('modal-product-stock').innerText = 'Stock: ' + stock;
             document.getElementById('modal-product-price').innerText = '₱' + parseFloat(price).toFixed(2);
             document.getElementById('product_id').value = id;
+            document.getElementById('wishlist_product_id').value = id;
             document.getElementById('modal-product-image').src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
             document.getElementById('product-modal').style.display = 'flex';
 
@@ -148,81 +151,62 @@
             showSuccess_cart('Added to Cart!', 'Product has been added to your cart.', productId);
         }
         function showSuccess_cart(title, message,  productId = null) {
-            closeProductModal(); // Close modal first
-            if (productId) {
-                fetch('{{ route('cart.add') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    },
-                    body: JSON.stringify({
-                        product_id: productId,
-                        quantity: 1
-                    })
+            closeProductModal();
+            fetch('{{ route('cart.add') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('success-alert-title').innerText = title;
-                        document.getElementById('success-alert-message').innerText = message;
-                        const alert = document.getElementById('success-alert');
-                        alert.style.display = 'block';
-                        setTimeout(() => {
-                            alert.style.display = 'none';
-                        }, 2000);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            } else {
-                document.getElementById('success-alert-title').innerText = title;
-                document.getElementById('success-alert-message').innerText = message;
-                const alert = document.getElementById('success-alert');
-                alert.style.display = 'block';
-                setTimeout(() => {
-                    alert.style.display = 'none';
-                }, 2000);
-            }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('success-alert-title').innerText = title;
+                    document.getElementById('success-alert-message').innerText = data.message;
+                    const alert = document.getElementById('success-alert');
+                    alert.style.display = 'block';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 2000);
+                }
+            })
+            .catch(error => console.error('Error:', error));
         }        
         function handleAddToWishlist(event) {
             event.preventDefault();
-            const productId = document.getElementById('product_id').value;
+            const productId = document.getElementById('wishlist_product_id').value;
             showSuccess_wishlist('Added to Wishlist!', 'Product has been added to your wishlist.', productId);
-        }function showSuccess_wishlist(title, message,  productId = null) {
+        }
+        function showSuccess_wishlist(title, message,  productId = null) {
             closeProductModal(); // Close modal first
-            if (productId) {
-                fetch('{{ route('wishlist.add') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    },
-                    body: JSON.stringify({
-                        product_id: productId,
-                    })
+            fetch('{{ route('wishlist.add') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    product_id: productId
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('success-alert-title').innerText = title;
-                        document.getElementById('success-alert-message').innerText = message;
-                        const alert = document.getElementById('success-alert');
-                        alert.style.display = 'block';
-                        setTimeout(() => {
-                            alert.style.display = 'none';
-                        }, 2000);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            } else {
-                document.getElementById('success-alert-title').innerText = title;
-                document.getElementById('success-alert-message').innerText = message;
-                const alert = document.getElementById('success-alert');
-                alert.style.display = 'block';
-                setTimeout(() => {
-                    alert.style.display = 'none';
-                }, 2000);
-            }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('success-alert-title').innerText = title;
+                    document.getElementById('success-alert-message').innerText = data.message;
+                    const alert = document.getElementById('success-alert');
+                    alert.style.display = 'block';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 2000);
+                }
+            })
+            .catch(error => console.error('Error:', error));
         }
     </script>
 </body>
