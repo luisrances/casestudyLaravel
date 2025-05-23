@@ -24,11 +24,11 @@
     <div id="success-alert"
         class="fixed left-[70%] top-8 transform -translate-x-1/2 z-[9999] w-full max-w-xs md:max-w-md"
         style="display: none;">
-        <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 shadow-lg" role="alert" tabindex="-1">
+        <div id="alert-container" class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 shadow-lg" role="alert" tabindex="-1">
             <div class="flex">
                 <div class="shrink-0">
-                    <span class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    <span id="alert-icon-wrapper" class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800">
+                        <svg id="alert-icon" class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
@@ -37,16 +37,13 @@
                     </span>
                 </div>
                 <div class="ms-3">
-                    <h3 id="success-alert-title" class="text-gray-800 font-semibold text-base">
-                        Successfully updated.
-                    </h3>
-                    <p class="text-sm text-gray-700" id="success-alert-message">
-                        You have successfully updated your email preferences.
-                    </p>
+                    <h3 id="success-alert-title" class="text-gray-800 font-semibold text-base">Successfully updated.</h3>
+                    <p id="success-alert-message" class="text-sm text-gray-700">You have successfully updated your email preferences.</p>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- End Success Alert -->
 
     <div class="pt-[100px] max-w-screen-xl mx-auto">
@@ -237,44 +234,6 @@
             })
             .catch(error => console.error('Error:', error));
         }
-
-        
-// Account setting handler
-function handleAccountSetting(event) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showAccountSuccess('Profile Updated', data.message);
-        } else {
-            showAccountSuccess('Error', 'Failed to update profile. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showAccountSuccess('Error', 'An unexpected error occurred.');
-    });
-}
-
-function showAccountSuccess(title, message) {
-    document.getElementById('success-alert-title').innerText = title;
-    document.getElementById('success-alert-message').innerText = message;
-    const alert = document.getElementById('success-alert');
-    alert.style.display = 'block';
-    setTimeout(() => {
-        alert.style.display = 'none';
-    }, 2000);
-}
     </script>
 </body>
 

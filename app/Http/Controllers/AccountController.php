@@ -107,25 +107,48 @@ class AccountController extends Controller
 
         return view('setting.account_setting', compact('account'));
     }
+
     public function updateProfile(Request $request, Account $account)
     {
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
             'email'      => 'required|email|unique:accounts,email,' . $account->id,
+            'password'   => 'nullable|string|min:6',
             'image'      => 'nullable|image|max:2048',
+            'remove_image' => 'nullable|boolean'
         ]);
-
-        if ($request->hasFile('image')) {
+    
+        // Handle password
+        if ($request->filled('password')) {
+            $validated['password'] = Hash::make($request->password);
+        } else {
+            unset($validated['password']);
+        }
+    
+        // Handle image
+        if ($request->boolean('remove_image')) {
+            // Delete the existing image
+            if ($account->image && \Storage::disk('public')->exists($account->image)) {
+                \Storage::disk('public')->delete($account->image);
+            }
+            $validated['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($account->image && \Storage::disk('public')->exists($account->image)) {
+                \Storage::disk('public')->delete($account->image);
+            }
             $validated['image'] = $request->file('image')->store('images/accounts', 'public');
         }
-
+    
+        // Remove remove_image from validated data before update
+        unset($validated['remove_image']);
+        
         $account->update($validated);
-
+    
         return response()->json([
             'success' => true,
             'message' => 'Profile updated successfully!'
         ]);
-        // return redirect()->back()->with('success', 'Profile updated successfully!'); 
     }
 }
