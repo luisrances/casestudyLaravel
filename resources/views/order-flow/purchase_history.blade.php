@@ -109,7 +109,6 @@
                 },
                 body: JSON.stringify({
                     product_id: productId,
-                    quantity: 1
                 })
             })
             .then(response => response.json())

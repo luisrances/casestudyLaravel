@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Account;
+use App\Models\Cart;
 use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -118,15 +119,23 @@ class OrderController extends Controller
     //checkout buyAgain
     public function checkout_buyAgain(Request $request)
     {
+        $validated = $request->validate([
+            'product_id' => 'required|integer'
+        ]);
+
         $account = Auth::user();
+
+        // Create a temporary cart item for checkout
+        $cartItem = Cart::create([
+            'product_id' => $validated['product_id'],
+            'account_id' => $account->id,
+            'quantity' => 1
+        ]);
+
+        // Get necessary data for checkout
+        $cartItems = Cart::where('id', $cartItem->id)->get();
+        $products = Product::where('id', $validated['product_id'])->get();
         $paymentDetails = PaymentDetail::where('account_id', $account->id)->get();
-
-        // Get orders for the current user
-        $cartItems = Order::where('account_id', $account->id)->get();
-
-        // Fetch all products related to the orders
-        $productIds = $cartItems->pluck('product_id')->unique();
-        $products = Product::whereIn('id', $productIds)->get();
 
         return view('order-flow.checkout', compact('cartItems', 'products', 'account', 'paymentDetails'));
     }

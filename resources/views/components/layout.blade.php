@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Shop</title>
+    <title>Go Pedal PH</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon" />
     @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
@@ -19,11 +20,11 @@
 <body>
     <x-nav-bar />
 
-    <!-- Success Alert (center top, global) -->
+    <!-- Success Alert -->
     <div id="success-alert"
         class="fixed left-[70%] top-8 transform -translate-x-1/2 z-[9999] w-full max-w-xs md:max-w-md"
         style="display: none;">
-        <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 shadow-lg" role="alert" tabindex="-1" aria-labelledby="hs-bordered-success-style-label">
+        <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 shadow-lg" role="alert" tabindex="-1">
             <div class="flex">
                 <div class="shrink-0">
                     <span class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800">
@@ -57,66 +58,77 @@
     @vite('resources/js/app.js')
 
     <!-- Product Modal -->
-    <div class="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50" id="product-modal" style="display: none;">
-        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-4xl max-h-screen overflow-y-auto relative flex flex-col md:flex-row">
-
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-y-auto" style="display: none;">
+        <div class="relative bg-white rounded-2xl shadow-lg w-full max-w-4xl mx-auto my-12 overflow-hidden">
             <!-- Close Button -->
             <button onclick="closeProductModal()"
-                class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold z-10">
                 &times;
             </button>
 
-            <!-- Left Side: Product Details -->
-            <div class="flex flex-col justify-between w-1/2 p-2">
-                <div>
-                    <h2 class="text-[22px] font-bold mb-4" id="modal-product-name">Product Name</h2>
-                    <div id="modal-product-description-container" class="overflow-y-auto max-h-40 mb-4">
-                        <p id="modal-product-description" class="text-[14px] text-gray-700">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-                        </p>
+            <div class="flex flex-col md:flex-row p-6 md:p-8 gap-6 h-[500px]">
+                <!-- Left: Image and Price -->
+                <div class="w-full md:w-1/2 flex flex-col items-left space-y-4">
+                    <img id="modal-product-image" src="https://via.placeholder.com/500x650?text=No+Image" alt="Product Image"
+                        class="rounded-xl object-contain max-h-100 w-full" />
+                    <p id="modal-product-stock" class="text-green-600 font-semibold">Stock: 0</p>
+                    <div class="text-start">
+                        <p class="text-gray-700 font-medium text-base">Price:</p>
+                        <p id="modal-product-price" class="text-3xl font-bold text-blue-700">₱0.00</p>
                     </div>
-                    <p class="text-[20px] text-green-600 font-semibold mb-2" id="modal-product-stock">Stock: 0</p>
-                    <p class="text-[22px] text-gray-800 font-medium">Price:</p>
-                    <p class="text-[28px] text-blue-700 font-bold mb-6" id="modal-product-price">₱0.00</p>
-                    <p class="hidden" id="modal-product-id">0</p>
                 </div>
 
-                <div class="flex items-center space-x-6 mt-auto">
-                    <form id="addToWishlistForm" onsubmit="handleAddToWishlist(event)">
-                        @csrf
-                        <input type="hidden" name="product_id" id="wishlist_product_id"> <!-- Changed ID to avoid conflict -->
-                        <button type="submit" class="bg-sky-300 p-3 rounded-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg>
-                        </button>
-                    </form>
-                    <form id="addToCartForm" onsubmit="handleAddToCart(event)">
-                        @csrf
-                        <input type="hidden" name="product_id" id="product_id">
-                        <button type="submit" class="bg-sky-300 text-black text-base font-medium px-6 py-3 rounded-xl w-40 hover:bg-sky-400 transition">
-                            Add to Cart
-                        </button>
-                    </form>
+                <!-- Right: Details and Buttons -->
+                <div class="w-full md:w-1/2 flex flex-col justify-between space-y-6">
+                    <div>
+                        <h2 id="modal-product-name" class="text-2xl font-bold text-gray-800 mb-2">Product Name</h2>
+                        <div id="modal-product-description-container" class="max-h-32 overflow-y-auto text-sm text-gray-600 mb-4 pr-1">
+                            <p id="modal-product-description">
+                                Lorem ipsum dolor sit amet...
+                            </p>
+                        </div>
+                        <p class="hidden" id="modal-product-id">0</p>
+                    </div>
 
-                    <button class="bg-sky-300 text-black text-base font-medium px-6 py-3 rounded-xl w-40 hover:bg-sky-400 transition">
-                        Buy Now
-                    </button>
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
+                        <form id="addToWishlistForm" onsubmit="handleAddToWishlist(event)" class="flex-1">
+                            @csrf
+                            <input type="hidden" name="product_id" id="wishlist_product_id">
+                            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-sky-200 hover:bg-sky-300 text-white py-2 px-4 rounded-xl transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                </svg>
+                                Wishlist
+                            </button>
+                        </form>
+
+                        <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
+                            @csrf
+                            <input type="hidden" name="product_id" id="product_id">
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-xl transition">
+                                Add to Cart
+                            </button>
+                        </form>
+
+                        <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-xl transition">
+                            Buy Now
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Right Side: Product Image -->
-            <div class="w-1/2 flex justify-center items-center">
-                <img src="" alt="Product Image" id="modal-product-image"
-                    class="w-full max-h-80 md:max-h-[300px] rounded-xl object-contain" />
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script>
         function openProductModal(name, description, stock, price, imageUrl = '', id) {
             document.getElementById('modal-product-name').innerText = name;
-            document.getElementById('modal-product-description').innerText = description;
+
+            // Remove lines starting with #
+            const cleanedDescription = description.replace(/^#.*$\n?/gm, '').trim();
+            document.getElementById('modal-product-description').innerText = cleanedDescription;
+
             document.getElementById('modal-product-stock').innerText = 'Stock: ' + stock;
             document.getElementById('modal-product-price').innerText = '₱' + parseFloat(price).toFixed(2);
             document.getElementById('product_id').value = id;
@@ -124,19 +136,16 @@
             document.getElementById('modal-product-image').src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
             document.getElementById('product-modal').style.display = 'flex';
 
-            // 🚫 Disable background scroll
             document.body.classList.add('no-scroll');
         }
 
         function closeProductModal() {
             document.getElementById('product-modal').style.display = 'none';
-
-            // ✅ Re-enable background scroll
             document.body.classList.remove('no-scroll');
         }
 
         function showSuccess(title, message) {
-            closeProductModal(); // Close modal first
+            closeProductModal();
             document.getElementById('success-alert-title').innerText = title;
             document.getElementById('success-alert-message').innerText = message;
             const alert = document.getElementById('success-alert');
@@ -145,12 +154,14 @@
                 alert.style.display = 'none';
             }, 2000);
         }
+
         function handleAddToCart(event) {
             event.preventDefault();
             const productId = document.getElementById('product_id').value;
             showSuccess_cart('Added to Cart!', 'Product has been added to your cart.', productId);
         }
-        function showSuccess_cart(title, message,  productId = null) {
+
+        function showSuccess_cart(title, message, productId = null) {
             closeProductModal();
             fetch('{{ route('cart.add') }}', {
                 method: 'POST',
@@ -158,10 +169,7 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
-                body: JSON.stringify({
-                    product_id: productId,
-                    quantity: 1
-                })
+                body: JSON.stringify({ product_id: productId, quantity: 1 })
             })
             .then(response => response.json())
             .then(data => {
@@ -176,23 +184,23 @@
                 }
             })
             .catch(error => console.error('Error:', error));
-        }        
+        }
+
         function handleAddToWishlist(event) {
             event.preventDefault();
             const productId = document.getElementById('wishlist_product_id').value;
             showSuccess_wishlist('Added to Wishlist!', 'Product has been added to your wishlist.', productId);
         }
-        function showSuccess_wishlist(title, message,  productId = null) {
-            closeProductModal(); // Close modal first
+
+        function showSuccess_wishlist(title, message, productId = null) {
+            closeProductModal();
             fetch('{{ route('wishlist.add') }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
-                body: JSON.stringify({
-                    product_id: productId
-                })
+                body: JSON.stringify({ product_id: productId })
             })
             .then(response => response.json())
             .then(data => {

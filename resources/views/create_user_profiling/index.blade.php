@@ -134,8 +134,8 @@
                         <label class="form-check-label" for="intermediate">Intermediate</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="experience_level" id="skilled" value="Skilled">
-                        <label class="form-check-label" for="skilled">Skilled</label>
+                        <input class="form-check-input" type="radio" name="experience_level" id="advanced" value="Advanced">
+                        <label class="form-check-label" for="skilled">Advanced</label>
                     </div>
                 </div>
                 
