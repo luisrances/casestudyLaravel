@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Feedback;
 
 class ProductController extends Controller
 {
@@ -113,10 +114,10 @@ class ProductController extends Controller
         ];
 
         $bikeUseCaseMap = [
-            'mtb' => ['off-roading', 'leisure', 'mountains', 'trails'],
-            'road-bike' => ['racing', 'commuting', 'coastal roads', 'smooth pavement'],
-            'time-trial' => ['racing', 'flat terrain', 'coastal roads'],
-            'gravel-bike' => ['commuting', 'leisure', 'off-roading', 'mixed terrain', 'light trails']
+            'mtb' => ['off-roading', 'leisure', 'mountains', 'trails', 'commuting'],
+            'road-bike' => ['racing', 'commuting', 'coastal-roads', 'smooth-pavement', 'leisure'],
+            'time-trial' => ['racing', 'flat-terrain', 'coastal-roads'],
+            'gravel-bike' => ['commuting', 'leisure', 'off-roading', 'mixed-terrain', 'light-trails']
         ];
 
         $recommended = [];
@@ -135,7 +136,6 @@ class ProductController extends Controller
             $activityType = strtolower(trim($userProfile->activity_type));
             $terrain = strtolower(trim($userProfile->terrain));
 
-            // Recommend bike type based on activity or terrain
             foreach ($bikeUseCaseMap as $bike => $useCases) {
                 if (in_array($activityType, $useCases) || in_array($terrain, $useCases)) {
                     $userRecommendedBikeCategory = $bike;
@@ -145,10 +145,10 @@ class ProductController extends Controller
         }
 
         foreach ($categoryMap as $group => $subCategories) {
-            $query = \App\Models\Product::query();
+            $query = Product::query();
             $query->whereIn('category', $subCategories);
 
-            $products = collect(); // ensure it's always defined
+            $products = collect();
 
             if ($isLoggedIn && $userProfile) {
                 $query->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"]);
@@ -156,7 +156,6 @@ class ProductController extends Controller
                 if ($group === 'Bikes' && $userRecommendedBikeCategory) {
                     $query->where('category', $userRecommendedBikeCategory);
 
-                    // Determine size tag
                     $bikeSizeTag = null;
 
                     if ($userRecommendedBikeCategory === 'mtb') {
@@ -176,9 +175,11 @@ class ProductController extends Controller
                         $query->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
                     }
 
+                    // main
                     $products = $query->inRandomOrder()->take(6)->get();
 
-                    if ($products->count() < 3) {
+                    // fallback
+                    if ($products->count() < 6) {
                         $fallback = collect();
 
                         foreach ($bikeUseCaseMap as $altBike => $useCases) {
@@ -186,11 +187,14 @@ class ProductController extends Controller
                                 $altBike !== $userRecommendedBikeCategory &&
                                 (in_array($activityType, $useCases) || in_array($terrain, $useCases))
                             ) {
+                                $altQuery = Product::where('category', $altBike)
+                                    ->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"]);
 
-                                $related = \App\Models\Product::where('category', $altBike)
-                                    ->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"])
-                                    ->inRandomOrder()->take(6)->get();
+                                if ($bikeSizeTag) {
+                                    $altQuery->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
+                                }
 
+                                $related = $altQuery->inRandomOrder()->take(6)->get();
                                 $fallback = $fallback->merge($related);
                             }
                         }
@@ -198,9 +202,11 @@ class ProductController extends Controller
                         $products = $products->merge($fallback)->unique('id')->take(6);
                     }
                 } else {
+                    // main (non-bike categories)
                     $products = $query->inRandomOrder()->take(6)->get();
                 }
             } else {
+                // main (not logged in)
                 $products = $query->inRandomOrder()->take(6)->get();
             }
 
@@ -211,7 +217,7 @@ class ProductController extends Controller
             $recommended[$group] = $products;
         }
 
-        $latestUpdatedProducts = \App\Models\Product::whereIn('category', ['mtb', 'time-trial', 'road-bike', 'gravel-bike'])
+        $latestUpdatedProducts = Product::whereIn('category', ['mtb', 'time-trial', 'road-bike', 'gravel-bike'])
             ->orderBy('updated_at', 'desc')
             ->take(3)
             ->get();
@@ -242,15 +248,43 @@ class ProductController extends Controller
         $productsBySubcategory = [];
 
         foreach ($categoryMap as $subcategory) {
-            $productsBySubcategory[$subcategory] = \App\Models\Product::whereRaw('LOWER(category) = ?', [strtolower($subcategory)])->get();
+            $productsBySubcategory[$subcategory] = Product::whereRaw('LOWER(category) = ?', [strtolower($subcategory)])->get();
         }
 
         return view('Shop', ['products' => collect($productsBySubcategory)]);
     }
 
-
     public function feedback_page(Product $product)
     {
         return view('Feedback', compact('product'));
     }
+    
+    public function submit_feedback(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login to submit feedback.');
+        }
+
+        $request->validate([
+            'comment' => 'required|string|max:1000',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $imagePaths = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePaths[] = $image->store('feedback/images', 'public');
+            }
+        }
+
+        \App\Models\Feedback::create([
+            'account_id' => Auth::id(),
+            'comment' => $request->comment,
+            'image' => json_encode($imagePaths),
+        ]);
+
+        return redirect()->back()->with('success', 'Thank you for your feedback!');
+    }
+
 }
