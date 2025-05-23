@@ -208,6 +208,44 @@
             })
             .catch(error => console.error('Error:', error));
         }
+
+        
+// Account setting handler
+function handleAccountSetting(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAccountSuccess('Profile Updated', data.message);
+        } else {
+            showAccountSuccess('Error', 'Failed to update profile. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showAccountSuccess('Error', 'An unexpected error occurred.');
+    });
+}
+
+function showAccountSuccess(title, message) {
+    document.getElementById('success-alert-title').innerText = title;
+    document.getElementById('success-alert-message').innerText = message;
+    const alert = document.getElementById('success-alert');
+    alert.style.display = 'block';
+    setTimeout(() => {
+        alert.style.display = 'none';
+    }, 2000);
+}
     </script>
 </body>
 

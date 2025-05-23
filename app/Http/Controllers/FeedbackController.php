@@ -28,9 +28,9 @@ class FeedbackController extends Controller
         $sortDirection = $request->get('sort_direction', 'asc');
         $query->orderBy($sortBy, $sortDirection);
 
-        $feedback = $query->get();
+        $feedbacks = $query->get();
 
-        return view('admin.feedbacks.index', compact('feedback', 'accounts'));
+        return view('admin.feedbacks.index', compact('feedbacks', 'accounts'));
     }
 
     // Show form to create a feedback

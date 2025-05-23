@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -98,5 +99,33 @@ class AccountController extends Controller
         $account->delete();
 
         return redirect()->route('accounts.index')->with('success', 'Account deleted successfully!');
+    }
+
+    public function account_show(Request $request)
+    {
+        $account = Auth::user();
+
+        return view('setting.account_setting', compact('account'));
+    }
+    public function updateProfile(Request $request, Account $account)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'email'      => 'required|email|unique:accounts,email,' . $account->id,
+            'image'      => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images/accounts', 'public');
+        }
+
+        $account->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile updated successfully!'
+        ]);
+        // return redirect()->back()->with('success', 'Profile updated successfully!'); 
     }
 }

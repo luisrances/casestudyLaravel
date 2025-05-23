@@ -58,7 +58,6 @@ Route::post('/checkout', [CartController::class, 'checkout_cart'])->name('checko
 Route::post('/checkout/update-quantity/{id}', [CartController::class, 'update_quantity_ajax']);
 Route::post('/checkout/process', [CartController::class, 'processCheckout'])->name('checkout.process');
 
-
 //wishlist
 Route::get('/wishlist', [WishlistController::class, 'wishlist_user'])->name('wishlist.user');
 Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
@@ -72,8 +71,8 @@ Route::post('/purchase_history/refund', [OrderController::class, 'refundOrder'])
 Route::post('/purchase_history/cancel', [OrderController::class, 'cancelOrder'])->name('purchase_history.cancel');
 
 //account setting
-Route::get('/account-setting', function () {return view('account_setting');})->name('account.setting');
-
+Route::get('/account-setting', [AccountController::class, 'account_show'])->name('account.setting');
+Route::patch('/profile/{account}', [AccountController::class, 'updateProfile'])->name('account.update');
 // main page
 Route::get('/', [ProductController::class, 'home_page'])->name('Home');
 Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');

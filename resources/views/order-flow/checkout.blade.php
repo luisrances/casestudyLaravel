@@ -77,7 +77,7 @@
                 <section class="w-full lg:w-[400px] bg-white p-6 rounded-lg shadow-md h-fit [box-shadow:0_0_10px_rgba(0,0,0,0.2)]">
                     <div class="flex justify-between">
                         <h2 class="text-lg font-semibold mb-2">Shipping Details</h2>
-                        <span><a href="#">Edit</a></span>
+                        <span><a href="{{ route("account.setting") }}">Edit</a></span>
                     </div>
                     <div class="space-y-2 text-gray-700">
                         <div class=" w-100 overflow-hidden whitespace-nowrap text-ellipsis">
@@ -193,12 +193,88 @@
                     </div>
                 </div>
             </div>
+            {{-- Add this error modal div just before the success modal --}}
+            <div id="error-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+                <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                    <div class="mt-3 text-center">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+                            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">Error</h3>
+                        <div class="mt-2 px-7 py-3">
+                            <p class="text-sm text-gray-500" id="error-message"></p>
+                        </div>
+                        <div class="items-center px-4 py-3">
+                            <button id="error-modal-close" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </main>
     
     {{-- modal success and submits the form --}}
     <script>
         function showSuccessModal() {
+            // Payment method validation
+            const paymentMethod = document.getElementById('payment_method').value;
+            let isValid = true;
+            let errorMessage = '';
+
+            // Clear any previous error styling
+            const inputs = document.querySelectorAll('.payment-input');
+            inputs.forEach(input => input.classList.remove('border-red-500'));
+            
+            // Check if payment details exist
+            const hasPaymentDetails = @json(!empty($paymentDetails) && $paymentDetails->count() > 0);
+            if (!hasPaymentDetails) {
+                isValid = false;
+                errorMessage = 'Please add your delivery details before proceeding with checkout';
+                // Redirect to payment details creation page
+                if (confirm(errorMessage + '. Would you like to add them now?')) {
+                    window.location.href = '{{ route("account.setting") }}';
+                }
+                return;
+            }
+            switch(paymentMethod) {
+                case 'gcash':
+                    const gcashNumber = document.querySelector('input[name="gcash_number"]').value;
+                    if (!gcashNumber) {
+                        isValid = false;
+                        errorMessage = 'Please enter your GCash number';
+                        document.querySelector('input[name="gcash_number"]').classList.add('border-red-500');
+                    }
+                    break;
+
+                case 'maya':
+                    const mayaNumber = document.querySelector('input[name="maya_number"]').value;
+                    if (!mayaNumber) {
+                        isValid = false;
+                        errorMessage = 'Please enter your Maya number';
+                        document.querySelector('input[name="maya_number"]').classList.add('border-red-500');
+                    }
+                    break;
+
+                case 'bank_transfer':
+                    const accountName = document.querySelector('input[name="account_name"]').value;
+                    const accountNumber = document.querySelector('input[name="account_number"]').value;
+                    if (!accountName || !accountNumber) {
+                        isValid = false;
+                        errorMessage = 'Please complete all bank transfer details';
+                        if (!accountName) document.querySelector('input[name="account_name"]').classList.add('border-red-500');
+                        if (!accountNumber) document.querySelector('input[name="account_number"]').classList.add('border-red-500');
+                    }
+                    break;
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                alert(errorMessage);
+            }
             // Show the success modal
             document.getElementById('success-modal').classList.remove('hidden');
 
@@ -240,52 +316,6 @@
                 case 'maya':
                     mayaDetails.classList.remove('hidden');
                     break;
-            }
-        });
-        // Payment method validation
-        document.getElementById('checkout-btn').addEventListener('click', function(e) {
-            const paymentMethod = document.getElementById('payment_method').value;
-            let isValid = true;
-            let errorMessage = '';
-
-            // Clear any previous error styling
-            const inputs = document.querySelectorAll('.payment-input');
-            inputs.forEach(input => input.classList.remove('border-red-500'));
-
-            switch(paymentMethod) {
-                case 'gcash':
-                    const gcashNumber = document.querySelector('input[name="gcash_number"]').value;
-                    if (!gcashNumber) {
-                        isValid = false;
-                        errorMessage = 'Please enter your GCash number';
-                        document.querySelector('input[name="gcash_number"]').classList.add('border-red-500');
-                    }
-                    break;
-
-                case 'maya':
-                    const mayaNumber = document.querySelector('input[name="maya_number"]').value;
-                    if (!mayaNumber) {
-                        isValid = false;
-                        errorMessage = 'Please enter your Maya number';
-                        document.querySelector('input[name="maya_number"]').classList.add('border-red-500');
-                    }
-                    break;
-
-                case 'bank_transfer':
-                    const accountName = document.querySelector('input[name="account_name"]').value;
-                    const accountNumber = document.querySelector('input[name="account_number"]').value;
-                    if (!accountName || !accountNumber) {
-                        isValid = false;
-                        errorMessage = 'Please complete all bank transfer details';
-                        if (!accountName) document.querySelector('input[name="account_name"]').classList.add('border-red-500');
-                        if (!accountNumber) document.querySelector('input[name="account_number"]').classList.add('border-red-500');
-                    }
-                    break;
-            }
-
-            if (!isValid) {
-                e.preventDefault();
-                alert(errorMessage);
             }
         });
     </script>

@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($feedback as $feedback)
+                        @foreach ($feedbacks as $feedback)
                             <tr style="cursor: pointer;" onclick="window.location='{{ route('feedbacks.show', $feedback->id) }}';">
                                 <td>{{ $feedback->id }}</td>
                                 <td>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                @foreach ($feedback as $feedback)
+                @foreach ($feedbacks as $feedback)
                     <div class="card p-1 mb-3 align-self-center px-2 shadow w-100" onclick="window.location='{{ route('feedbacks.show', $feedback->id) }}';" style="max-width: 590px; cursor: pointer;">
                         <div class="row align-items-center gx-1 my-0">
                             <div class="col-sm-8">
