@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\PaymentDetail;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -106,8 +109,10 @@ class AccountController extends Controller
     {
         $account = Auth::user();
         $paymentDetails = PaymentDetail::all();
+        $products = Product::all();
+        $orders = Order::where('account_id', Auth::user()->id)->get();
 
-        return view('setting.account_setting', compact('account', 'paymentDetails'));
+        return view('setting.account_setting', compact('account', 'orders', 'products', 'paymentDetails'));
     }
 
     public function updateProfile(Request $request, Account $account)

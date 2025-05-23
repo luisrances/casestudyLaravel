@@ -73,9 +73,8 @@ Route::post('/purchase_history/cancel', [OrderController::class, 'cancelOrder'])
 //account setting
 Route::get('/account-setting', [AccountController::class, 'account_show'])->name('account.setting');
 Route::patch('/profile/{account}', [AccountController::class, 'updateProfile'])->name('account.update');
-Route::get('/address/{id}', [PaymentDetailsController::class, 'address.show']);
-Route::put('/address/{id}', [PaymentDetailsController::class, 'address.update']);
-Route::post('/address', [PaymentDetailsController::class, 'address.store']);
+Route::put('/account-setting/address/{id}', [PaymentDetailsController::class, 'address_update'])->name('address.update');
+Route::post('/account-setting/cancel', [PaymentDetailsController::class, 'purchaseCancelOrder'])->name('setting.purchase.cancel');
 
 // main page
 Route::get('/', [ProductController::class, 'home_page'])->name('Home');

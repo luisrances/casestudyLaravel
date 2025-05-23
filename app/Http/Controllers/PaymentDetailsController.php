@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaymentDetail;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\Account;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,5 +114,65 @@ class PaymentDetailsController extends Controller
         $paymentDetails = PaymentDetail::whereIn('account_id', $accounts->pluck('id'))->get();
 
         return view('setting.account_setting', compact('paymentDetails', 'accounts'));
+    }
+    public function address_update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'recipient_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'district' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'region' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'address_category' => 'required|in:home address,office address',
+        ]);
+
+        $paymentDetail = PaymentDetail::findOrFail($id);
+        $paymentDetail->update($validated);
+
+        return redirect()->back()->with('success', 'Address updated successfully.');
+    }
+
+
+    public function purchase_history_user(Request $request)
+    {
+        $products = Product::all();
+        $accounts = Account::all();
+        $orders = Order::where('account_id', Auth::user()->id)->get();
+
+        return view('order-flow.purchase_history', compact('orders', 'products', 'accounts'));
+    }
+
+    // purchase history setting page
+    public function purchaseCancelOrder(Request $request)
+    {
+        try {
+            $order = Order::where([
+                'product_id' => $request->product_id,
+                'account_id' => Auth::user()->id,
+            ])
+                ->whereNotIn('order_status', ['Completed', 'Cancelled', 'Refunded'])
+                ->first();
+
+            if ($order) {
+                $order->order_status = 'Cancelled';
+                $order->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Order has been cancelled'
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Order not found or cannot be cancelled'
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to cancel order'
+            ], 500);
+        }
     }
 }
