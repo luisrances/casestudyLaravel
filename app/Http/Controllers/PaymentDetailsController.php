@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PaymentDetail;
 use App\Models\Account;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentDetailsController extends Controller
 {
@@ -102,5 +103,13 @@ class PaymentDetailsController extends Controller
     {
         $paymentDetail->delete();
         return redirect()->route('payment_details.index')->with('success', 'Payment detail deleted successfully.');
+    }
+
+    public function getAddresses(Request $request)
+    {
+        $accounts = Account::where('user_id', Auth::id())->get();
+        $paymentDetails = PaymentDetail::whereIn('account_id', $accounts->pluck('id'))->get();
+
+        return view('setting.account_setting', compact('paymentDetails', 'accounts'));
     }
 }

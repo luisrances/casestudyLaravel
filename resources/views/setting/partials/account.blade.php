@@ -1,6 +1,6 @@
 <div id="account" class="section px-4">
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
-        <h2 class="text-2xl font-bold mb-2 mb-4 sm:mb-0">Personal Info</h2>
+        <h2 class="text-2xl font-bold mb-2 mb-4 sm:mb-0">PERSONAL INFO</h2>
     </div>
 
     {{-- <div class="mb-3">
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-4"> {{-- Added mb-10 for spacing before buttons --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-9"> {{-- Added mb-10 for spacing before buttons --}}
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                 <input type="email" id="email" name="email" value="{{ old('email', $account->email ?? '') }}" placeholder="Enter your email address" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3" readonly>

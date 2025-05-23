@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -104,8 +105,9 @@ class AccountController extends Controller
     public function account_show(Request $request)
     {
         $account = Auth::user();
+        $paymentDetails = PaymentDetail::all();
 
-        return view('setting.account_setting', compact('account'));
+        return view('setting.account_setting', compact('account', 'paymentDetails'));
     }
 
     public function updateProfile(Request $request, Account $account)

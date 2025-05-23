@@ -3,13 +3,13 @@
     <section class="flex justify-center flex-col md:flex-row max-w-7xl mx-auto py-4 gap-6">
         <!-- Sidebar -->
         <aside class="w-[250px] bg-white p-5 rounded-lg text-sm lg:min-h-[520px] [box-shadow:0_0_10px_rgba(0,0,0,0.2)]">
-            <ul class="space-y-4 font-semibold" id="sidebar">
-                <li class="cursor-pointer text-blue-600" onclick="showSection('account')">ACCOUNT INFORMATION</li>
-                <li class="cursor-pointer" onclick="showSection('payment')">PAYMENT DETAILS</li>
-                <li class="cursor-pointer" onclick="showSection('address')">ADDRESS BOOK</li>
-                <li class="cursor-pointer" onclick="showSection('terms')">TERMS AND CONDITION</li>
-                <li class="cursor-pointer" onclick="showSection('purchases')">MY PURCHASES</li>
-                <li class="text-red-600 mt-8 cursor-pointer" onclick="showSection('delete_account')">LOG OUT</li>
+            <ul class="space-y-5 py-4 px-4 font-normal text-[17px]" id="sidebar">
+                <li class="cursor-pointer text-blue-600" onclick="showSection('account')">Account Information</li>
+                <li class="cursor-pointer" onclick="showSection('payment')">Payment Details</li>
+                <li class="cursor-pointer" onclick="showSection('address')">Address Book</li>
+                <li class="cursor-pointer" onclick="showSection('terms')">Terms and Condition</li>
+                <li class="cursor-pointer" onclick="showSection('purchases')">My Purchases</li>
+                <li class="text-red-600 mt-8 cursor-pointer" onclick="showSection('delete_account')">Delete Account</li>
             </ul>
         </aside>
 

@@ -3,8 +3,8 @@
     <h2 class="text-2xl font-bold mb-2">PAYMENT DETAILS</h2>
     <p class="text-sm text-gray-600 mb-6">(This is for default payment)</p>
 
-    <div class="border-b pb-1 mb-10"> 
-        <div class="flex flex-col md:flex-row gap-4 mb-6">
+    <div class="border-b mb-10"> 
+        <div class="flex flex-col md:flex-row gap-4 mb-5">
             <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
                 <input type="radio" name="payment_method" value="gcash" class="mr-2" checked>
                 <img src="./Images/Gcash.png" alt="Gcash" width="60" height="30" class="object-contain" />
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div id="gcash-fields" class="grid md:grid-cols-2 gap-4 mb-4">
+    <div id="gcash-fields" class="grid md:grid-cols-2 gap-4 mb-10">
         <div>
             <label class="block text-sm font-semibold mb-1">GCash account name</label>
             <input type="text" class="w-full border px-3 py-2 rounded" placeholder="GCash account name">
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div id="credit-fields" class="grid md:grid-cols-2 gap-4 mb-4 hidden">
+    <div id="credit-fields" class="grid md:grid-cols-2 gap-4 mb-10 hidden">
         <div>
             <label class="block text-sm font-semibold mb-1">Cardholder name</label>
             <input type="text" class="w-full border px-3 py-2 rounded" placeholder="Cardholder name">
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="flex justify-end gap-3 pt-8 border-t">
+    <div class="flex justify-end gap-3 pt-6 border-t">
         <button type="button" class="px-5 py-2 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out">
             Edit Profile
         </button>
