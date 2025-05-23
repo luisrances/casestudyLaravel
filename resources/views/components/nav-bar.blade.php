@@ -50,7 +50,7 @@
                     </svg>
                   </button>
                   <!-- Dropdown menu -->
-                  <div id="dropdown" class="z-10 hidden bg-gray-100 rounded-lg shadow-sm w-40">
+                  <div id="dropdown" class="z-10 hidden bg-gray-100 rounded-lg shadow-sm w-48 p-2">
                       <ul class="py-3 text-md text-black" aria-labelledby="dropdownDefaultButton">
                         <li>
                           <a href="{{ route('account.setting') }}" 

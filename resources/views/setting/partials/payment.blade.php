@@ -1,21 +1,23 @@
 <!--PAYMENT-->
-<div id="payment" class="section hidden">
+<div id="payment" class="section hidden px-4">
     <h2 class="text-2xl font-bold mb-2">PAYMENT DETAILS</h2>
     <p class="text-sm text-gray-600 mb-6">(This is for default payment)</p>
 
-    <div class="flex flex-col md:flex-row gap-4 mb-6">
-        <label class="flex items-center border px-4 py-2 rounded cursor-pointer w-full md:w-auto">
-            <input type="radio" name="payment_method" value="gcash" class="mr-2" checked>
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fen%2Ffree-png-vcsaa&psig=AOvVaw0gDYXIlis2uoB9Tk62aRXU&ust=1747842210240000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMCoueKxso0DFQAAAAAdAAAAABAE" alt="GCash" class="h-5 mr-2">
-        </label>
-        <label class="flex items-center border px-4 py-2 rounded cursor-pointer w-full md:w-auto">
-            <input type="radio" name="payment_method" value="credit_card" class="mr-2">
-            Credit Card
-        </label>
-        <label class="flex items-center border px-4 py-2 rounded cursor-pointer w-full md:w-auto">
-            <input type="radio" name="payment_method" value="cod" class="mr-2">
-            Cash on Delivery
-        </label>
+    <div class="border-b pb-1 mb-10"> 
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+            <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
+                <input type="radio" name="payment_method" value="gcash" class="mr-2" checked>
+                <img src="./Images/Gcash.png" alt="Gcash" width="60" height="30" class="object-contain" />
+            </label>
+            <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
+                <input type="radio" name="payment_method" value="credit_card" class="mr-2">
+                <img src="./Images/Card.png" alt="Card" width="60" height="30" class="object-contain" />
+            </label>
+            <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
+                <input type="radio" name="payment_method" value="cod" class="mr-2">
+                <img src="./Images/COD.png" alt="COD" width="60" height="30" class="object-contain" />
+            </label>
+        </div>
     </div>
 
     <div id="gcash-fields" class="grid md:grid-cols-2 gap-4 mb-4">
@@ -52,8 +54,12 @@
         </div>
     </div>
 
-    <div class="flex justify-end gap-4 mt-6">
-        <button class="text-blue-600 font-semibold hover:underline">Edit</button>
-        <button class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Save</button>
+    <div class="flex justify-end gap-3 pt-8 border-t">
+        <button type="button" class="px-5 py-2 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out">
+            Edit Profile
+        </button>
+        <button type="submit" class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+            Save Changes
+        </button>
     </div>
 </div>
