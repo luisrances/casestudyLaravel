@@ -62,27 +62,40 @@
         <div class="relative bg-white rounded-2xl shadow-lg w-full max-w-4xl mx-auto my-12 overflow-hidden">
             <!-- Close Button -->
             <button onclick="closeProductModal()"
-                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold z-10">
+                class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 text-2xl font-bold z-10">
                 &times;
             </button>
 
-            <div class="flex flex-col md:flex-row p-6 md:p-8 gap-6 h-[500px]">
+            <div class="flex flex-col md:flex-row p-6 md:p-8 gap-5 h-[500px]">
                 <!-- Left: Image and Price -->
-                <div class="w-full md:w-1/2 flex flex-col items-left space-y-4">
-                    <img id="modal-product-image" src="https://via.placeholder.com/500x650?text=No+Image" alt="Product Image"
-                        class="rounded-xl object-contain max-h-100 w-full" />
-                    <p id="modal-product-stock" class="text-green-600 font-semibold">Stock: 0</p>
-                    <div class="text-start">
-                        <p class="text-gray-700 font-medium text-base">Price:</p>
-                        <p id="modal-product-price" class="text-3xl font-bold text-blue-700">₱0.00</p>
+                <div class="w-full md:w-1/2 flex flex-col space-y-3">
+                    <!-- Image Container with Overlay Wishlist -->
+                    <div class="relative bg-gray-50 rounded-2xl overflow-hidden flex-1">
+                        <img id="modal-product-image" 
+                            src="https://via.placeholder.com/500x650?text=No+Image" 
+                            alt="Product Image"
+                            class="w-full h-full object-cover" />
+                        
+                        <!-- Wishlist Button Overlay -->
+                        <div class="absolute top-3 left-3">
+                            <form id="addToWishlistForm" onsubmit="handleAddToWishlist(event)">
+                                @csrf
+                                <input type="hidden" name="product_id" id="wishlist_product_id">
+                                <button type="submit" class="flex items-center justify-center bg-white/70 backdrop-blur-sm hover:bg-white text-red-600 p-2 rounded-full shadow-lg transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Right: Details and Buttons -->
-                <div class="w-full md:w-1/2 flex flex-col justify-between space-y-6">
+                <div class="w-full md:w-1/2 flex flex-col justify-between space-y-2 overflow-hidden">
                     <div>
                         <h2 id="modal-product-name" class="text-2xl font-bold text-gray-800 mb-2">Product Name</h2>
-                        <div id="modal-product-description-container" class="max-h-32 overflow-y-auto text-sm text-gray-600 mb-4 pr-1">
+                        <div id="modal-product-description-container" class="h-[220px] overflow-y-auto text-sm text-gray-600 mb-4 pr-1">
                             <p id="modal-product-description">
                                 Lorem ipsum dolor sit amet...
                             </p>
@@ -91,29 +104,37 @@
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
-                        <form id="addToWishlistForm" onsubmit="handleAddToWishlist(event)" class="flex-1">
-                            @csrf
-                            <input type="hidden" name="product_id" id="wishlist_product_id">
-                            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-sky-200 hover:bg-sky-300 text-white py-2 px-4 rounded-xl transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.61C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                                Wishlist
+                    <div class="space-y-3">
+                        <!-- Product Info Container - Small -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-3 mb-4">
+                            <div class="flex justify-between items-center">
+                                <!-- Price (Left) -->
+                                <div>
+                                    <p class="text-gray-600 font-medium text-xs mb-0.5">Price:</p>
+                                    <p id="modal-product-price" class="text-xl font-bold text-blue-400">₱0.00</p>
+                                </div>
+                                
+                                <!-- Stock (Right) -->
+                                <div class="inline-flex items-center px-2 py-1 bg-green-50 rounded-full">
+                                    <div class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></div>
+                                    <p id="modal-product-stock" class="text-green-700 font-medium text-xs">Stock: 0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Buy Now and Add to Cart - Side by Side -->
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                                Buy Now
                             </button>
-                        </form>
-
-                        <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
-                            @csrf
-                            <input type="hidden" name="product_id" id="product_id">
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-xl transition">
-                                Add to Cart
-                            </button>
-                        </form>
-
-                        <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-xl transition">
-                            Buy Now
-                        </button>
+                            
+                            <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
+                                @csrf
+                                <input type="hidden" name="product_id" id="product_id">
+                                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                                    Add to Cart
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

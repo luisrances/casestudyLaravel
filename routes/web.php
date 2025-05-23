@@ -78,6 +78,7 @@ Route::get('/account-setting', function () {return view('account_setting');})->n
 Route::get('/', [ProductController::class, 'home_page'])->name('Home');
 Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');
 Route::get('/feedback', [ProductController::class, 'feedback_page'])->name('Feedback');
+Route::post('/feedback/submit', [ProductController::class, 'submit_feedback'])->name('feedback.submit');
 
 Route::get('/dashboard', function () { // dashboard after login
     return view('welcome');
