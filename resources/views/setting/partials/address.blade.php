@@ -1,5 +1,5 @@
             <!--ADDRESS-->
-            <div id="address" class="section hidden">
+            <div id="address" class="section hidden px-4">
                 <h2 class="text-2xl font-bold mb-4">ADDRESS BOOK</h2>
 
                 <!-- View Address -->

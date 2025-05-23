@@ -27,7 +27,7 @@
     </div>
 
     <div class="mt-[35px]">
-        <h1 class="font-bold opacity-50 text-[36px]">Recommendation</h1>
+        <h1 class="font-bold opacity-50 text-[36px]">Recommend for you</h1>
 
         <!-- Accessories Category Group -->
         <div class="mb-[24px]">
