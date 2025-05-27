@@ -15,11 +15,14 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Total Revenue</div>
-                                    <div class="h2 mb-0 font-weight-bold text-gray-800">$ {{ $totalRevenue }} </div>
+                                        Total Revenue
+                                    </div>
+                                    <div class="h2 mb-0 font-weight-bold text-gray-800">
+                                        $ {{ $totalRevenue }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    <i class="bi bi-cash-coin fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>

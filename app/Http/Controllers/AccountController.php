@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\PaymentDetail;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -98,5 +103,98 @@ class AccountController extends Controller
         $account->delete();
 
         return redirect()->route('accounts.index')->with('success', 'Account deleted successfully!');
+    }
+
+    public function account_show(Request $request)
+    {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login to access account settings.');
+        }
+
+        $account = Auth::user();
+        $paymentDetails = PaymentDetail::all();
+        $products = Product::all();
+        $orders = Order::where('account_id', $account->id)->get();
+
+        return view('setting.account_setting', compact('account', 'orders', 'products', 'paymentDetails'));
+    }
+
+    public function account_update(Request $request, Account $account)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'email'      => 'required|email|unique:accounts,email,' . $account->id,
+            'password'   => 'nullable|string|min:6',
+            'image'      => 'nullable|image|max:2048',
+            'remove_image' => 'nullable|boolean'
+        ]);
+    
+        // Handle password
+        if ($request->filled('password')) {
+            $validated['password'] = Hash::make($request->password);
+        } else {
+            unset($validated['password']);
+        }
+    
+        // Handle image
+        if ($request->boolean('remove_image')) {
+            // Delete the existing image
+            if ($account->image && \Storage::disk('public')->exists($account->image)) {
+                \Storage::disk('public')->delete($account->image);
+            }
+            $validated['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($account->image && \Storage::disk('public')->exists($account->image)) {
+                \Storage::disk('public')->delete($account->image);
+            }
+            $validated['image'] = $request->file('image')->store('images/accounts', 'public');
+        }
+    
+        // Remove remove_image from validated data before update
+        unset($validated['remove_image']);
+        
+        $account->update($validated);
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile updated successfully!'
+        ]);
+    }
+
+    public function account_delete(Request $request)
+    {
+        try {
+            $account = Auth::user();
+
+            if (!$account) {
+                return redirect()->route('login')->with('error', 'User not authenticated.');
+            }
+
+            // Delete account image if exists
+            if ($account->image && \Storage::disk('public')->exists($account->image)) {
+                \Storage::disk('public')->delete($account->image);
+            }
+
+            // Get the account ID before logging out
+            $accountId = $account->id;
+
+            // Logout first
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            // Delete the account using find and delete
+            $accountToDelete = Account::find($accountId);
+            if ($accountToDelete) {
+                $accountToDelete->forceDelete();
+            }
+
+            return redirect()->route('Home')->with('success', 'Your account has been permanently deleted.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete account. Please try again.');
+        }
     }
 }

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Account;
+use App\Models\Cart;
+use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -100,5 +103,101 @@ class OrderController extends Controller
     {
         $order->delete();
         return redirect()->route('orders.index')->with('success', 'Order deleted successfully.');
+    }
+
+
+    // purchase history user page
+    public function purchase_history_user(Request $request)
+    {
+        $products = Product::all();
+        $accounts = Account::all();
+        $orders = Order::where('account_id', Auth::user()->id)->get();
+
+        return view('order-flow.purchase_history', compact('orders', 'products', 'accounts'));
+    }
+
+    //checkout buyAgain
+    public function checkout_buyAgain(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|integer'
+        ]);
+
+        $account = Auth::user();
+
+        // Create a temporary cart item for checkout
+        $cartItem = Cart::create([
+            'product_id' => $validated['product_id'],
+            'account_id' => $account->id,
+            'quantity' => 1
+        ]);
+
+        // Get necessary data for checkout
+        $cartItems = Cart::where('id', $cartItem->id)->get();
+        $products = Product::where('id', $validated['product_id'])->get();
+        $paymentDetails = PaymentDetail::where('account_id', $account->id)->get();
+
+        return view('order-flow.checkout', compact('cartItems', 'products', 'account', 'paymentDetails'));
+    }
+    public function refundOrder(Request $request)
+    {
+        try {
+            $order = Order::where([
+                'product_id' => $request->product_id,
+                'account_id' => Auth::user()->id,
+                'order_status' => 'Completed'
+            ])->first();
+
+            if ($order) {
+                $order->order_status = 'Refunded';
+                $order->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Order has been refunded'
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Order not found'
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to process refund'
+            ], 500);
+        }
+    }
+    public function cancelOrder(Request $request)
+    {
+        try {
+            $order = Order::where([
+                'product_id' => $request->product_id,
+                'account_id' => Auth::user()->id,
+            ])
+                ->whereNotIn('order_status', ['Completed', 'Cancelled', 'Refunded'])
+                ->first();
+
+            if ($order) {
+                $order->order_status = 'Cancelled';
+                $order->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Order has been cancelled'
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Order not found or cannot be cancelled'
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to cancel order'
+            ], 500);
+        }
     }
 }

@@ -51,20 +51,29 @@
     <div class="form-container">
         <div class="form-card">
             <h3 class="mb-2 fw-bold">User Profiling</h3>
-            <form action="{{ route('storeFormRegistration.index') }}" method="POST">
+            <form action="{{ route('storeFormRegistration.index') }}" method="POST" id="profiling_form">
                 @csrf
                 <input type="hidden" name="account_id" value="{{ $account_id }}">
 
                 <div class="row mb-0">
                     <div class="col-md-6">
                         <label for="birthdate" class="form-label" style="margin-bottom: -5px">Birthday</label>
-                        <input type="date" class="form-control" name="birthdate" id="birthdate">
+                        <input type="date" class="form-control" name="birthdate" id="birthdate" required max="{{ now()->toDateString() }}">
+                        <label class="form-label d-block">Gender</label>
+                        <div class="form-check form-check-inline ps-5">
+                            <input class="form-check-input" type="radio" name="sex" id="female" value="female" required>
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sex" id="male" value="male">
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <label for="height" class="form-label" style="margin-bottom: -5px">Height (cm)</label>
-                        <input type="number" class="form-control" name="height" id="height" min="0">
+                        <input type="number" class="form-control" name="height" id="height" min="0" required>
                         <label for="weight" class="form-label" style="margin-bottom: -5px">Weight (kg)</label>
-                        <input type="number" class="form-control" name="weight" id="weight" min="0">
+                        <input type="number" class="form-control" name="weight" id="weight" min="0" required>
                     </div>
                 </div>
 
@@ -117,7 +126,7 @@
                 <div class="mb-2">
                     <label class="form-label d-block fw-bold">Experience Level</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="experience_level" id="beginner" value="Beginner">
+                        <input class="form-check-input" type="radio" name="experience_level" id="beginner" value="Beginner" required>
                         <label class="form-check-label" for="beginner">Beginner</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -125,8 +134,8 @@
                         <label class="form-check-label" for="intermediate">Intermediate</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="experience_level" id="skilled" value="Skilled">
-                        <label class="form-check-label" for="skilled">Skilled</label>
+                        <input class="form-check-input" type="radio" name="experience_level" id="advanced" value="Advanced">
+                        <label class="form-check-label" for="skilled">Advanced</label>
                     </div>
                 </div>
                 
@@ -136,7 +145,7 @@
                     <label class="col-8 form-label d-block">Performs Own Maintenance?</label>
                     <div class="col-4">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="maintenance" id="maintenance_yes" value="yes">
+                            <input class="form-check-input" type="radio" name="maintenance" id="maintenance_yes" value="yes" required>
                             <label class="form-check-label" for="maintenance_yes">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -150,7 +159,7 @@
                     <label class="col-8 form-label d-block">Interested in Upgrades/Custom Parts?</label>
                     <div class="col-4">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="custom_parts" id="custom_yes" value="yes">
+                            <input class="form-check-input" type="radio" name="custom_parts" id="custom_yes" value="yes" required>
                             <label class="form-check-label" for="custom_yes">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -163,7 +172,7 @@
                 <hr class="my-1">
         
                 <div class="text-end">
-                    <button type="submit" class="btn py-2 px-0">
+                    <button type="submit" class="btn border-0">
                         <h5 class="text-primary">
                             Continue <i class="bi bi-arrow-right ms-2"></i>
                         </h5>
@@ -172,5 +181,17 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById("profiling_form").addEventListener("submit", function (e) {
+            const activityChecked = document.querySelectorAll("input[name='activity_type[]']:checked").length > 0;
+            const terrainChecked = document.querySelectorAll("input[name='terrain[]']:checked").length > 0;
+
+            if (!activityChecked || !terrainChecked) {
+                e.preventDefault();
+                alert("Please select at least one option for Activity Type and Primary Riding Terrain.");
+            }
+        });
+    </script>
 </body>
 </html>

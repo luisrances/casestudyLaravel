@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\UserProfiling;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -25,11 +26,16 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
-        // return redirect()->intended('admin');
+        $account = Auth::user();
+
+        $hasProfile = UserProfiling::where('account_id', $account->id)->exists(); // Check if user has existing profiling data
+        if (!$hasProfile) {
+            return redirect()->route('create_user_profiling.index', ['account_id' => $account->id]);
+        }
+
+        return redirect()->intended(route('Home', absolute: false));
     }
     /**
      * Destroy an authenticated session.

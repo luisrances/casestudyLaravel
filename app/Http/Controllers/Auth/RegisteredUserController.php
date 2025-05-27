@@ -17,8 +17,14 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        if (Auth::check()) {
+            if (session('needs_profiling', false)) {
+                return redirect()->route('create_user_profiling.index', ['account_id' => Auth::id()]);
+            }
+            return redirect()->route('create_user_profiling.index', ['account_id' => Auth::id()]);
+        }
         return view('auth.register');
     }
 
@@ -48,7 +54,8 @@ class RegisteredUserController extends Controller
         Auth::login($account);
 
         // return redirect(route('dashboard', absolute: false));
-        
+
+        session(['needs_profiling' => true]);
         // Redirect to user-profiling with account_id
         return redirect()->route('create_user_profiling.index', ['account_id' => $account->id]);
     }
