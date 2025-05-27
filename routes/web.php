@@ -79,6 +79,7 @@ Route::delete('/account-setting/delete', [AccountController::class, 'account_del
 Route::post('/account-setting/address', [PaymentDetailsController::class, 'address_add'])->name('address.add');
 Route::put('/account-setting/address/{id}', [PaymentDetailsController::class, 'address_update'])->name('address.update');
 Route::delete('/account-setting/address/{paymentDetail}', [PaymentDetailsController::class, 'address_remove'])->name('address.remove');
+Route::post('/account-setting/refund', [PaymentDetailsController::class, 'purchaseRefundOrder'])->name('setting.purchase.refund');
 Route::post('/account-setting/cancel', [PaymentDetailsController::class, 'purchaseCancelOrder'])->name('setting.purchase.cancel');
 
 // main page
