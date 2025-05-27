@@ -1,0 +1,232 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "first_name": "Britney",
+      "last_name": "Rafer",
+      "email": "britney.rafer@gmail.com",
+      "password": " $2y$12$pAwPTjiFLBG7vMbqM40SDud7DBC/14yz7oBJ56PxGYQRpc4eVoIvK",
+      "image": null
+    },
+    {
+      "id": 2,
+      "first_name": "Mariel",
+      "last_name": "Perin",
+      "email": "mariel.perin@gmail.com",
+      "password": "$2y$12$RFsJNLDV2UY6E5y3WP6uXufybzLt54nTPYvveuDb.H9k.Ki8mV602",
+      "image": null
+    },
+    {
+      "id": 3,
+      "first_name": "Izzy",
+      "last_name": "DeJusto",
+      "email": "izzy.dejusto@gmail.com",
+      "password": " $2y$12$5X47HBvOVqiijaxrCfZ04e5W3fpixU6wb32l25AodhkHPAwVExXB.",
+      "image": null
+    },
+    {
+      "id": 4,
+      "first_name": "Francis Luis",
+      "last_name": "Rances",
+      "email": "francis.rances@gmail.com",
+      "password": "$2y$12$lMU19V/1wiB4zAgNNN1lj.Rzf6TeHG.NwL11stXfZTHcxHFR1N0LC",
+      "image": null
+    },
+    {
+      "id": 5,
+      "first_name": "Angelito",
+      "last_name": "Guiaya",
+      "email": "angelito.guiaya@gmail.com",
+      "password": "$2y$12$iN3TBywamr7h5CipfHV4XOTxRNw/74gJFwMxy870AKWce5/hGouXO",
+      "image": null
+    }
+  ],
+  "payment_details": [
+    {
+      "id": 1,
+      "account_id": 1,
+      "recipient_name": "Britney Rafer",
+      "phone_number": "09171234567",
+      "district": "Ugong",
+      "city": "Pasig City",
+      "region": "NCR",
+      "street": "88 Arcovia Ave",
+      "address_category": "home address"
+    },
+    {
+      "id": 2,
+      "account_id": 2,
+      "recipient_name": "Mariel Perin",
+      "phone_number": "09181234567",
+      "district": "San Miguel",
+      "city": "Manila",
+      "region": "NCR",
+      "street": "456 General Luna St",
+      "address_category": "office address"
+    },
+    {
+      "id": 3,
+      "account_id": 3,
+      "recipient_name": "Izzy DeJusto",
+      "phone_number": "09221234567",
+      "district": "Poblacion",
+      "city": "Makati",
+      "region": "NCR",
+      "street": "789 Kalayaan Ave",
+      "address_category": "home address"
+    },
+    {
+      "id": 4,
+      "account_id": 4,
+      "recipient_name": "Francis Luis Rances",
+      "phone_number": "09091234567",
+      "district": "Buli",
+      "city": "Muntinlupa",
+      "region": "NCR",
+      "street": "101 Civic Drive",
+      "address_category": "office address"
+    },
+    {
+      "id": 5,
+      "account_id": 5,
+      "recipient_name": "Angelito Guiaya",
+      "phone_number": "09391234567",
+      "district": "San Roque",
+      "city": "Marikina",
+      "region": "NCR",
+      "street": "123 Shoe Ave",
+      "address_category": "home address"
+    }
+  ],
+"user_profilings": [
+  {
+    "id": 1,
+    "account_id": 1,
+    "birthdate": "2003-05-15",
+    "sex": "Female",
+    "height": 160.5,
+    "weight": 55.2,
+    "activity_type": "[\"Leisure\", \"Commuting\"]",
+    "terrain": "[\"Mixed\"]",
+    "experience_level": "Advanced",
+    "maintenance": 0,
+    "custom_parts": 1,
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "account_id": 2,
+    "birthdate": "2002-11-22",
+    "sex": "Female",
+    "height": 162,
+    "weight": 50.8,
+    "activity_type": "[\"Commuting\", \"Touring\"]",
+    "terrain": "[\"Coastal Roads\"]",
+    "experience_level": "Advanced",
+    "maintenance": 1,
+    "custom_parts": 1,
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 3,
+    "account_id": 3,
+    "birthdate": "2003-02-10",
+    "sex": "Female",
+    "height": 158.3,
+    "weight": 53,
+    "activity_type": "[\"Off-roading\", \"Racing\"]",
+    "terrain": "[\"Mountains\"]",
+    "experience_level": "Advanced",
+    "maintenance": 0,
+    "custom_parts": 0,
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 4,
+    "account_id": 4,
+    "birthdate": "2002-08-05",
+    "sex": "Male",
+    "height": 175.7,
+    "weight": 68.5,
+    "activity_type": "[\"Racing\", \"Touring\"]",
+    "terrain": "[\"Mountains\", \"Mixed\"]",
+    "experience_level": "Advanced",
+    "maintenance": 1,
+    "custom_parts": 1,
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 5,
+    "account_id": 5,
+    "birthdate": "2003-07-30",
+    "sex": "Male",
+    "height": 170,
+    "weight": 63.4,
+    "activity_type": "[\"Touring\", \"Leisure\"]",
+    "terrain": "[\"Mixed\"]",
+    "experience_level": "Advanced",
+    "maintenance": 0,
+    "custom_parts": 0,
+    "created_at": null,
+    "updated_at": null
+  }
+],
+"orders": [
+  {
+    "id": 1,
+    "product_id": 1,
+    "account_id": 1,
+    "quantity": 1,
+    "order_status": "pending",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "product_id": 2,
+    "account_id": 2,
+    "quantity": 1,
+    "order_status": "pending",
+    "created_at": null,
+    "updated_at": null
+  }
+],
+"carts": [
+  {
+    "id": 1,
+    "product_id": 1,
+    "account_id": 1,
+    "quantity": 1,
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "product_id": 2,
+    "account_id": 2,
+    "quantity": 1,
+    "created_at": null,
+    "updated_at": null
+  }
+],
+"wishlists": [
+  {
+    "id": 1,
+    "product_id": 1,
+    "account_id": 1,
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "product_id": 2,
+    "account_id": 2,
+    "created_at": null,
+    "updated_at": null
+  }
+]
+} 
