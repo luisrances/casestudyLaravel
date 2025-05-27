@@ -222,6 +222,19 @@ class ProductController extends Controller
             ->take(3)
             ->get();
 
+        if ($latestUpdatedProducts->isEmpty()) {
+            $latestUpdatedProducts = collect([
+                (object)[
+                    'id' => 0,
+                    'name' => 'No Products Available',
+                    'description' => 'Check back later for new products',
+                    'price' => 0,
+                    'image_path' => 'images/products/default.jpg',
+                    'category' => 'default'
+                ]
+            ]);
+        }
+
         return view('welcome', compact('recommended', 'latestUpdatedProducts'));
     }
 

@@ -2,14 +2,6 @@
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
         <h2 class="text-2xl font-bold mb-2 mb-4 sm:mb-0">PERSONAL INFO</h2>
     </div>
-
-    {{-- <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input type="file" class="form-control form-control-md" id="image" name="image">
-        @if (!empty($account->image))
-            <img src="{{ asset('storage/' . $account->image) }}" alt="Account Image" class="img-thumbnail mt-3" style="max-width: 150px;">
-        @endif
-    </div> --}}
     
     <form action="{{ route('account.update', $account) }}" method="POST" enctype="multipart/form-data" onsubmit="handleAccountSetting(event)">
         @csrf @method('PATCH')
@@ -90,7 +82,7 @@
 
     <script>
         function enableEditing() {
-            document.querySelectorAll('#account input').forEach(input => {
+            document.querySelectorAll('input').forEach(input => {
                 input.removeAttribute('readonly');
 
                 if (input.type === 'password') {
@@ -101,16 +93,12 @@
                 document.getElementById('success-alert-title').innerText = 'Allowed';
                 document.getElementById('success-alert-message').innerText = 'You can now edit the fields';
                 const alert = document.getElementById('success-alert');
-
                 // hide after some time
                 alert.style.display = 'block';
                 setTimeout(() => {
                     alert.style.display = 'none';
                 }, 2000);
             });
-        
-            document.getElementById('edit-button').classList.add('hidden');
-            document.getElementById('save-button').classList.remove('hidden');
         }
     </script>   
     

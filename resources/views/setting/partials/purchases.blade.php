@@ -1,6 +1,6 @@
 
             <!-- PURCHASES -->
-            <div id="purchases" class="section hidden">
+            <div id="purchases" class="section hidden px-4">
                 <h2 class="text-2xl font-bold mb-4">MY PURCHASES</h2>
 
                 <!-- Tabs -->

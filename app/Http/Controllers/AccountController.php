@@ -107,15 +107,20 @@ class AccountController extends Controller
 
     public function account_show(Request $request)
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login to access account settings.');
+        }
+
         $account = Auth::user();
         $paymentDetails = PaymentDetail::all();
         $products = Product::all();
-        $orders = Order::where('account_id', Auth::user()->id)->get();
+        $orders = Order::where('account_id', $account->id)->get();
 
         return view('setting.account_setting', compact('account', 'orders', 'products', 'paymentDetails'));
     }
 
-    public function updateProfile(Request $request, Account $account)
+    public function account_update(Request $request, Account $account)
     {
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -157,5 +162,39 @@ class AccountController extends Controller
             'success' => true,
             'message' => 'Profile updated successfully!'
         ]);
+    }
+
+    public function account_delete(Request $request)
+    {
+        try {
+            $account = Auth::user();
+
+            if (!$account) {
+                return redirect()->route('login')->with('error', 'User not authenticated.');
+            }
+
+            // Delete account image if exists
+            if ($account->image && \Storage::disk('public')->exists($account->image)) {
+                \Storage::disk('public')->delete($account->image);
+            }
+
+            // Get the account ID before logging out
+            $accountId = $account->id;
+
+            // Logout first
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            // Delete the account using find and delete
+            $accountToDelete = Account::find($accountId);
+            if ($accountToDelete) {
+                $accountToDelete->forceDelete();
+            }
+
+            return redirect()->route('Home')->with('success', 'Your account has been permanently deleted.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete account. Please try again.');
+        }
     }
 }

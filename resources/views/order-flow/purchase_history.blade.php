@@ -54,12 +54,12 @@
                                                 <td class="px-6 py-4 font-normal text-gray-900">
                                                     {{ $order->order_status }}
                                                 </td>
-                                                <td class="flex justify-center align-center space-x-2 px-2 py-7 h-24">
+                                                <td class="inline-flex justify-center space-x-2 px-2 py-10 h-24">
                                                     @if ($order->order_status == 'Completed')
                                                         <form onsubmit="handleRefund(event, {{ $product->id }})" class="refund-form">
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                            <button type="submit" class="min-w-[max-content] font-normal text-black bg-red-200 px-6 py-2 rounded-lg">
+                                                            <button type="submit" class="min-w-[max-content] font-medium text-red-600 dark:text-red-500 hover:underline">
                                                                 Refund
                                                             </button>
                                                         </form>
@@ -68,7 +68,7 @@
                                                         <form onsubmit="handleCancelOrder(event, {{ $product->id }})" class="cancel-form">
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                            <button type="submit" class="min-w-[max-content] font-normal text-black bg-red-200 px-6 py-2 rounded-lg">
+                                                            <button type="submit" class="min-w-[max-content] font-medium text-red-600 dark:text-red-500 hover:underline">
                                                                 Cancel
                                                             </button>
                                                         </form>
@@ -76,7 +76,7 @@
                                                     <form onsubmit="handleBuyAgain(event, {{ $product->id }})" class="buy-again-form">
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                        <button type="submit" class="min-w-[max-content] font-normal text-black bg-blue-300 px-3 py-2 rounded-lg">
+                                                        <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                                             Buy Again
                                                         </button>
                                                     </form>
@@ -100,29 +100,27 @@
     <script>
         function handleBuyAgain(event, productId) {
             event.preventDefault();
-                    
-            // Create form and submit it
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '{{ route('checkout.buyAgain') }}';
             
-            // Add CSRF token
-            const csrfToken = document.createElement('input');
-            csrfToken.type = 'hidden';
-            csrfToken.name = '_token';
-            csrfToken.value = document.querySelector('meta[name="csrf-token"]').content;
-            form.appendChild(csrfToken);
-            
-            // Add product_id
-            const productIdInput = document.createElement('input');
-            productIdInput.type = 'hidden';
-            productIdInput.name = 'product_id';
-            productIdInput.value = productId;
-            form.appendChild(productIdInput);
-            
-            // Add form to document and submit
-            document.body.appendChild(form);
-            form.submit();
+            fetch('{{ route('checkout.buyAgain') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to checkout page while preserving the navigation state
+                    window.location.href = data.redirect_url;
+                } else {
+                    console.error('Error:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
         }
 
         function handleRefund(event, productId) {
