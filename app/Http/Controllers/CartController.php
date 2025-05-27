@@ -225,7 +225,7 @@ class CartController extends Controller
                 'product_id' => $cartItem->product_id,
                 'account_id' => $account->id,
                 'quantity' => $cartItem->quantity,
-                'order_status' => 'To pay'
+                'order_status' => 'To ship'
             ];
 
             // Create the order first

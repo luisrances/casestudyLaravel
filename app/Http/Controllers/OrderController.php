@@ -124,13 +124,37 @@ class OrderController extends Controller
         ]);
 
         $account = Auth::user();
+        $validated['account_id'] = Auth::user()->id;
+
+        // Check if product already exists in user's cart
+        $existingCart = Cart::where([
+            'product_id' => $validated['product_id'],
+            'account_id' => $validated['account_id']
+        ])->first();
+
+        if ($existingCart) {
+            // If exists, increment quantity by 1
+            $existingCart->quantity += 1;
+            $existingCart->save();
+            $cartItem = $existingCart;
+            $message = 'Product quantity updated in cart';
+        } else {
+            // If doesn't exist, create new cart item
+            // $cartItem = Cart::create($validated);
+            $cartItem = Cart::create([
+                'product_id' => $validated['product_id'],
+                'account_id' => $account->id,
+                'quantity' => 1
+            ]);
+            $message = 'Product added to cart successfully';
+        }
 
         // Create a temporary cart item for checkout
-        $cartItem = Cart::create([
-            'product_id' => $validated['product_id'],
-            'account_id' => $account->id,
-            'quantity' => 1
-        ]);
+        // $cartItem = Cart::create([
+        //     'product_id' => $validated['product_id'],
+        //     'account_id' => $account->id,
+        //     'quantity' => 1
+        // ]);
 
         // Get necessary data for checkout
         $cartItems = Cart::where('id', $cartItem->id)->get();

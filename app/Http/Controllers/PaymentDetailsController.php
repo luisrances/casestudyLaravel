@@ -221,4 +221,35 @@ class PaymentDetailsController extends Controller
             ], 500);
         }
     }
+    public function purchaseRefundOrder(Request $request)
+    {
+        try {
+            $order = Order::where([
+                'product_id' => $request->product_id,
+                'account_id' => Auth::user()->id,
+            ])
+                ->whereNotIn('order_status', [ 'Cancelled', 'To ship', 'To receive', 'Refunded'])
+                ->first();
+
+            if ($order) {
+                $order->order_status = 'Refunded';
+                $order->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Order has been refunded'
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Order not found or cannot be refunded'
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to refund order'
+            ], 500);
+        }
+    }
 }
