@@ -172,7 +172,7 @@
                 <hr class="my-1">
         
                 <div class="text-end">
-                    <button type="submit" class="btn py-2 px-0">
+                    <button type="submit" class="btn border-0">
                         <h5 class="text-primary">
                             Continue <i class="bi bi-arrow-right ms-2"></i>
                         </h5>

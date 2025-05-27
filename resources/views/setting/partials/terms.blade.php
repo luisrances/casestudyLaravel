@@ -1,6 +1,6 @@
 
             <!--TERMS-->
-            <div id="terms" class="section hidden">
+            <div id="terms" class="section hidden px-4">
                 <h2 class="text-2xl font-bold mb-4">TERMS AND CONDITIONS</h2>
                 <div class="space-y-4 text-justify text-sm leading-relaxed">
                     <p>Welcome to <strong>GoPedalPh</strong> – your trusted partner in cycling essentials and gear.</p>

@@ -108,29 +108,75 @@ class PaymentDetailsController extends Controller
         return redirect()->route('payment_details.index')->with('success', 'Payment detail deleted successfully.');
     }
 
-    public function getAddresses(Request $request)
+    // address details in account setting
+    public function address_add(Request $request)
     {
-        $accounts = Account::where('user_id', Auth::id())->get();
-        $paymentDetails = PaymentDetail::whereIn('account_id', $accounts->pluck('id'))->get();
+        try {
+            $validated = $request->validate([
+                'recipient_name' => 'required|string|max:255',
+                'phone_number' => 'required|string|max:20',
+                'district' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'region' => 'required|string|max:255',
+                'street' => 'required|string|max:255',
+                'address_category' => 'required|in:home address,office address',
+            ]);
+            $validated['account_id'] = Auth::id();
 
-        return view('setting.account_setting', compact('paymentDetails', 'accounts'));
+            PaymentDetail::create($validated);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Address added successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to add address: ' . $e->getMessage()
+            ], 500);
+        }
     }
     public function address_update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'recipient_name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:20',
-            'district' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'region' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
-            'address_category' => 'required|in:home address,office address',
-        ]);
+        try {
+            $validated = $request->validate([
+                'recipient_name' => 'required|string|max:255',
+                'phone_number' => 'required|string|max:20',
+                'district' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'region' => 'required|string|max:255',
+                'street' => 'required|string|max:255',
+                'address_category' => 'required|in:home address,office address',
+            ]);
 
-        $paymentDetail = PaymentDetail::findOrFail($id);
-        $paymentDetail->update($validated);
+            $paymentDetail = PaymentDetail::findOrFail($id);
+            $paymentDetail->update($validated);
 
-        return redirect()->back()->with('success', 'Address updated successfully.');
+            return response()->json([
+                'success' => true,
+                'message' => 'Address updated successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update address: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+    public function address_remove(PaymentDetail $paymentDetail)
+    {
+        try {
+            $paymentDetail->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Address deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete address'
+            ], 500);
+        }
     }
 
 

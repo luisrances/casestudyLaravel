@@ -80,14 +80,23 @@
                         <span><a href="{{ route("account.setting") }}">Edit</a></span>
                     </div>
                     <div class="space-y-2 text-gray-700">
-                        <div class=" w-100 overflow-hidden whitespace-nowrap text-ellipsis">
-                            <span class="mr-4" >{{ $account->first_name ?? 'Guest' }} {{ $account->last_name ?? '' }}</span>    
-                            @foreach($paymentDetails as $detail)
-                                <span class="">{{ $detail->street ?? ''  }}, {{ $detail->district ?? ''  }}, {{ $detail->city ?? ''  }}, {{ $detail->region ?? '' }}</span>
-                            @endforeach
+                        <div class=" w-100">
+                            {{-- <span class="mr-4" >{{ $account->first_name ?? 'Guest' }} {{ $account->last_name ?? '' }}</span>     --}}
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="payment_details" name="payment_details">
+                                @if ($paymentDetails->isEmpty())
+                                <option value="">
+                                    <span class="mr-4" >Empty Shipping Details</span>
+                                </option>
+                                @endif
+                                @foreach($paymentDetails as $detail)
+                                    <option value="{{ $detail->id }}">
+                                        <span class="mr-4" >( {{ $detail->recipient_name ?? 'Guest' }} )</span> {{ $detail->street }}, {{ $detail->district }}, {{ $detail->city }}, {{ $detail->region }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <h2 class="text-lg font-semibold mb-4 border-t pt-4 mt-4">Payment Method</h2>
+                    <h2 class="text-lg font-semibold mb-2 border-t pt-3 mt-4">Payment Method</h2>
                     <select class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="payment_method" name="payment_method" required>
                         <option value="cod">Cash on Delivery (COD)</option>
                         <option value="gcash">GCash</option>
@@ -143,7 +152,7 @@
                         </div>
                     </div>
 
-                    <h2 class="text-lg font-semibold mb-4 border-t pt-4 mt-4">Checkout Summary</h2>
+                    <h2 class="text-lg font-semibold mb-4 border-t pt-3 mt-4">Checkout Summary</h2>
                     <div class="space-y-2 text-gray-700">
                         <div class="flex justify-between">
                             <span>Subtotal:</span>
@@ -157,7 +166,7 @@
                             <span>Tax:</span>
                             <span id="cart-tax">₱ 0.00</span>
                         </div>
-                        <div class="flex justify-between text-black text-lg font-semibold border-t pt-4 mt-4">
+                        <div class="flex justify-between text-black text-lg font-semibold border-t pt-3 mt-4">
                             <span>Grand Total:</span>
                             <span id="cart-grandtotal">₱ 0.00</span>
                         </div>
@@ -214,6 +223,31 @@
                     </div>
                 </div>
             </div>
+            {{-- for empty shipping details modal --}}
+            <div id="shipping-details-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+                <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                    <div class="mt-3 text-center">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+                            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">Shipping Details Required</h3>
+                        <div class="mt-2 px-7 py-3">
+                            <p class="text-sm text-gray-500">Please add your Shipping details before proceeding with checkout.</p>
+                            <p class="text-sm text-gray-500">Visible at <strong>Address Book page</strong>.</p>
+                        </div>
+                        <div class="items-center px-4 py-3">
+                            <button id="redirect-button" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 mr-2">
+                                Add Shipping Details
+                            </button>
+                            <button id="cancel-button" class="px-4 py-2 bg-gray-400 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </main>
     
@@ -233,11 +267,18 @@
             const hasPaymentDetails = @json(!empty($paymentDetails) && $paymentDetails->count() > 0);
             if (!hasPaymentDetails) {
                 isValid = false;
-                errorMessage = 'Please add your delivery details before proceeding with checkout';
-                // Redirect to payment details creation page
-                if (confirm(errorMessage + '. Would you like to add them now?')) {
+                // Show the modal instead of alert/confirm
+                const modal = document.getElementById('shipping-details-modal');
+                modal.classList.remove('hidden');
+
+                // Add event listeners for the buttons
+                document.getElementById('redirect-button').addEventListener('click', function() {
                     window.location.href = '{{ route("account.setting") }}';
-                }
+                });
+
+                document.getElementById('cancel-button').addEventListener('click', function() {
+                    modal.classList.add('hidden');
+                });
                 return;
             }
             switch(paymentMethod) {
@@ -282,6 +323,7 @@
             document.getElementById('modal-close').addEventListener('click', function() {
                 // Submit the form
                 document.getElementById('checkout-form').submit();
+                window.location.href = '{{ route('Home') }}';
             });
         }
 

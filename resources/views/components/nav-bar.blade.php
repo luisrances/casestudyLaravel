@@ -2,8 +2,7 @@
   <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between h-full">
     <div class="flex items-center justify-between h-full">
       <a class="flex-none focus:outline-hidden focus:opacity-80" href="#" aria-label="Brand">
-        <img src="./Images/b-logo.png" alt="b-logo" width="120" height="80" class="object-contain" />
-      </a>
+        <img src="{{ asset('images/b-logo.png') }}" alt="Brand Logo" width="120" height="80" class="object-contain" />      </a>
       <div class="sm:hidden shadow">
         <button type="button" class="hs-collapse-toggle relative size-9 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-example">
           <svg class="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
