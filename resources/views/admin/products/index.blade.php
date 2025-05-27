@@ -120,7 +120,7 @@
 
         // Inject Add button beside the length dropdown
         $('.dataTables_filter').prepend(`
-            <a href="{{ route('products.create') }}" class="btn pt-1 px-4 ps-3 me-3 mb-3 mb-md-0" id="add" style="background: #82C3EC;"><i class="bi bi-plus"></i> Add Account</a>
+            <a href="{{ route('products.create') }}" class="btn pt-1 px-4 ps-3 me-3 mb-3 mb-md-0" id="add" style="background: #82C3EC;"><i class="bi bi-plus"></i> Add Product</a>
         `);
     });
 </script>

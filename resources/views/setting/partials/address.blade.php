@@ -11,12 +11,16 @@
             </div>
             <div class="space-y-4">
                 <div class="">
-                    @if ($paymentDetails->isEmpty())
+                    @php
+                        $userPaymentDetails = $paymentDetails->where('account_id', Auth::id());
+                    @endphp
+                    @if ($paymentDetails->isEmpty() || $userPaymentDetails->isEmpty())
                         <div class="w-full py-8 text-center bg-gray-50 border border-gray-300 text-gray-700 rounded-md">
                             ⚠️ No Address Detail available.
                         </div>
                     @else
                         @foreach ($paymentDetails as $detail)
+                        @if ($detail->account_id == Auth::user()->id)
                             <div class="border p-4 mb-4 rounded relative">
                                 <div class="flex justify-between items-start">
                                     <div class="flex items-start space-x-4">
@@ -32,7 +36,7 @@
                                     <div class="flex justify-center">
                                         <button 
                                             class="font-medium text-sm text-blue-600 hover:underline mr-4"
-                                            onclick="ShowEditForm()"
+                                            onclick="ShowEditForm({{ json_encode($detail) }})"
                                         >Edit</button>
                                         <form onsubmit="handleRemoveAddress(event, {{ $detail->id }})" class="inline">
                                             @csrf @method('DELETE')
@@ -41,6 +45,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @endif
                         @endforeach
                     @endif
                 </div>
@@ -172,132 +177,171 @@
             </div>
             {{-- for edit --}}
             <div id="address-edit" class="hidden">
-                @foreach ($paymentDetails as $detail)
-                    <form id="address-edit-form" method="POST" action="{{ route('address.update', $detail->id) }}" onsubmit="handleEditAddress(event)">
-                        @csrf
-                        @method('PUT')
-            
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
-                            {{-- Recipient Name --}}
-                            <div>
-                                <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name</label>
-                                <input type="text" value="{{ old('recipient_name', $detail->recipient_name) }}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                                @error('recipient_name') border-red-500 ring-red-200 @enderror"
-                                        id="recipient_name" name="recipient_name" placeholder="e.g., John Doe" required>
-                                @error('recipient_name')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-            
-                            {{-- Phone Number --}}
-                            <div>
-                                <label for="phone_number" class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
-                                <input type="tel" value="{{ old('phone_number', $detail->phone_number) }}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                                @error('phone_number') border-red-500 ring-red-200 @enderror"
-                                        id="phone_number" name="phone_number" placeholder="e.g., +63917xxxxxxx" required>
-                                @error('phone_number')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-            
-                            {{-- District --}}
-                            <div>
-                                <label for="district" class="block text-gray-700 text-sm font-medium mb-1">District</label>
-                                <input type="text" value="{{ old('district', $detail->district) }}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                                @error('district') border-red-500 ring-red-200 @enderror"
-                                        id="district" name="district" placeholder="e.g., Poblacion" required>
-                                @error('district')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-            
-                            {{-- City --}}
-                            <div>
-                                <label for="city" class="block text-gray-700 text-sm font-medium mb-1">City</label>
-                                <input type="text" value="{{ old('city', $detail->city) }}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                                @error('city') border-red-500 ring-red-200 @enderror"
-                                        id="city" name="city" placeholder="e.g., Taytay" required>
-                                @error('city')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-            
-                            {{-- Region --}}
-                            <div>
-                                <label for="region" class="block text-gray-700 text-sm font-medium mb-1">Region</label>
-                                <input type="text" value="{{ old('region', $detail->region) }}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                                @error('region') border-red-500 ring-red-200 @enderror"
-                                        id="region" name="region" placeholder="e.g., CALABARZON" required>
-                                @error('region')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-            
-                            {{-- Street --}}
-                            <div>
-                                <label for="street" class="block text-gray-700 text-sm font-medium mb-1">Street Address</label>
-                                <input type="text" value="{{ old('street', $detail->street) }}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                                @error('street') border-red-500 ring-red-200 @enderror"
-                                        id="street" name="street" placeholder="e.g., 123 Main Street" required>
-                                @error('street')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-            
-                            {{-- Address Category --}}
-                            <div class="md:col-span-2"> {{-- Occupy full width on medium screens and up --}}
-                                <label for="address_category" class="block text-gray-700 text-sm font-medium mb-1">Address Category</label>
-                                <div class="relative">
-                                    <select class="block appearance-none w-full bg-white border border-gray-300 text-gray-700
-                                                    py-2 px-4 pr-8 rounded-lg shadow-sm leading-tight
-                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                                    @error('address_category') border-red-500 ring-red-200 @enderror"
-                                            id="address_category" name="address_category" required>
-                                        <option value="" {{ old('address_category', $detail->address_category) == '' ? 'selected' : '' }}>Select address type</option>
-                                        <option value="home address" {{ old('address_category', $detail->address_category) == 'home address' ? 'selected' : '' }}>Home Address</option>
-                                        <option value="office address" {{ old('address_category', $detail->address_category) == 'office address' ? 'selected' : '' }}>Office Address</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                    </div>
-                                </div>
-                                @error('address_category')
-                                    <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-            
-                        {{-- Form Actions --}}
-                        <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 mt-8 pt-6 border-t border-gray-200">
-                            <button type="button" onclick="HideAddForm()"
-                                    class="px-5 py-2 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out">
-                                Cancel
-                            </button>
-                            <button type="submit"
-                                    class="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md
-                                            hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                            transition duration-200 ease-in-out">
-                                Save Changes
-                            </button>
-                        </div>
-                    </form>
-                @endforeach
+                <div class="">
+                    <!-- Form will be dynamically inserted here -->
+                    <div id="editFormContainer"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+{{-- for edititing the address details --}}
+<script>
+    function ShowEditForm(detail) {
+    const formContainer = document.getElementById('editFormContainer');
+    
+    // Create the form HTML
+    const formHTML = `
+        <form id="address-edit-form" method="POST" action="/account-setting/address/${detail.id}" onsubmit="handleEditAddress(event)">
+            @csrf
+            @method('PUT')
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                <input type="hidden" id="edit-id" value="${detail.id}">
+                
+                <!-- Recipient Name -->
+                <div>
+                    <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name</label>
+                    <input type="text" value="${detail.recipient_name}"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                                  focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+                           id="recipient_name" name="recipient_name" required>
+                </div>
+
+                {{-- Phone Number --}}
+                <div>
+                    <label for="phone_number" class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+                    <input type="tel" value="{{ old('phone_number', $detail->phone_number) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                                    focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+                                    @error('phone_number') border-red-500 ring-red-200 @enderror"
+                            id="phone_number" name="phone_number" placeholder="e.g., +63917xxxxxxx" required>
+                    @error('phone_number')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- District --}}
+                <div>
+                    <label for="district" class="block text-gray-700 text-sm font-medium mb-1">District</label>
+                    <input type="text" value="{{ old('district', $detail->district) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                                    focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+                                    @error('district') border-red-500 ring-red-200 @enderror"
+                            id="district" name="district" placeholder="e.g., Poblacion" required>
+                    @error('district')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- City --}}
+                <div>
+                    <label for="city" class="block text-gray-700 text-sm font-medium mb-1">City</label>
+                    <input type="text" value="{{ old('city', $detail->city) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                                    focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+                                    @error('city') border-red-500 ring-red-200 @enderror"
+                            id="city" name="city" placeholder="e.g., Taytay" required>
+                    @error('city')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Region --}}
+                <div>
+                    <label for="region" class="block text-gray-700 text-sm font-medium mb-1">Region</label>
+                    <input type="text" value="{{ old('region', $detail->region) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                                    focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+                                    @error('region') border-red-500 ring-red-200 @enderror"
+                            id="region" name="region" placeholder="e.g., CALABARZON" required>
+                    @error('region')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Street --}}
+                <div>
+                    <label for="street" class="block text-gray-700 text-sm font-medium mb-1">Street Address</label>
+                    <input type="text" value="{{ old('street', $detail->street) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                                    focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+                                    @error('street') border-red-500 ring-red-200 @enderror"
+                            id="street" name="street" placeholder="e.g., 123 Main Street" required>
+                    @error('street')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Address Category --}}
+                <div class="md:col-span-2"> {{-- Occupy full width on medium screens and up --}}
+                    <label for="address_category" class="block text-gray-700 text-sm font-medium mb-1">Address Category</label>
+                    <div class="relative">
+                        <select class="block appearance-none w-full bg-white border border-gray-300 text-gray-700
+                                        py-2 px-4 pr-8 rounded-lg shadow-sm leading-tight
+                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                                        @error('address_category') border-red-500 ring-red-200 @enderror"
+                                id="address_category" name="address_category" required>
+                            <option value="" {{ old('address_category', $detail->address_category) == '' ? 'selected' : '' }}>Select address type</option>
+                            <option value="home address" {{ old('address_category', $detail->address_category) == 'home address' ? 'selected' : '' }}>Home Address</option>
+                            <option value="office address" {{ old('address_category', $detail->address_category) == 'office address' ? 'selected' : '' }}>Office Address</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                    @error('address_category')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+                <div class="md:col-span-2 mt-6 flex justify-end space-x-4">
+                    <button type="button" onclick="closeEditModal()"
+                            class="px-5 py-2 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                            class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </form>
+    `;
+    
+    // Insert the form HTML
+    formContainer.innerHTML = formHTML;
+    // Show the edit page
+    document.getElementById("address-view").classList.add("hidden");
+    document.getElementById("address-add").classList.add("hidden");
+    document.getElementById("address-edit").classList.remove("hidden");
+}
+
+// Update the handle edit function
+function handleEditAddress(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        closeEditModal();
+        addressalert('Success', data.message);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        addressalert('Error', 'Address Detail Edited unsuccessfully.');
+    });
+}
+</script>
 
 <script>
     function showAddForm() {
@@ -309,11 +353,6 @@
         document.getElementById("address-view").classList.remove("hidden");
         document.getElementById("address-add").classList.add("hidden");
         document.getElementById("address-edit").classList.add("hidden");
-    }
-    function ShowEditForm() {
-        document.getElementById("address-view").classList.add("hidden");
-        document.getElementById("address-add").classList.add("hidden");
-        document.getElementById("address-edit").classList.remove("hidden");
     }
 </script> 
 
@@ -334,23 +373,12 @@
         })
         .then(response => response.json())
         .then(data => {
-            showAccountSuccess('Success', data.message);
+            addressalert('Success', data.message);
         })
         .catch(error => {
             console.error('Error:', error);
-            showAccountSuccess('Error', error.message);
+            addressalert('Error', error.message);
         });
-    }
-
-    function showAccountSuccess(title, message) {
-        document.getElementById('success-alert-title').innerText = title;
-        document.getElementById('success-alert-message').innerText = message;
-        const alert = document.getElementById('success-alert');
-        alert.style.display = 'block';
-        setTimeout(() => {
-            alert.style.display = 'none';
-            window.location.href = '{{ route('account.setting') }}';
-        }, 2000);
     }
 </script>
 
@@ -371,11 +399,11 @@
         })
         .then(response => response.json())
         .then(data => {
-            showAccountSuccess('Success', data.message);
+            addressalert('Success', data.message);
         })
         .catch(error => {
             console.error('Error:', error);
-            showAccountSuccess('Error', error.message);
+            addressalert('Error', error.message);
         });
     }
 </script>
@@ -396,13 +424,35 @@
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
-                showAccountSuccess('Succes', data.message);
-            }
+                addressalert('Success', data.message);
         })
         .catch(error => {
             console.error('Error:', error);
-            showAccountSuccess('Error', 'Address Detail Edited unsuccessfully.');
+            addressalert('Error', 'Address Detail Edited unsuccessfully.');
         });
     }
 </script>
+
+<script>
+    function addressalert(title, message) {
+        document.getElementById('success-alert-title').innerText = title;
+        document.getElementById('success-alert-message').innerText = message;
+        const alert = document.getElementById('success-alert');
+        alert.style.display = 'block';
+        setTimeout(() => {
+            alert.style.display = 'none';
+            window.location.href = '{{ route('account.setting') }}';
+        }, 1000);
+    }
+</script>
+
+<style>
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+    }
+</style>

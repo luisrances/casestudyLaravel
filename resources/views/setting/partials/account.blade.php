@@ -119,18 +119,18 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showAccountSuccess('Profile Updated', data.message);
+                    accountsettingalert('Profile Updated', data.message);
                 } else {
-                    showAccountSuccess('Error', 'Failed to update profile. Please try again.');
+                    accountsettingalert('Error', 'Failed to update profile. Please try again.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                showAccountSuccess('Error', 'An unexpected error occurred.');
+                accountsettingalert('Error', 'An unexpected error occurred.');
             });
         }
 
-        function showAccountSuccess(title, message) {
+        function accountsettingalert(title, message) {
             document.getElementById('success-alert-title').innerText = title;
             document.getElementById('success-alert-message').innerText = message;
             const alert = document.getElementById('success-alert');
