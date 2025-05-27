@@ -138,12 +138,12 @@
                     const alert = document.getElementById('success-alert');
                     alert.style.display = 'block';
             
-            // Set timeout for both hiding alert and redirecting
-            setTimeout(() => {
-                alert.style.display = 'none';
-                // Redirect to cart page after alert is hidden
-                window.location.href = '{{ route('cart.user') }}';
-            }, 1000);
+                    // Set timeout for both hiding alert and redirecting
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                        // Redirect to cart page after alert is hidden
+                        window.location.href = '{{ route('cart.user') }}';
+                    }, 1000);
                 }
             })
             .catch(error => console.error('Error:', error));
