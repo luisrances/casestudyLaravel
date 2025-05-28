@@ -6,7 +6,7 @@
         "price": 419999.44,
         "stock": 1,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Van Rysel XCR.png",
         "created_at": null,
         "updated_at": null
     },
@@ -17,7 +17,7 @@
         "price": 403930.9,
         "stock": 7,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/XCR Tri Ultegra Di2.png",
         "created_at": null,
         "updated_at": null
     },
@@ -28,7 +28,7 @@
         "price": 747000.0,
         "stock": 1,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Cervélo P5 Dura-Ace Di2.png",
         "created_at": null,
         "updated_at": null
     },
@@ -39,7 +39,7 @@
         "price": 729000.0,
         "stock": 1,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Cervélo P5 Red AXS.png",
         "created_at": null,
         "updated_at": null
     },
@@ -50,7 +50,7 @@
         "price": 224000.0,
         "stock": 2,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Giant Trinity Advanced Pro 2.png",
         "created_at": null,
         "updated_at": null
     },
@@ -61,7 +61,7 @@
         "price": 72000.0,
         "stock": 6,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Bianchi Aquila CV Time Trial Carbon Ultegra Road Bike.png",
         "created_at": null,
         "updated_at": null
     },
@@ -72,7 +72,7 @@
         "price": 156800.0,
         "stock": 9,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Cervélo P2 105 Time Trial Bike.png",
         "created_at": null,
         "updated_at": null
     },
@@ -83,7 +83,7 @@
         "price": 149000.0,
         "stock": 4,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Canyon Speedmax CF SLX 8.0 SL.png",
         "created_at": null,
         "updated_at": null
     },
@@ -94,7 +94,7 @@
         "price": 389000.0,
         "stock": 11,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Specialized S-Works Shiv Disc Limited Edition.png",
         "created_at": null,
         "updated_at": null
     },
@@ -105,7 +105,7 @@
         "price": 128000.0,
         "stock": 5,
         "category": "time-trial",
-        "image_path": null,
+        "image_path": "images/products/Boardman ATT 9.0.png",
         "created_at": null,
         "updated_at": null
     },
@@ -116,7 +116,7 @@
         "price": 80000.0,
         "stock": 7,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Giant Contend AR 1.png",
         "created_at": null,
         "updated_at": null
     },
@@ -127,7 +127,7 @@
         "price": 120000.0,
         "stock": 5,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Specialized Allez Sprint Comp.png",
         "created_at": null,
         "updated_at": null
     },
@@ -138,7 +138,7 @@
         "price": 230000.0,
         "stock": 3,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Trek Domane SL 5.png",
         "created_at": null,
         "updated_at": null
     },
@@ -149,7 +149,7 @@
         "price": 210000.0,
         "stock": 6,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Cannondale Synapse Carbon 105.png",
         "created_at": null,
         "updated_at": null
     },
@@ -160,7 +160,7 @@
         "price": 75000.0,
         "stock": 8,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Scott Speedster 10.png",
         "created_at": null,
         "updated_at": null
     },
@@ -171,7 +171,7 @@
         "price": 195000.0,
         "stock": 4,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Bianchi Via Nirone 7.png",
         "created_at": null,
         "updated_at": null
     },
@@ -182,7 +182,7 @@
         "price": 320000.0,
         "stock": 2,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Cervelo R3.png",
         "created_at": null,
         "updated_at": null
     },
@@ -193,7 +193,7 @@
         "price": 85000.0,
         "stock": 9,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Orbea Avant H30.png",
         "created_at": null,
         "updated_at": null
     },
@@ -204,7 +204,7 @@
         "price": 200000.0,
         "stock": 6,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Fuji Roubaix 1.3.png",
         "created_at": null,
         "updated_at": null
     },
@@ -215,7 +215,7 @@
         "price": 110000.0,
         "stock": 4,
         "category": "road-bike",
-        "image_path": null,
+        "image_path": "images/products/Lapierre Sensium 3.0 Disc.png",
         "created_at": null,
         "updated_at": null
     },
@@ -226,7 +226,7 @@
         "price": 75000.0,
         "stock": 6,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Giant Revolt 2.png",
         "created_at": null,
         "updated_at": null
     },
@@ -237,7 +237,7 @@
         "price": 135000.0,
         "stock": 4,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Specialized Diverge Comp E5.png",
         "created_at": null,
         "updated_at": null
     },
@@ -248,7 +248,7 @@
         "price": 180000.0,
         "stock": 3,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Canyon Grizl CF SL 6.png",
         "created_at": null,
         "updated_at": null
     },
@@ -259,7 +259,7 @@
         "price": 160000.0,
         "stock": 3,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Bianchi Impulso Allroad GRX 600.png",
         "created_at": null,
         "updated_at": null
     },
@@ -270,7 +270,7 @@
         "price": 88000.0,
         "stock": 5,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Norco Search XR A2.png",
         "created_at": null,
         "updated_at": null
     },
@@ -281,7 +281,7 @@
         "price": 280000.0,
         "stock": 2,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Santa Cruz Stigmata Rival AXS.png",
         "created_at": null,
         "updated_at": null
     },
@@ -292,7 +292,7 @@
         "price": 125000.0,
         "stock": 3,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Orbea Terra H40.png",
         "created_at": null,
         "updated_at": null
     },
@@ -303,7 +303,7 @@
         "price": 130000.0,
         "stock": 4,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Cannondale Topstone 2 Alloy.png",
         "created_at": null,
         "updated_at": null
     },
@@ -314,7 +314,7 @@
         "price": 95000.0,
         "stock": 7,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Merida Silex 400.png",
         "created_at": null,
         "updated_at": null
     },
@@ -325,7 +325,7 @@
         "price": 140000.0,
         "stock": 5,
         "category": "gravel-bike",
-        "image_path": null,
+        "image_path": "images/products/Trek Checkpoint ALR 5.png",
         "created_at": null,
         "updated_at": null
     },
@@ -336,7 +336,7 @@
         "price": 3200.0,
         "stock": 20,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/Shimano MT200 Hydraulic Disc Brake Set (F/R).png",
         "created_at": null,
         "updated_at": null
     },
@@ -347,7 +347,7 @@
         "price": 880.0,
         "stock": 30,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/Jagwire Road Elite Brake Cable Set (Black).png",
         "created_at": null,
         "updated_at": null
     },
@@ -358,7 +358,7 @@
         "price": 7200.0,
         "stock": 8,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/Magura MT7 Pro Hydraulic Disc Brake (Front).png",
         "created_at": null,
         "updated_at": null
     },
@@ -369,7 +369,7 @@
         "price": 420.0,
         "stock": 50,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/Shimano B01S Resin Brake Pads (Pair).png",
         "created_at": null,
         "updated_at": null
     },
@@ -380,7 +380,7 @@
         "price": 4800.0,
         "stock": 10,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/SRAM Code RSC Brake Lever Assembly.png",
         "created_at": null,
         "updated_at": null
     },
@@ -391,7 +391,7 @@
         "price": 870.0,
         "stock": 35,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/Tektro Mechanical Disc Brake Caliper (MD-C550).png",
         "created_at": null,
         "updated_at": null
     },
@@ -402,7 +402,7 @@
         "price": 1600.0,
         "stock": 12,
         "category": "braking-system",
-        "image_path": null,
+        "image_path": "images/products/SwissStop FlashPro Brake Pads (Carbon Rim).png",
         "created_at": null,
         "updated_at": null
     },
@@ -413,7 +413,7 @@
         "price": 1750.0,
         "stock": 20,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/WTB Trail Boss 27.5\" x 2.4\" Tire (Tubeless Ready).png",
         "created_at": null,
         "updated_at": null
     },
@@ -424,7 +424,7 @@
         "price": 18500.0,
         "stock": 6,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/DT Swiss M 1900 Spline 29\" Wheelset (Boost).png",
         "created_at": null,
         "updated_at": null
     },
@@ -435,7 +435,7 @@
         "price": 280.0,
         "stock": 40,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/WTB Presta Valve Tubes (29\" x 2.1-2.4\").png",
         "created_at": null,
         "updated_at": null
     },
@@ -446,7 +446,7 @@
         "price": 12800.0,
         "stock": 10,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/Mavic Aksium Elite UST Disc Wheelset (700c).png",
         "created_at": null,
         "updated_at": null
     },
@@ -457,7 +457,7 @@
         "price": 2400.0,
         "stock": 12,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/Maxxis Minion DHF 29\" x 2.5\" WT Tire (TR, EXO).png",
         "created_at": null,
         "updated_at": null
     },
@@ -468,7 +468,7 @@
         "price": 3800.0,
         "stock": 14,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/Shimano Centerlock Disc Hubset (F/R).png",
         "created_at": null,
         "updated_at": null
     },
@@ -479,7 +479,7 @@
         "price": 650.0,
         "stock": 25,
         "category": "wheels-tires",
-        "image_path": null,
+        "image_path": "images/products/Orange Seal Tubeless Sealant Kit (4oz).png",
         "created_at": null,
         "updated_at": null
     },
@@ -490,7 +490,7 @@
         "price": 15800.0,
         "stock": 5,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Alloy Trail Frame (27.5\", M).png",
         "created_at": null,
         "updated_at": null
     },
@@ -501,7 +501,7 @@
         "price": 38000.0,
         "stock": 3,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Carbon Road Frame (700c, L).png",
         "created_at": null,
         "updated_at": null
     },
@@ -512,7 +512,7 @@
         "price": 19500.0,
         "stock": 4,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Steel Gravel Frame (700c, M).png",
         "created_at": null,
         "updated_at": null
     },
@@ -523,7 +523,7 @@
         "price": 2800.0,
         "stock": 10,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Rigid MTB Fork (29_, Straight Steerer).png",
         "created_at": null,
         "updated_at": null
     },
@@ -534,7 +534,7 @@
         "price": 15500.0,
         "stock": 7,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/RockShox Recon RL Fork (29\", 120mm).png",
         "created_at": null,
         "updated_at": null
     },
@@ -545,7 +545,7 @@
         "price": 38000.0,
         "stock": 3,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Fox 32 Step-Cast Factory Fork (29\", 120mm).png",
         "created_at": null,
         "updated_at": null
     },
@@ -556,7 +556,7 @@
         "price": 17500.0,
         "stock": 6,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Aluminum Cyclocross Frame (700c, M).png",
         "created_at": null,
         "updated_at": null
     },
@@ -567,7 +567,7 @@
         "price": 28000.0,
         "stock": 4,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Cannondale CAAD13 Road Frame (54cm).png",
         "created_at": null,
         "updated_at": null
     },
@@ -578,7 +578,7 @@
         "price": 18500.0,
         "stock": 5,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Surly Karate Monkey Frame (27.5\", M).png",
         "created_at": null,
         "updated_at": null
     },
@@ -589,7 +589,7 @@
         "price": 14000.0,
         "stock": 6,
         "category": "frame-fork",
-        "image_path": null,
+        "image_path": "images/products/Specialized Rockhopper Hardtail Frame (29\", M).png",
         "created_at": null,
         "updated_at": null
     },
@@ -600,7 +600,7 @@
         "price": 1650.0,
         "stock": 20,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/VeloCore Cycling Jersey (Short Sleeve).png",
         "created_at": null,
         "updated_at": null
     },
@@ -611,7 +611,7 @@
         "price": 1980.0,
         "stock": 15,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/GravelGrip Padded Cycling Shorts.png",
         "created_at": null,
         "updated_at": null
     },
@@ -622,7 +622,7 @@
         "price": 650.0,
         "stock": 35,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/ComforTrail MTB Gloves (Full Finger).png",
         "created_at": null,
         "updated_at": null
     },
@@ -633,7 +633,7 @@
         "price": 2750.0,
         "stock": 10,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/RainRide Waterproof Jacket.png",
         "created_at": null,
         "updated_at": null
     },
@@ -644,7 +644,7 @@
         "price": 980.0,
         "stock": 25,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/AirFlow Mesh Sleeveless Base Layer.png",
         "created_at": null,
         "updated_at": null
     },
@@ -655,7 +655,7 @@
         "price": 1850.0,
         "stock": 18,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/UrbanRide Commuter Pants.png",
         "created_at": null,
         "updated_at": null
     },
@@ -666,7 +666,7 @@
         "price": 1950.0,
         "stock": 12,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/TrailFlex Elbow PadsTrailFlex Elbow Pads.png.png",
         "created_at": null,
         "updated_at": null
     },
@@ -677,7 +677,7 @@
         "price": 390.0,
         "stock": 40,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/RideLite Cycling Cap.png",
         "created_at": null,
         "updated_at": null
     },
@@ -688,7 +688,7 @@
         "price": 690.0,
         "stock": 30,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/WindRush Arm Warmers.png",
         "created_at": null,
         "updated_at": null
     },
@@ -699,7 +699,7 @@
         "price": 540.0,
         "stock": 50,
         "category": "apparel",
-        "image_path": null,
+        "image_path": "images/products/GripStep Cycling Socks (3-Pack).png",
         "created_at": null,
         "updated_at": null
     },
@@ -710,7 +710,7 @@
         "price": 2150.0,
         "stock": 20,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/HydraFlow 1.5L Hydration Pack.png",
         "created_at": null,
         "updated_at": null
     },
@@ -721,7 +721,7 @@
         "price": 980.0,
         "stock": 30,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/TrailMate Mini Multi-Tool (17 Functions).png",
         "created_at": null,
         "updated_at": null
     },
@@ -732,7 +732,7 @@
         "price": 1350.0,
         "stock": 25,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/SafeLock U-Lock with Mounting Bracket.png",
         "created_at": null,
         "updated_at": null
     },
@@ -743,7 +743,7 @@
         "price": 620.0,
         "stock": 40,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/AirFlex Portable Hand Pump.png",
         "created_at": null,
         "updated_at": null
     },
@@ -754,7 +754,7 @@
         "price": 6800.0,
         "stock": 10,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/RideTrack GPS Computer.png",
         "created_at": null,
         "updated_at": null
     },
@@ -765,7 +765,7 @@
         "price": 320.0,
         "stock": 35,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/ProShield Rain Cover for Bags.png",
         "created_at": null,
         "updated_at": null
     },
@@ -776,7 +776,7 @@
         "price": 790.0,
         "stock": 18,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/QuickLink Chain Tool with Master Link Storage.png",
         "created_at": null,
         "updated_at": null
     },
@@ -787,7 +787,7 @@
         "price": 1480.0,
         "stock": 22,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/RideBright Rechargeable Headlamp (Helmet Mount).png",
         "created_at": null,
         "updated_at": null
     },
@@ -798,7 +798,7 @@
         "price": 1100.0,
         "stock": 14,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/TireMate CO₂ Inflator Kit.png",
         "created_at": null,
         "updated_at": null
     },
@@ -809,7 +809,7 @@
         "price": 880.0,
         "stock": 16,
         "category": "gear",
-        "image_path": null,
+        "image_path": "images/products/FlexMount Saddle Rail Tool Roll.png",
         "created_at": null,
         "updated_at": null
     },
@@ -820,7 +820,7 @@
         "price": 1250.0,
         "stock": 18,
         "category": "cockpit",
-        "image_path": null,
+        "image_path": "images/products/TrailBar Riser Handlebar (31.8mm, 780mm).png",
         "created_at": null,
         "updated_at": null
     },
@@ -831,7 +831,7 @@
         "price": 4900.0,
         "stock": 10,
         "category": "cockpit",
-        "image_path": null,
+        "image_path": "images/products/RoadPro Carbon Drop Bar (420mm).png",
         "created_at": null,
         "updated_at": null
     },
@@ -842,7 +842,7 @@
         "price": 580.0,
         "stock": 40,
         "category": "cockpit",
-        "image_path": null,
+        "image_path": "images/products/ComfyGrip Ergonomic Bar Grips.png",
         "created_at": null,
         "updated_at": null
     },
@@ -853,7 +853,7 @@
         "price": 990.0,
         "stock": 20,
         "category": "cockpit",
-        "image_path": null,
+        "image_path": "images/products/AeroStem Alloy Stem (90mm, ±7°).png",
         "created_at": null,
         "updated_at": null
     },
@@ -864,7 +864,7 @@
         "price": 720.0,
         "stock": 25,
         "category": "cockpit",
-        "image_path": null,
+        "image_path": "images/products/UltraGel Bar Tape (Black).png",
         "created_at": null,
         "updated_at": null
     },
@@ -875,7 +875,7 @@
         "price": 1100.0,
         "stock": 15,
         "category": "cockpit",
-        "image_path": null,
+        "image_path": "images/products/FlexMount Out-Front GPS Mount.png",
         "created_at": null,
         "updated_at": null
     },
