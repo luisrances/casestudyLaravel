@@ -1,0 +1,65 @@
+[33m49093c6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32morder-flow[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m working update, account setting  #3
+[33mad74b87[m working update, account setting  #2
+[33m2091344[m[33m ([m[1;31morigin/error[m[33m)[m Merge pull request #27 from luisrances/FixedUIX
+[33mc0a8c6d[m[33m ([m[1;31morigin/FixedUIX[m[33m)[m Fixed: UI/UX
+[33mcd1e811[m[33m ([m[1;31morigin/FixedUI[m[33m)[m Fixed: UI & Logic in Shop
+[33m6edecca[m working update, account setting  #1
+[33ma52db21[m Merge pull request #26 from luisrances/ShopModal
+[33m932d877[m[33m ([m[1;31morigin/ShopModal[m[33m)[m feedback
+[33md181d67[m working update, authentication and shop #16
+[33m9c7b834[m[33m ([m[1;31morigin/LatestCode[m[33m)[m Commit
+[33m5ba1718[m working update, authentication and shop #15
+[33m6ede2f9[m[33m ([m[1;31morigin/RecommendationLogic[m[33m)[m Fixed: Recommendation Logic
+[33m4ef0c34[m working update, authentication and shop #15
+[33m96969b1[m Merge pull request #23 from luisrances/Logic
+[33m8e91829[m[33m ([m[1;31morigin/Logic[m[33m)[m Update:Main Shop(Recommendation Logic) & Shop
+[33m0e99d22[m Update:Main Shop(Recommendation Logic) & Shop
+[33mff66a06[m update wishlist, cart, shop logics, authentication and shop #14
+[33m7ea475b[m wishlist and update shop, authentication and shop #13
+[33m3d95fed[m Merge pull request #21 from luisrances/LouieGui-patch-1
+[33mad534c2[m[33m ([m[1;31morigin/LouieGui-patch-1[m[33m)[m Add files via upload
+[33m0ee8ddc[m routing, authentication and shop #12
+[33mc5830ee[m Merge pull request #20 from luisrances/ShopLogicDB
+[33m8be981b[m[33m ([m[1;31morigin/ShopLogicDB[m[33m)[m Updated: Shop Logic DB
+[33m9250376[m wishlist and purchase history route, authentication and shop #11
+[33ma3a4da7[m Merge pull request #18 from luisrances/ShopLogic
+[33mbb57f56[m[33m ([m[1;31morigin/ShopLogic[m[33m)[m Update:Shop & Database
+[33m2060496[m cart and checkout, authentication and shop #10
+[33mbc82adc[m cart and checkout, authentication and shop #10
+[33m33def5c[m cart guest, authentication and shop #9
+[33m168b0ab[m Merge pull request #17 from luisrances/account_setting
+[33m9976a9c[m[33m ([m[1;31morigin/account_setting[m[33m)[m account setting #1
+[33m7086e47[m Merge pull request #14 from luisrances/Modal#3
+[33m1d35640[m[33m ([m[1;31morigin/Modal#3[m[33m)[m Update: Modal #3
+[33mef64d29[m Merge pull request #13 from luisrances/Final_Copyyy
+[33mdfdbb40[m[33m ([m[1;31morigin/Final_Copyyy[m[33m)[m Update:Modal #2
+[33mc1f8e3f[m update feedback table, authentication and shop #8
+[33mfaba5f5[m update feedback table, authentication and shop #8
+[33m15918e2[m Merge pull request #11 from luisrances/Modal
+[33m378ddef[m[33m ([m[1;31morigin/Modal[m[33m)[m Create:Modal Update:Navbar
+[33m9c84855[m nav-bar routing - admin, authentication and shop #7
+[33m85e4fb5[m Merge pull request #8 from luisrances/MainShopFeedback
+[33m92d5b51[m[33m ([m[1;31morigin/MainShopFeedback[m[33m)[m Merge branch 'main' into MainShopFeedback
+[33ma0006f5[m Main Shop Feedback
+[33m15774a3[m admin and authentication #6
+[33mfcdbd4e[m[33m ([m[1;31morigin/MainShop[m[33m)[m Main & Shop
+[33mfa2518f[m Merge pull request #6 from luisrances/authentication
+[33m42c437a[m[33m ([m[1;31morigin/authentication[m[33m)[m Resolved merge conflict in user profiling view
+[33m0b81d56[m Authentication #5
+[33mfdac899[m admin and authentication #5
+[33m6bd5eaf[m admin and authentication #5
+[33md80ed8b[m admin and authentication #4
+[33m681d1c2[m admin and authentication #3
+[33m47180ff[m admin and authentication #2
+[33m25bd561[m admin and authentication #1
+[33m50901fc[m Merge pull request #3 from luisrances/authentication
+[33m0c76db1[m Authentication #1
+[33mca59723[m authentication #1
+[33ma6ad2b6[m admin tables creation #9
+[33m4cbbf38[m admin tables creation #8
+[33mb0b388b[m admin tables creation #8
+[33mbc0ca18[m Merge pull request #1 from luisrances/main_page
+[33m4ca6ad4[m[33m ([m[1;31morigin/main_page[m[33m)[m Trial
+[33mdd6609e[m admin tables creation #7
+[33mcef8eb4[m admin tables creation #6
+[33med252fe[m admin tables creation #5
