@@ -57,3 +57,11 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('order-cart');
+    Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+    Route::get('/cart/delete/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart.delete');
+    Route::get('/cart/buy/{id}', [App\Http\Controllers\CartController::class, 'buyNow'])->name('cart.buy');
+    Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+});
