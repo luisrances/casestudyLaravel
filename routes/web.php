@@ -73,9 +73,7 @@ Route::post('/purchase_history/cancel', [OrderController::class, 'cancelOrder'])
 //account setting
 Route::get('/account-setting', [AccountController::class, 'account_show'])->name('account.setting');
 Route::patch('/profile/{account}', [AccountController::class, 'account_update'])->name('account.update');
-Route::delete('/account-setting/delete', [AccountController::class, 'account_delete'])
-    ->middleware('auth')
-    ->name('account.delete');
+Route::delete('/account-setting/delete', [AccountController::class, 'account_delete'])->middleware('auth')->name('account.delete');
 Route::post('/account-setting/address', [PaymentDetailsController::class, 'address_add'])->name('address.add');
 Route::put('/account-setting/address/{id}', [PaymentDetailsController::class, 'address_update'])->name('address.update');
 Route::delete('/account-setting/address/{paymentDetail}', [PaymentDetailsController::class, 'address_remove'])->name('address.remove');

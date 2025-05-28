@@ -21,6 +21,9 @@
                             <h2 class="text-base font-normal">Price</h2>
                         </th>
                         <th scope="col" class="px-6 py-5">
+                            <h2 class="text-base font-normal">Quantity</h2>
+                        </th>
+                        <th scope="col" class="px-6 py-5">
                             <h2 class="text-base font-normal">Order Status</h2>
                         </th>
                         <th scope="col" class="px-6 py-5">
@@ -50,6 +53,9 @@
                                                 </td>
                                                 <td class="px-6 py-4 font-normal text-gray-900">
                                                     ₱ {{ number_format($product->price, 2) }}
+                                                </td>
+                                                <td class="px-6 py-4 font-normal text-gray-900">
+                                                    Qty: {{ $order->quantity }}
                                                 </td>
                                                 <td class="px-6 py-4 font-normal text-gray-900">
                                                     {{ $order->order_status }}
@@ -97,31 +103,61 @@
         </div>
         </div>
     </main>
+
     <script>
         function handleBuyAgain(event, productId) {
             event.preventDefault();
             
-            fetch('{{ route('checkout.buyAgain') }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify({
-                    product_id: productId
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Redirect to checkout page while preserving the navigation state
-                    window.location.href = data.redirect_url;
-                } else {
-                    console.error('Error:', data.message);
-                }
-            })
-            .catch(error => console.error('Error:', error));
+            // Create a form and submit it instead of using fetch
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route('checkout.buyAgain') }}';
+            
+            // Add CSRF token
+            const csrfToken = document.createElement('input');
+            csrfToken.type = 'hidden';
+            csrfToken.name = '_token';
+            csrfToken.value = document.querySelector('meta[name="csrf-token"]').content;
+            form.appendChild(csrfToken);
+            
+            // Add product_id
+            const productIdInput = document.createElement('input');
+            productIdInput.type = 'hidden';
+            productIdInput.name = 'product_id';
+            productIdInput.value = productId;
+            form.appendChild(productIdInput);
+            
+            // Add form to document and submit
+            document.body.appendChild(form);
+            form.submit();
         }
+    </script>
+    
+    <script>
+        // function handleBuyAgain(event, productId) {
+        //     event.preventDefault();
+            
+        //     fetch('{{ route('checkout.buyAgain') }}', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        //         },
+        //         body: JSON.stringify({
+        //             product_id: productId
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         if (data.success) {
+        //             // Redirect to checkout page while preserving the navigation state
+        //             window.location.href = data.redirect_url;
+        //         } else {
+        //             console.error('Error:', data.message);
+        //         }
+        //     })
+        //     .catch(error => console.error('Error:', error));
+        // }
 
         function handleRefund(event, productId) {
             event.preventDefault();
