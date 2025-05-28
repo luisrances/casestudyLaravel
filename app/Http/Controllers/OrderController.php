@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Account;
 use App\Models\Cart;
 use App\Models\PaymentDetail;
+use App\Http\Controllers\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -139,8 +140,7 @@ class OrderController extends Controller
             $cartItem = $existingCart;
             $message = 'Product quantity updated in cart';
         } else {
-            // If doesn't exist, create new cart item
-            // $cartItem = Cart::create($validated);
+            // $cartItem = new Cart([
             $cartItem = Cart::create([
                 'product_id' => $validated['product_id'],
                 'account_id' => $account->id,
@@ -158,11 +158,18 @@ class OrderController extends Controller
 
         // Get necessary data for checkout
         $cartItems = Cart::where('id', $cartItem->id)->get();
+        // $cartItems = collect([$cartItem]);
+        // $cartItems = new Collection([$cartItem]);
         $products = Product::where('id', $validated['product_id'])->get();
         $paymentDetails = PaymentDetail::where('account_id', $account->id)->get();
 
         return view('order-flow.checkout', compact('cartItems', 'products', 'account', 'paymentDetails'));
     }
+
+
+
+
+
     public function refundOrder(Request $request)
     {
         try {

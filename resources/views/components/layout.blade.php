@@ -120,6 +120,14 @@
                         </div>
                         <!-- Buy Now and Add to Cart - Side by Side -->
                         <div class="flex gap-3">
+                            {{-- make an inner html here --}}
+                            {{-- <form onsubmit="handleBuyAgain(event, {{ $product->id }})" class="buy-again-form">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                                    Buy Now
+                                </button>
+                            </form> --}}
                             <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
                                 Buy Now
                             </button>
@@ -138,9 +146,68 @@
         </div>
     </div>
 
+    <script>
+        function handleBuyAgain(event, productId) {
+            event.preventDefault();
+            
+            // Create a form and submit it instead of using fetch
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route('checkout.buyAgain') }}';
+            
+            // Add CSRF token
+            const csrfToken = document.createElement('input');
+            csrfToken.type = 'hidden';
+            csrfToken.name = '_token';
+            csrfToken.value = document.querySelector('meta[name="csrf-token"]').content;
+            form.appendChild(csrfToken);
+            
+            // Add product_id
+            const productIdInput = document.createElement('input');
+            productIdInput.type = 'hidden';
+            productIdInput.name = 'product_id';
+            productIdInput.value = productId;
+            form.appendChild(productIdInput);
+            
+            // Add form to document and submit
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
     <!-- Scripts -->
     <script>
         function openProductModal(name, description, stock, price, imageUrl = '', id) {
+                // Create Buy Now button HTML
+    const buyNowButton = document.createElement('div');
+    buyNowButton.className = 'flex-1';
+    buyNowButton.innerHTML = `
+        <form method="POST" action="{{ route('checkout.buyAgain') }}" class="buy-again-form">
+            @csrf
+            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+            <input type="hidden" name="product_id" value="${id}">
+            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                Buy Now
+            </button>
+        </form>
+    `;
+
+    // Find the flex container for buttons
+    const buttonContainer = document.querySelector('#product-modal .flex.gap-3');
+    
+    // Clear existing content and add new buttons
+    buttonContainer.innerHTML = '';
+    buttonContainer.appendChild(buyNowButton);
+    buttonContainer.innerHTML += `
+        <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
+            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+            <input type="hidden" name="product_id" id="product_id" value="${id}">
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                Add to Cart
+            </button>
+        </form>
+    `;
+    
             document.getElementById('modal-product-name').innerText = name;
 
             // Remove lines starting with #
@@ -153,7 +220,6 @@
             document.getElementById('wishlist_product_id').value = id;
             document.getElementById('modal-product-image').src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
             document.getElementById('product-modal').style.display = 'flex';
-
             document.body.classList.add('no-scroll');
         }
 
