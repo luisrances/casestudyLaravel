@@ -124,7 +124,7 @@ class ProductController extends Controller
         $isLoggedIn = Auth::check();
         $userProfile = $isLoggedIn ? \App\Models\UserProfiling::where('account_id', Auth::user()->id)->first() : null;
 
-        $expTag = null;
+        $experienceLevel = null;
         $userRecommendedBikeCategory = null;
         $height = null;
         $activityType = null;
@@ -132,7 +132,7 @@ class ProductController extends Controller
 
         if ($userProfile) {
             $height = $userProfile->height;
-            $expTag = '#' . strtolower(trim($userProfile->experience_level));
+            $experienceLevel = strtolower(trim($userProfile->experience_level));
             $activityType = strtolower(trim($userProfile->activity_type));
             $terrain = strtolower(trim($userProfile->terrain));
 
@@ -144,6 +144,14 @@ class ProductController extends Controller
             }
         }
 
+        $experienceFallbackOrder = [
+            'beginner' => ['#beginner'],
+            'intermediate' => ['#intermediate', '#beginner'],
+            'advanced' => ['#advanced', '#intermediate'],
+        ];
+
+        $expTags = $experienceFallbackOrder[$experienceLevel] ?? ['#beginner'];
+
         foreach ($categoryMap as $group => $subCategories) {
             $query = Product::query();
             $query->whereIn('category', $subCategories);
@@ -151,8 +159,6 @@ class ProductController extends Controller
             $products = collect();
 
             if ($isLoggedIn && $userProfile) {
-                $query->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"]);
-
                 if ($group === 'Bikes' && $userRecommendedBikeCategory) {
                     $query->where('category', $userRecommendedBikeCategory);
 
@@ -171,14 +177,20 @@ class ProductController extends Controller
                         else $bikeSizeTag = '#size-xxl';
                     }
 
-                    if ($bikeSizeTag) {
-                        $query->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
+                    foreach ($expTags as $tag) {
+                        $filtered = (clone $query)
+                            ->whereRaw('LOWER(description) LIKE ?', ["%{$tag}%"]);
+
+                        if ($bikeSizeTag) {
+                            $filtered->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
+                        }
+
+                        $result = $filtered->inRandomOrder()->take(6 - $products->count())->get();
+                        $products = $products->merge($result);
+
+                        if ($products->count() >= 6) break;
                     }
 
-                    // main
-                    $products = $query->inRandomOrder()->take(6)->get();
-
-                    // fallback
                     if ($products->count() < 6) {
                         $fallback = collect();
 
@@ -187,26 +199,38 @@ class ProductController extends Controller
                                 $altBike !== $userRecommendedBikeCategory &&
                                 (in_array($activityType, $useCases) || in_array($terrain, $useCases))
                             ) {
-                                $altQuery = Product::where('category', $altBike)
-                                    ->whereRaw('LOWER(description) LIKE ?', ["%{$expTag}%"]);
+                                foreach ($expTags as $tag) {
+                                    $altQuery = Product::where('category', $altBike)
+                                        ->whereRaw('LOWER(description) LIKE ?', ["%{$tag}%"]);
 
-                                if ($bikeSizeTag) {
-                                    $altQuery->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
+                                    if ($bikeSizeTag) {
+                                        $altQuery->whereRaw('LOWER(description) LIKE ?', ["%{$bikeSizeTag}%"]);
+                                    }
+
+                                    $related = $altQuery->inRandomOrder()->take(6 - $products->count())->get();
+                                    $fallback = $fallback->merge($related);
+
+                                    if ($fallback->count() >= 6 - $products->count()) break;
                                 }
-
-                                $related = $altQuery->inRandomOrder()->take(6)->get();
-                                $fallback = $fallback->merge($related);
                             }
                         }
 
                         $products = $products->merge($fallback)->unique('id')->take(6);
                     }
                 } else {
-                    // main (non-bike categories)
-                    $products = $query->inRandomOrder()->take(6)->get();
+                    foreach ($expTags as $tag) {
+                        $filtered = (clone $query)
+                            ->whereRaw('LOWER(description) LIKE ?', ["%{$tag}%"])
+                            ->inRandomOrder()
+                            ->take(6 - $products->count())
+                            ->get();
+
+                        $products = $products->merge($filtered);
+
+                        if ($products->count() >= 6) break;
+                    }
                 }
             } else {
-                // main (not logged in)
                 $products = $query->inRandomOrder()->take(6)->get();
             }
 
@@ -237,7 +261,6 @@ class ProductController extends Controller
 
         return view('welcome', compact('recommended', 'latestUpdatedProducts'));
     }
-
 
     public function shop_page()
     {
@@ -271,7 +294,7 @@ class ProductController extends Controller
     {
         return view('Feedback', compact('product'));
     }
-    
+
     public function submit_feedback(Request $request)
     {
         if (!Auth::check()) {
@@ -299,5 +322,4 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Thank you for your feedback!');
     }
-
 }
