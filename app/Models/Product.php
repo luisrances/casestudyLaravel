@@ -17,4 +17,22 @@ class Product extends Model
         'category',
         'image_path',
     ];
+
+    // public function getImageUrlAttribute()
+    // // {
+    // //     if ($this->image_path) {
+    // //         return asset('storage/' . $this->image_path);
+    // //     }
+    // //     return asset('Images/default.jpg');
+    // // }
+
+    // {
+    //     $imagePath = 'storage/Image/' . $this->image; // Adjust if your column or folder is different
+
+    //     if ($this->image && file_exists(public_path($imagePath))) {
+    //         return asset($imagePath);
+    //     }
+
+    //     return asset('storage/image/default.jpg');
+    // }
 }
