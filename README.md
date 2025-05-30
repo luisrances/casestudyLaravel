@@ -1,3 +1,25 @@
+## 🚀 Steps in Cloning the Project
+
+```bash
+# 1. Clone the repository from GitHub
+git clone <repository-url>
+
+# 2. Navigate to the project directory
+cd your-project-directory
+
+# 3. Install PHP dependencies
+composer install
+
+# 4. Install Node dependencies and build assets
+npm install && npm run build
+
+# 5. Optionally run dev server (if needed)
+composer run dev
+
+# 6. Run Laravel project setup
+php artisan setup:project
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
