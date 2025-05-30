@@ -69,23 +69,27 @@
             <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}"
               alt="{{ $product->name }}"
               class="w-full h-40 object-cover">
-            <div class="p-4">
-              <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
+            <div class="p-4 grid grid-rows-[3rem_auto_auto_auto_auto] gap-2 min-h-[12rem]">
+              <h3 class="text-lg font-semibold flex items-start leading-tight line-clamp-2 overflow-hidden"
+                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                {{ $product->name }}
+              </h3>
               <p class="text-sm text-gray-600 truncate" title="{{ $cleanDescription }}">{{ $cleanDescription }}</p>
-              <p class="text-blue-600 font-semibold mt-2">Php {{ number_format($product->price, 2) }}</p>
-              <p class="text-sm mt-1 {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
+              <p class="text-blue-600 font-semibold">Php {{ number_format($product->price, 2) }}</p>
+              <p class="text-sm {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
                 Stock: {{ $product->stock > 0 ? $product->stock : 'Out of Stock' }}
               </p>
               <button
-                class="mt-2 inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
-                onclick="openProductModal(
-        '{{ addslashes($product->name) }}',
-        `{{ addslashes(preg_replace('/^#.*$\n?/m', '', $product->description)) }}`,
-        {{ $product->stock }},
-        {{ $product->price }},
-        '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
-        {{ $product->id }}
-      )">
+                class="inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 justify-self-start"
+                onclick="openProductModal
+          (
+            '{{ addslashes($product->name) }}',
+            `{{ addslashes(preg_replace('/^#.*$\n?/m', '', $product->description)) }}`,
+            {{ $product->stock }},
+            {{ $product->price }},
+            '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
+            {{ $product->id }}
+          )">
                 View Details
               </button>
             </div>
