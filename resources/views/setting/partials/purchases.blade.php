@@ -50,13 +50,19 @@
                                                     Cancel
                                                 </button>
                                             </form>
-                                            <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Buy Again
+                                            @if ($product->stock > 0)
+                                                <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Buy Again
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
+                                                    Out of Stock
                                                 </button>
-                                            </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -93,13 +99,19 @@
                                                     Cancel
                                                 </button>
                                             </form>
-                                            <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Buy Again
+                                            @if ($product->stock > 0)
+                                                <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Buy Again
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
+                                                    Out of Stock
                                                 </button>
-                                            </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -136,13 +148,19 @@
                                                     Return
                                                 </button>
                                             </form>
-                                            <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Buy Again
+                                            @if ($product->stock > 0)
+                                                <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Buy Again
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
+                                                    Out of Stock
                                                 </button>
-                                            </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -172,13 +190,19 @@
                                             </div>
                                         </div>
                                         <div class="inline-flex align-center space-x-3 px-2 mx-10 py-11">
-                                            <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Buy Again
+                                            @if ($product->stock > 0)
+                                                <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Buy Again
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
+                                                    Out of Stock
                                                 </button>
-                                            </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -208,13 +232,19 @@
                                             </div>
                                         </div>
                                         <div class="inline-flex align-center space-x-3 px-2 mx-10 py-11">
-                                            <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Buy Again
+                                            @if ($product->stock > 0)
+                                                <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Buy Again
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
+                                                    Out of Stock
                                                 </button>
-                                            </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -224,6 +254,19 @@
                     @endforeach
                 </div>
             </div>
+
+
+<script>
+    function showOutOfStockAlert() {
+    document.getElementById('success-alert-title').innerText = 'Out of Stock';
+    document.getElementById('success-alert-message').innerText = 'This product is currently out of stock.';
+    const alert = document.getElementById('success-alert');
+    alert.style.display = 'block';
+    setTimeout(() => {
+        alert.style.display = 'none';
+    }, 2000);
+}
+</script>
 
 <script>
     function handleBuyAgainPurchaseHistory(event, productId) {
