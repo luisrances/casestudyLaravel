@@ -168,19 +168,32 @@
         </div>
     </div>
 </div>
-<script>
-  function showLoginAlert() {
-      document.getElementById('login-alert').classList.remove('hidden');
-  }
 
-  function closeLoginAlert() {
-      document.getElementById('login-alert').classList.add('hidden');
-  }
+    <script>
+        function showLoginAlert() {
+            document.getElementById('login-alert').classList.remove('hidden');
+        }
 
-  function redirectToLogin() {
-      window.location.href = '{{ route("login") }}';
-  }
-</script>
+        function closeLoginAlert() {
+            document.getElementById('login-alert').classList.add('hidden');
+        }
+
+        function redirectToLogin() {
+            window.location.href = '{{ route("login") }}';
+        }
+    </script>
+
+    <script>
+        function showOutOfStockAlert() {
+            document.getElementById('success-alert-title').innerText = 'Out of Stock';
+            document.getElementById('success-alert-message').innerText = 'This product is currently out of stock.';
+            const alert = document.getElementById('success-alert');
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 2000);
+        }
+    </script>
 
     <script>
         function handleBuyAgain(event, productId) {
@@ -219,14 +232,19 @@
         @if (Route::has('login'))
             @auth
                 <div class="flex gap-3 w-full">
-                    <form method="POST" action="{{ route('checkout.buyAgain.single') }}" class="flex-1 buy-again-form">
-                        @csrf
-                        <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
-                        <input type="hidden" name="product_id" value="${id}">
-                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
-                            Buy Now
-                        </button>
-                    </form>      
+                    ${parseInt(stock) > 0 ? 
+                        `<form method="POST" action="{{ route('checkout.buyAgain') }}" class="flex-1 buy-again-form">
+                            @csrf
+                            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+                            <input type="hidden" name="product_id" value="${id}">
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                                Buy Now
+                            </button>
+                        </form>` :
+                        `<button onclick="showOutOfStockAlert()" class="flex-1 bg-gray-400 text-white py-3 px-4 rounded-xl font-medium cursor-not-allowed">
+                            Out of Stock
+                        </button>`
+                    }
                     <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
                         <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
                         <input type="hidden" name="product_id" id="product_id" value="${id}">

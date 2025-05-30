@@ -55,7 +55,8 @@
                                                     </button>
                                                     <input type="number" name="quantity" value="{{ $item->quantity }}" min="1"
                                                         class="cart-qty-input bg-white w-14 h-8 border border-gray-500 text-black text-sm rounded-lg text-center focus:outline-none hover:bg-gray-100 focus:ring-2 focus:ring-gray-100 mx-2"
-                                                        data-cart-id="{{ $item->id }}" />
+                                                        data-cart-id="{{ $item->id }}"
+                                                        data-max-stock="{{ $product->stock }}" />
                                                     <button type="button" class="increment-btn inline-flex items-center justify-center h-6 w-6 p-1 text-sm font-medium text-gray-500 bg-white border border-gray-500 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-2 focus:ring-gray-100" data-cart-id="{{ $item->id }}">
                                                         <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
@@ -340,6 +341,11 @@
             input.addEventListener('change', function() {
                 const cartId = this.dataset.cartId;
                 const quantity = this.value;
+                const maxStock = parseInt(this.dataset.maxStock);
+                if (parseInt(this.value) > maxStock) {
+                    this.value = maxStock;
+                    alert(`Maximum available stock is ${maxStock}`);
+                }
 
                 fetch(`/checkout/update-quantity/${cartId}`, {
                     method: 'POST',
@@ -367,10 +373,16 @@
             btn.addEventListener('click', function() {
                 const cartId = this.dataset.cartId;
                 const input = document.querySelector(`.cart-qty-input[data-cart-id="${cartId}"]`);
-                input.value = parseInt(input.value) + 1;
-                input.dispatchEvent(new Event('change'));
+                const maxStock = parseInt(input.dataset.maxStock);
+                    
+                    if (parseInt(input.value) < maxStock) {
+                        input.value = parseInt(input.value) + 1;
+                        input.dispatchEvent(new Event('change'));
+                    } else {
+                        alert(`Maximum available stock is ${maxStock}`);
+                    }
+                });
             });
-        });
         document.querySelectorAll('.decrement-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const cartId = this.dataset.cartId;

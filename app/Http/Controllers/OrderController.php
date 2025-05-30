@@ -191,6 +191,7 @@ class OrderController extends Controller
         } else {
             // $cartItem = new Cart([
             $cartItem = new Cart([
+                'id' => 0,
                 'product_id' => $validated['product_id'],
                 'account_id' => $account->id,
                 'quantity' => 1
@@ -200,7 +201,7 @@ class OrderController extends Controller
 
         // Get necessary data for checkout
         // $cartItems = Cart::where('id', $cartItem->id)->get();
-        $cartItems = collect([$cartItem]);
+        $cartItems = $cartItem;
         $products = Product::where('id', $validated['product_id'])->get();
         $paymentDetails = PaymentDetail::where('account_id', $account->id)->get();
 

@@ -202,41 +202,54 @@ class CartController extends Controller
             'product_id' => $cart->product_id
         ]);
     }
+
     public function processCheckout(Request $request)
     {
         // Get current user
         $account = Auth::user();
-
+    
         // Get selected cart items from the form data
         $selectedCartItems = $request->input('selected_cart_items');
-
+    
         // Get cart items for the current user
         $cartItems = Cart::whereIn('id', $selectedCartItems)
             ->where('account_id', $account->id)
             ->get();
-
+    
         if ($cartItems->isEmpty()) {
             return redirect()->back()->with('error', 'No items in cart');
         }
-
+    
         // Create orders for each cart item
         foreach ($cartItems as $cartItem) {
+            // Get the product
+            $product = Product::find($cartItem->product_id);
+    
+            // Check if there's enough stock
+            if ($product->stock < $cartItem->quantity) {
+                return redirect()->back()->with('error', "Not enough stock for {$product->name}. Available: {$product->stock}");
+            }
+    
             $validated = [
                 'product_id' => $cartItem->product_id,
                 'account_id' => $account->id,
                 'quantity' => $cartItem->quantity,
                 'order_status' => 'To ship'
             ];
-
+    
             // Create the order first
             $order = Order::create($validated);
-
+    
             if ($order) {
+                // Deduct the stock
+                $product->stock -= $cartItem->quantity;
+                $product->save();
+    
                 // Delete from carts table if order was created successfully
                 Cart::where('id', $cartItem->id)->delete();
             }
         }
-
+    
         return redirect()->route('Shop')->with('success', 'Order placed successfully! Please complete the payment.');
     }
 }

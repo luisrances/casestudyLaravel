@@ -111,7 +111,7 @@
             // Create a form and submit it instead of using fetch
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '{{ route('checkout.buyAgain.single') }}';
+            form.action = '{{ route('checkout.buyAgain') }}';
             
             // Add CSRF token
             const csrfToken = document.createElement('input');
