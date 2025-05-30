@@ -8,7 +8,7 @@
                 <li class="cursor-pointer" onclick="showSection('payment')">Payment Details</li>
                 <li class="cursor-pointer" onclick="showSection('address')">Address Book</li>
                 <li class="cursor-pointer" onclick="showSection('terms')">Terms and Condition</li>
-                <li class="cursor-pointer" onclick="showSection('purchases')">My Purchases</li>
+                {{-- <li class="cursor-pointer" onclick="showSection('purchases')">My Purchases</li> --}}
                 <li class="text-red-600 mt-8 cursor-pointer" onclick="showSection('delete_account')">Delete Account</li>
             </ul>
         </aside>
