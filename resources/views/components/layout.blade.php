@@ -127,14 +127,14 @@
                     <!-- Action Buttons -->
                     <div class="flex gap-3">
                         <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition-colors font-medium text-sm shadow-md hover:shadow-lg">
-                            Buy Now
+                            Buy
                         </button>
                         
                         <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
                             @csrf
                             <input type="hidden" name="product_id" id="product_id">
                             <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl transition-colors font-medium text-sm shadow-md hover:shadow-lg">
-                                Add to Cart
+                                Add
                             </button>
                         </form>
                     </div>
@@ -143,6 +143,44 @@
         </div>
     </div>
 </div>
+
+  {{-- alert when cart is clicked but not logged in yet --}}
+  <div id="login-alert" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+                <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+            </div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">Authentication Required</h3>
+            <div class="mt-2 px-7 py-3">
+                <p class="text-sm text-gray-500">Please login to access your cart.</p>
+            </div>
+            <div class="items-center px-4 py-3">
+                <button onclick="redirectToLogin()" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    Login
+                </button>
+                <button onclick="closeLoginAlert()" class="mt-3 px-4 py-2 bg-gray-100 text-gray-700 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  function showLoginAlert() {
+      document.getElementById('login-alert').classList.remove('hidden');
+  }
+
+  function closeLoginAlert() {
+      document.getElementById('login-alert').classList.add('hidden');
+  }
+
+  function redirectToLogin() {
+      window.location.href = '{{ route("login") }}';
+  }
+</script>
 
     <script>
         function handleBuyAgain(event, productId) {
@@ -176,50 +214,76 @@
     <!-- Scripts -->
     <script>
         function openProductModal(name, description, stock, price, imageUrl = '', id) {
-                // Create Buy Now button HTML
-    const buyNowButton = document.createElement('div');
-    buyNowButton.className = 'flex-1';
-    buyNowButton.innerHTML = `
-        <form method="POST" action="{{ route('checkout.buyAgain') }}" class="buy-again-form">
-            @csrf
-            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
-            <input type="hidden" name="product_id" value="${id}">
-            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
-                Buy Now
-            </button>
-        </form>
+    // Create buttons based on authentication state
+    const buttonsHtml = `
+        @if (Route::has('login'))
+            @auth
+                <div class="flex gap-3 w-full">
+                    <form method="POST" action="{{ route('checkout.buyAgain') }}" class="flex-1 buy-again-form">
+                        @csrf
+                        <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+                        <input type="hidden" name="product_id" value="${id}">
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                            Buy Now
+                        </button>
+                    </form>      
+                    <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
+                        <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+                        <input type="hidden" name="product_id" id="product_id" value="${id}">
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl transition font-medium">
+                            Add to Cart
+                        </button>
+                    </form>
+                </div>
+            @else
+                <div class="flex gap-3 w-full">
+                    <button onclick="showLoginAlert()" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-xl transition-colors font-medium text-sm shadow-md hover:shadow-lg">
+                        Buy Now
+                    </button>
+                    <button onclick="showLoginAlert()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl transition-colors font-medium text-sm shadow-md hover:shadow-lg">
+                        Add to Cart
+                    </button>
+                </div>
+            @endauth
+        @endif
     `;
 
-    // Find the flex container for buttons
+    // Find and update the button container
     const buttonContainer = document.querySelector('#product-modal .flex.gap-3');
-    
-    // Clear existing content and add new buttons
-    buttonContainer.innerHTML = '';
-    buttonContainer.appendChild(buyNowButton);
-    buttonContainer.innerHTML += `
-        <form id="addToCartForm" onsubmit="handleAddToCart(event)" class="flex-1">
-            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
-            <input type="hidden" name="product_id" id="product_id" value="${id}">
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl transition font-medium">
-                Add to Cart
-            </button>
-        </form>
-    `;
-    
-            document.getElementById('modal-product-name').innerText = name;
+    if (buttonContainer) {
+        buttonContainer.innerHTML = buttonsHtml;
+    }
 
-            // Remove lines starting with #
-            const cleanedDescription = description.replace(/^#.*$\n?/gm, '').trim();
-            document.getElementById('modal-product-description').innerText = cleanedDescription;
+    // Update modal content
+    const elements = {
+        name: document.getElementById('modal-product-name'),
+        description: document.getElementById('modal-product-description'),
+        stock: document.getElementById('modal-product-stock'),
+        price: document.getElementById('modal-product-price'),
+        productId: document.getElementById('product_id'),
+        wishlistProductId: document.getElementById('wishlist_product_id'),
+        image: document.getElementById('modal-product-image'),
+        modal: document.getElementById('product-modal')
+    };
 
-            document.getElementById('modal-product-stock').innerText = 'Stock: ' + stock;
-            document.getElementById('modal-product-price').innerText = '₱' + parseFloat(price).toFixed(2);
-            document.getElementById('product_id').value = id;
-            document.getElementById('wishlist_product_id').value = id;
-            document.getElementById('modal-product-image').src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
-            document.getElementById('product-modal').style.display = 'flex';
-            document.body.classList.add('no-scroll');
-        }
+    // Safely update elements if they exist
+    if (elements.name) elements.name.innerText = name;
+    if (elements.description) {
+        const cleanedDescription = description.replace(/^#.*$\n?/gm, '').trim();
+        elements.description.innerText = cleanedDescription;
+    }
+    if (elements.stock) elements.stock.innerText = `Stock: ${stock}`;
+    if (elements.price) elements.price.innerText = `₱${parseFloat(price).toFixed(2)}`;
+    if (elements.productId) elements.productId.value = id;
+    if (elements.wishlistProductId) elements.wishlistProductId.value = id;
+    if (elements.image) elements.image.src = imageUrl || 'https://via.placeholder.com/500x650?text=No+Image';
+    
+    // Show modal and disable scroll
+    if (elements.modal) {
+        elements.modal.style.display = 'flex';
+        document.body.classList.add('no-scroll');
+    }
+}
 
         function closeProductModal() {
             document.getElementById('product-modal').style.display = 'none';
