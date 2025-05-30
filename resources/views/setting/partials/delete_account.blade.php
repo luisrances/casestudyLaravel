@@ -14,8 +14,7 @@
         @method('DELETE')
         <div class="mt-4 space-x-2">
             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete Account</button>
-            <button type="button" onclick="toggleSection('profile')" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
-        </div>
+            <button type="button" onclick="window.location.href='{{ route('account.setting') }}'" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>        </div>
     </form>
 </div>
 
