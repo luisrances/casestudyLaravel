@@ -1344,7 +1344,7 @@
     "updated_at": "2025-05-21 04:21:45"
   },
   {
-    "id": 164,
+    "id": 141,
     "name": "RockShox Recon RL Fork (29\", 120mm)",
     "description": "#Intermediate\n\nAir-sprung suspension fork with lockout and rebound adjustment.",
     "price": 15500.0,
@@ -1355,7 +1355,7 @@
     "updated_at": null
    },
    {
-    "id": 165,
+    "id": 142,
     "name": "Fox 32 Step-Cast Factory Fork (29\", 120mm)",
     "description": "#Beginner\n\nLightweight suspension fork with excellent stiffness.",
     "price": 38000.0,
@@ -1366,7 +1366,7 @@
     "updated_at": null
     },
     {
-    "id": 166,
+    "id": 143,
     "name": "Cannondale CAAD13 Road Frame (54cm)",
     "description": "#Skilled\n\nHigh-performance aluminum frame optimized for speed and stiffness.",
     "price": 28000.0,
@@ -1377,7 +1377,7 @@
     "updated_at": null
     },
     {
-    "id": 167,
+    "id": 144,
     "name": "Surly Karate Monkey Frame (27.5\", M)",
     "description": "#Intermediate\n\nSteel frame built for aggressive trail riding and bikepacking.",
     "price": 18500.0,
@@ -1385,7 +1385,7 @@
     "category": "frame-fork",
     "image_path": "images/products/Surly Karate Monkey Frame (27.5, M).png",
     "created_at": null,
-    "updated_at": null
+     "updated_at": null
     }
 ]
 

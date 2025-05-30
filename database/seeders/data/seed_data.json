@@ -5,7 +5,7 @@
       "first_name": "Britney",
       "last_name": "Rafer",
       "email": "britney.rafer@gmail.com",
-      "password":"$2y$12$hoMcFY6hnqyJmS3FwGHtZOTLgF260lF2ggcqiC9lRZhlfqn6L73kC",
+      "password":"$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
       "image": "images/accounts/1.png"
     },
     {
@@ -13,7 +13,7 @@
       "first_name": "Mariel",
       "last_name": "Perin",
       "email": "mariel.perin@gmail.com",
-      "password":"$2y$12$HOm6XH.IXzHLdgAazFgYaus0Y7.c5k2ttJ44aoMNcoAmzjXS4Rh8i",
+      "password":"$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
       "image": "images/accounts/2.png"
     },
     {
@@ -21,7 +21,7 @@
       "first_name": "Izzy",
       "last_name": "DeJusto",
       "email": "izzy.dejusto@gmail.com",
-      "password": " $2y$12$bCpQdo0faNABlVBPIckJj.PMr1fS6SgT0a8ImIx7plNfiv979pxqy",
+      "password": "$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
       "image": "images/accounts/3.png"
     },
     {
@@ -29,7 +29,7 @@
       "first_name": "Francis Luis",
       "last_name": "Rances",
       "email": "francis.rances@gmail.com",
-      "password": "$2y$12$MJCayW0Wat6XHoiXJA2xjOQG8YRoy6UmO4otpJw9FQq8Zt4ox/cBu",
+      "password": "$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
       "image": "images/accounts/4.png"
     },
     {
@@ -37,7 +37,7 @@
       "first_name": "Angelito",
       "last_name": "Guiaya",
       "email": "angelito.guiaya@gmail.com",
-      "password": "$2y$12$zXIRYltaW07MB9oTpH87GOslfC2MYfIZ/QbaMuQbFtine098D2iSS",
+      "password": "$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
       "image": "images/accounts/5.png"
     }
   ],
