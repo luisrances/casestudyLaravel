@@ -57,12 +57,12 @@
                               Account Settings
                           </a>
                         </li>
-                        <li>
+                        {{-- <li>
                           <a href="{{ route('purchase_history.user') }}" 
                             class="block px-4 py-3 text-base rounded-lg text-gray-700 hover:bg-gray-200">
                               Purchase History
                           </a>
-                        </li>
+                        </li> --}}
                         <li>
                           <a href="{{ route('wishlist.user') }}" 
                             class="block px-4 py-3 text-base rounded-lg text-gray-700 hover:bg-gray-200">

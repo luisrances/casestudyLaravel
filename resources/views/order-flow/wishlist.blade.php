@@ -3,7 +3,7 @@
         <div class="ml-4 text-[18px]">
             <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('cart.user') }}">Cart</a>
             <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px] border-b border-gray-500">Wishlist</a>
-            <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('purchase_history.user') }}">Purchase History</a>
+            {{-- <a class="text-lg font-semibold mb-3 px-4 pb-1 mr-[30px]" href="{{ route('purchase_history.user') }}">Purchase History</a> --}}
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8 mt-5 lg:max-h-[500px] max-h-[800px]">
