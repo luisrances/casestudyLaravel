@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
+use App\Models\UserProfiling;
 
 class ProductController extends Controller
 {

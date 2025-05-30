@@ -87,9 +87,9 @@ Route::get('/shop', [ProductController::class, 'shop_page'])->name('Shop');
 Route::get('/feedback', [ProductController::class, 'feedback_page'])->name('Feedback');
 Route::post('/feedback/submit', [ProductController::class, 'submit_feedback'])->name('feedback.submit');
 
-Route::get('/dashboard', function () { // dashboard after login
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProductController::class, 'home_page'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

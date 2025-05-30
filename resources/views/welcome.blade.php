@@ -3,7 +3,7 @@
 
     <div class="flex flex-col lg:flex-row gap-6">
         <div class="lg:w-2/3 w-full">
-            <x-mainCaro :products="$latestUpdatedProducts" />
+            <x-mainCaro :products="$latestUpdatedProducts ?? []"/>
         </div>
 
         <div class="lg:w-1/3 w-full flex flex-col gap-6">
@@ -35,7 +35,7 @@
                 <p class="text-[22px]">Accessories</p>
                 <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#attachments">See more...</a>
             </div>
-            <x-subCaro :products="$recommended['Accessories']" />
+            <x-subCaro :products="$recommended['Accessories'] ?? []" />
         </div>
 
         <!-- Parts Category Group -->
@@ -44,7 +44,7 @@
                 <p class="text-[22px]">Parts</p>
                 <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#cockpit">See more...</a>
             </div>
-            <x-subCaro :products="$recommended['Parts']" />
+            <x-subCaro :products="$recommended['Parts'] ?? []" />
         </div>
 
         <!-- Tools Category Group -->
@@ -53,7 +53,7 @@
                 <p class="text-[22px]">Tools</p>
                 <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#tools">See more...</a>
             </div>
-            <x-subCaro :products="$recommended['Tools']" />
+            <x-subCaro :products="$recommended['Tools'] ?? []" />
         </div>
 
         <!-- Bikes Category Group -->
@@ -62,7 +62,7 @@
                 <p class="text-[22px]">Bikes</p>
                 <a class="text-sm text-blue-600 cursor-pointer" href="{{ route('Shop') }}#mtb">See more...</a>
             </div>
-            <x-subCaro :products="$recommended['Bikes']" />
+            <x-subCaro :products="$recommended['Bikes'] ?? []" />
         </div>
     </div>
 </x-layout>
