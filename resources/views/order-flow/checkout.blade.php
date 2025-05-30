@@ -100,7 +100,6 @@
                     <select class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="payment_method" name="payment_method" required>
                         <option value="cod">Cash on Delivery (COD)</option>
                         <option value="gcash">GCash</option>
-                        <option value="maya">Maya</option>
                         <option value="bank_transfer">Bank Transfer</option>
                     </select>
 
@@ -110,19 +109,6 @@
                             <input type="text" 
                                 name="gcash_number" 
                                 placeholder="Enter GCash Number"
-                                class="payment-input w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                pattern="[0-9]{11}"
-                                title="Please enter a valid 11-digit phone number"
-                            >
-                        </div>
-                    </div>
-                    
-                    <div id="maya_details" class="hidden mt-4 p-4 bg-gray-50 rounded-md">
-                        <p class="text-sm text-gray-600 mb-2">Maya Payment Details:</p>
-                        <div class="space-y-2">
-                            <input type="text" 
-                                name="maya_number" 
-                                placeholder="Enter Maya Number"
                                 class="payment-input w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 pattern="[0-9]{11}"
                                 title="Please enter a valid 11-digit phone number"
@@ -291,15 +277,6 @@
                     }
                     break;
 
-                case 'maya':
-                    const mayaNumber = document.querySelector('input[name="maya_number"]').value;
-                    if (!mayaNumber) {
-                        isValid = false;
-                        errorMessage = 'Please enter your Maya number';
-                        document.querySelector('input[name="maya_number"]').classList.add('border-red-500');
-                    }
-                    break;
-
                 case 'bank_transfer':
                     const accountName = document.querySelector('input[name="account_name"]').value;
                     const accountNumber = document.querySelector('input[name="account_number"]').value;
@@ -340,12 +317,10 @@
         document.getElementById('payment_method').addEventListener('change', function() {
             const bankDetails = document.getElementById('bank_details');
             const gcashDetails = document.getElementById('gcash_details');
-            const mayaDetails = document.getElementById('maya_details');
             
             // Hide all payment details first
             bankDetails.classList.add('hidden');
             gcashDetails.classList.add('hidden');
-            mayaDetails.classList.add('hidden');
             
             // Show the selected payment detail section
             switch(this.value) {
@@ -354,9 +329,6 @@
                     break;
                 case 'gcash':
                     gcashDetails.classList.remove('hidden');
-                    break;
-                case 'maya':
-                    mayaDetails.classList.remove('hidden');
                     break;
             }
         });
