@@ -485,12 +485,12 @@
     },
     {
         "id": 45,
-        "name": "Alloy Trail Frame (27.5\", M)",
+        "name": "Alloy Trail Frame (27.5, M)",
         "description": "#Intermediate\n\nLightweight 6061 aluminum frame with modern trail geometry.",
         "price": 15800.0,
         "stock": 5,
         "category": "frame-fork",
-        "image_path": "images/products/Alloy Trail Frame (27.5\", M).png",
+        "image_path": "images/products/Alloy Trail Frame (27.5_, M).png",
         "created_at": "2025-05-22 08:31:35",
         "updated_at": "2025-05-22 08:31:35"
     },
@@ -518,7 +518,7 @@
     },
     {
         "id": 48,
-        "name": "Rigid MTB Fork (29\", Straight Steerer)",
+        "name": "Rigid MTB Fork (29, Straight Steerer)",
         "description": "#Beginner\n\nChromoly rigid fork for 29\" wheels.",
         "price": 2800.0,
         "stock": 10,
@@ -529,23 +529,23 @@
     },
     {
         "id": 49,
-        "name": "RockShox Recon RL Fork (29\", 120mm)",
+        "name": "RockShox Recon RL Fork (29, 120mm)",
         "description": "#Intermediate\n\nAir-sprung suspension fork with lockout and rebound adjustment.",
         "price": 15500.0,
         "stock": 7,
         "category": "frame-fork",
-        "image_path": "images/products/RockShox Recon RL Fork (29\", 120mm).png",
+        "image_path": "images/products/RockShox Recon RL Fork (29, 120mm).jpg",
         "created_at": "2025-05-22 08:31:35",
         "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 50,
-        "name": "Fox 32 Step-Cast Factory Fork (29\", 120mm)",
+        "name": "Fox 32 Step-Cast Factory Fork (29, 120mm)",
         "description": "#Advanced\n\nLightweight suspension fork with excellent stiffness.",
         "price": 38000.0,
         "stock": 3,
         "category": "frame-fork",
-        "image_path": "images/products/Fox 32 Step-Cast Factory Fork (29\", 120mm).png",
+        "image_path": "images/products/Fox 32 Step-Cast Factory Fork (29, 120mm).png",
         "created_at": "2025-05-22 08:31:35",
         "updated_at": "2025-05-22 08:31:35"
     },
@@ -573,18 +573,18 @@
     },
     {
         "id": 53,
-        "name": "Surly Karate Monkey Frame (27.5\", M)",
+        "name": "Surly Karate Monkey Frame (27.5, M)",
         "description": "#Intermediate\n\nSteel frame built for aggressive trail riding and bikepacking.",
         "price": 18500.0,
         "stock": 5,
         "category": "frame-fork",
-        "image_path": "images/products/Surly Karate Monkey Frame (27.5\", M).png",
+        "image_path": "images/products/Surly Karate Monkey Frame (27.5, M).png",
         "created_at": "2025-05-22 08:31:35",
         "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 54,
-        "name": "Specialized Rockhopper Hardtail Frame (29\", M)",
+        "name": "Specialized Rockhopper Hardtail Frame (29, M)",
         "description": "#Intermediate\n\nPopular aluminum hardtail frame with modern geometry.",
         "price": 14000.0,
         "stock": 6,
