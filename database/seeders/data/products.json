@@ -7,8 +7,8 @@
         "stock": 1,
         "category": "time-trial",
         "image_path": "images/products/Van Rysel XCR.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 2,
@@ -18,8 +18,8 @@
         "stock": 7,
         "category": "time-trial",
         "image_path": "images/products/XCR Tri Ultegra Di2.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-23 08:31:35",
+        "updated_at": "2025-05-23 08:31:35"
     },
     {
         "id": 3,
@@ -29,8 +29,8 @@
         "stock": 1,
         "category": "time-trial",
         "image_path": "images/products/Cervélo P5 Dura-Ace Di2.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 4,
@@ -40,8 +40,8 @@
         "stock": 1,
         "category": "time-trial",
         "image_path": "images/products/Cervélo P5 Red AXS.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 5,
@@ -51,8 +51,8 @@
         "stock": 2,
         "category": "time-trial",
         "image_path": "images/products/Giant Trinity Advanced Pro 2.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 6,
@@ -62,8 +62,8 @@
         "stock": 6,
         "category": "time-trial",
         "image_path": "images/products/Bianchi Aquila CV Time Trial Carbon Ultegra Road Bike.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 7,
@@ -73,8 +73,8 @@
         "stock": 9,
         "category": "time-trial",
         "image_path": "images/products/Cervélo P2 105 Time Trial Bike.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 8,
@@ -84,8 +84,8 @@
         "stock": 4,
         "category": "time-trial",
         "image_path": "images/products/Canyon Speedmax CF SLX 8.0 SL.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 9,
@@ -95,8 +95,8 @@
         "stock": 11,
         "category": "time-trial",
         "image_path": "images/products/Specialized S-Works Shiv Disc Limited Edition.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 10,
@@ -106,8 +106,8 @@
         "stock": 5,
         "category": "time-trial",
         "image_path": "images/products/Boardman ATT 9.0.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 11,
@@ -117,8 +117,8 @@
         "stock": 7,
         "category": "road-bike",
         "image_path": "images/products/Giant Contend AR 1.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 12,
@@ -128,8 +128,8 @@
         "stock": 5,
         "category": "road-bike",
         "image_path": "images/products/Specialized Allez Sprint Comp.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 13,
@@ -139,8 +139,8 @@
         "stock": 3,
         "category": "road-bike",
         "image_path": "images/products/Trek Domane SL 5.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 14,
@@ -150,8 +150,8 @@
         "stock": 6,
         "category": "road-bike",
         "image_path": "images/products/Cannondale Synapse Carbon 105.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 15,
@@ -161,8 +161,8 @@
         "stock": 8,
         "category": "road-bike",
         "image_path": "images/products/Scott Speedster 10.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 16,
@@ -172,8 +172,8 @@
         "stock": 4,
         "category": "road-bike",
         "image_path": "images/products/Bianchi Via Nirone 7.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 17,
@@ -183,8 +183,8 @@
         "stock": 2,
         "category": "road-bike",
         "image_path": "images/products/Cervelo R3.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 18,
@@ -194,8 +194,8 @@
         "stock": 9,
         "category": "road-bike",
         "image_path": "images/products/Orbea Avant H30.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 19,
@@ -205,8 +205,8 @@
         "stock": 6,
         "category": "road-bike",
         "image_path": "images/products/Fuji Roubaix 1.3.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 20,
@@ -216,8 +216,8 @@
         "stock": 4,
         "category": "road-bike",
         "image_path": "images/products/Lapierre Sensium 3.0 Disc.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 21,
@@ -227,8 +227,8 @@
         "stock": 6,
         "category": "gravel-bike",
         "image_path": "images/products/Giant Revolt 2.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 22,
@@ -238,8 +238,8 @@
         "stock": 4,
         "category": "gravel-bike",
         "image_path": "images/products/Specialized Diverge Comp E5.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 23,
@@ -249,8 +249,8 @@
         "stock": 3,
         "category": "gravel-bike",
         "image_path": "images/products/Canyon Grizl CF SL 6.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 24,
@@ -260,8 +260,8 @@
         "stock": 3,
         "category": "gravel-bike",
         "image_path": "images/products/Bianchi Impulso Allroad GRX 600.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 25,
@@ -271,8 +271,8 @@
         "stock": 5,
         "category": "gravel-bike",
         "image_path": "images/products/Norco Search XR A2.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 26,
@@ -282,8 +282,8 @@
         "stock": 2,
         "category": "gravel-bike",
         "image_path": "images/products/Santa Cruz Stigmata Rival AXS.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 27,
@@ -293,8 +293,8 @@
         "stock": 3,
         "category": "gravel-bike",
         "image_path": "images/products/Orbea Terra H40.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 28,
@@ -304,8 +304,8 @@
         "stock": 4,
         "category": "gravel-bike",
         "image_path": "images/products/Cannondale Topstone 2 Alloy.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 29,
@@ -315,8 +315,8 @@
         "stock": 7,
         "category": "gravel-bike",
         "image_path": "images/products/Merida Silex 400.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 30,
@@ -326,8 +326,8 @@
         "stock": 5,
         "category": "gravel-bike",
         "image_path": "images/products/Trek Checkpoint ALR 5.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 31,
@@ -337,8 +337,8 @@
         "stock": 20,
         "category": "braking-system",
         "image_path": "images/products/Shimano MT200 Hydraulic Disc Brake Set (F/R).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 32,
@@ -348,8 +348,8 @@
         "stock": 30,
         "category": "braking-system",
         "image_path": "images/products/Jagwire Road Elite Brake Cable Set (Black).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 33,
@@ -359,8 +359,8 @@
         "stock": 8,
         "category": "braking-system",
         "image_path": "images/products/Magura MT7 Pro Hydraulic Disc Brake (Front).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 34,
@@ -370,8 +370,8 @@
         "stock": 50,
         "category": "braking-system",
         "image_path": "images/products/Shimano B01S Resin Brake Pads (Pair).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 35,
@@ -381,8 +381,8 @@
         "stock": 10,
         "category": "braking-system",
         "image_path": "images/products/SRAM Code RSC Brake Lever Assembly.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 36,
@@ -392,8 +392,8 @@
         "stock": 35,
         "category": "braking-system",
         "image_path": "images/products/Tektro Mechanical Disc Brake Caliper (MD-C550).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 37,
@@ -403,8 +403,8 @@
         "stock": 12,
         "category": "braking-system",
         "image_path": "images/products/SwissStop FlashPro Brake Pads (Carbon Rim).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 38,
@@ -414,8 +414,8 @@
         "stock": 20,
         "category": "wheels-tires",
         "image_path": "images/products/WTB Trail Boss 27.5\" x 2.4\" Tire (Tubeless Ready).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 39,
@@ -425,8 +425,8 @@
         "stock": 6,
         "category": "wheels-tires",
         "image_path": "images/products/DT Swiss M 1900 Spline 29\" Wheelset (Boost).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 40,
@@ -436,8 +436,8 @@
         "stock": 40,
         "category": "wheels-tires",
         "image_path": "images/products/WTB Presta Valve Tubes (29\" x 2.1-2.4\").png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 41,
@@ -447,8 +447,8 @@
         "stock": 10,
         "category": "wheels-tires",
         "image_path": "images/products/Mavic Aksium Elite UST Disc Wheelset (700c).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 42,
@@ -458,8 +458,8 @@
         "stock": 12,
         "category": "wheels-tires",
         "image_path": "images/products/Maxxis Minion DHF 29\" x 2.5\" WT Tire (TR, EXO).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 43,
@@ -469,8 +469,8 @@
         "stock": 14,
         "category": "wheels-tires",
         "image_path": "images/products/Shimano Centerlock Disc Hubset (F/R).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 44,
@@ -480,8 +480,8 @@
         "stock": 25,
         "category": "wheels-tires",
         "image_path": "images/products/Orange Seal Tubeless Sealant Kit (4oz).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 45,
@@ -491,8 +491,8 @@
         "stock": 5,
         "category": "frame-fork",
         "image_path": "images/products/Alloy Trail Frame (27.5\", M).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 46,
@@ -502,8 +502,8 @@
         "stock": 3,
         "category": "frame-fork",
         "image_path": "images/products/Carbon Road Frame (700c, L).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 47,
@@ -513,8 +513,8 @@
         "stock": 4,
         "category": "frame-fork",
         "image_path": "images/products/Steel Gravel Frame (700c, M).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 48,
@@ -524,8 +524,8 @@
         "stock": 10,
         "category": "frame-fork",
         "image_path": "images/products/Rigid MTB Fork (29_, Straight Steerer).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 49,
@@ -535,8 +535,8 @@
         "stock": 7,
         "category": "frame-fork",
         "image_path": "images/products/RockShox Recon RL Fork (29\", 120mm).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 50,
@@ -546,8 +546,8 @@
         "stock": 3,
         "category": "frame-fork",
         "image_path": "images/products/Fox 32 Step-Cast Factory Fork (29\", 120mm).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 51,
@@ -557,8 +557,8 @@
         "stock": 6,
         "category": "frame-fork",
         "image_path": "images/products/Aluminum Cyclocross Frame (700c, M).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 52,
@@ -568,8 +568,8 @@
         "stock": 4,
         "category": "frame-fork",
         "image_path": "images/products/Cannondale CAAD13 Road Frame (54cm).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 53,
@@ -579,8 +579,8 @@
         "stock": 5,
         "category": "frame-fork",
         "image_path": "images/products/Surly Karate Monkey Frame (27.5\", M).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 54,
@@ -589,9 +589,9 @@
         "price": 14000.0,
         "stock": 6,
         "category": "frame-fork",
-        "image_path": "images/products/Specialized Rockhopper Hardtail Frame (29\", M).png",
-        "created_at": null,
-        "updated_at": null
+        "image_path": "images/products/Specialized Rockhopper Hardtail Frame (29, M).png",
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 55,
@@ -601,8 +601,8 @@
         "stock": 20,
         "category": "apparel",
         "image_path": "images/products/VeloCore Cycling Jersey (Short Sleeve).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 56,
@@ -612,8 +612,8 @@
         "stock": 15,
         "category": "apparel",
         "image_path": "images/products/GravelGrip Padded Cycling Shorts.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 57,
@@ -623,8 +623,8 @@
         "stock": 35,
         "category": "apparel",
         "image_path": "images/products/ComforTrail MTB Gloves (Full Finger).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 58,
@@ -634,8 +634,8 @@
         "stock": 10,
         "category": "apparel",
         "image_path": "images/products/RainRide Waterproof Jacket.jpg",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 59,
@@ -645,8 +645,8 @@
         "stock": 25,
         "category": "apparel",
         "image_path": "images/products/AirFlow Mesh Sleeveless Base Layer.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 60,
@@ -656,8 +656,8 @@
         "stock": 18,
         "category": "apparel",
         "image_path": "images/products/UrbanRide Commuter Pants.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 61,
@@ -667,8 +667,8 @@
         "stock": 12,
         "category": "apparel",
         "image_path": "images/products/TrailFlex Elbow PadsTrailFlex Elbow Pads.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 62,
@@ -678,8 +678,8 @@
         "stock": 40,
         "category": "apparel",
         "image_path": "images/products/RideLite Cycling Cap.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 63,
@@ -689,8 +689,8 @@
         "stock": 30,
         "category": "apparel",
         "image_path": "images/products/WindRush Arm Warmers.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 64,
@@ -700,8 +700,8 @@
         "stock": 50,
         "category": "apparel",
         "image_path": "images/products/GripStep Cycling Socks (3-Pack).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 65,
@@ -711,8 +711,8 @@
         "stock": 20,
         "category": "gear",
         "image_path": "images/products/HydraFlow 1.5L Hydration Pack.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 66,
@@ -722,8 +722,8 @@
         "stock": 30,
         "category": "gear",
         "image_path": "images/products/TrailMate Mini Multi-Tool (17 Functions).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 67,
@@ -733,8 +733,8 @@
         "stock": 25,
         "category": "gear",
         "image_path": "images/products/SafeLock U-Lock with Mounting Bracket.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 68,
@@ -744,8 +744,8 @@
         "stock": 40,
         "category": "gear",
         "image_path": "images/products/AirFlex Portable Hand Pump.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 69,
@@ -755,8 +755,8 @@
         "stock": 10,
         "category": "gear",
         "image_path": "images/products/RideTrack GPS Computer.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 70,
@@ -766,8 +766,8 @@
         "stock": 35,
         "category": "gear",
         "image_path": "images/products/ProShield Rain Cover for Bags.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 71,
@@ -777,8 +777,8 @@
         "stock": 18,
         "category": "gear",
         "image_path": "images/products/QuickLink Chain Tool with Master Link Storage.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 72,
@@ -788,8 +788,8 @@
         "stock": 22,
         "category": "gear",
         "image_path": "images/products/RideBright Rechargeable Headlamp (Helmet Mount).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 73,
@@ -799,8 +799,8 @@
         "stock": 14,
         "category": "gear",
         "image_path": "images/products/TireMate CO₂ Inflator Kit.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 74,
@@ -810,8 +810,8 @@
         "stock": 16,
         "category": "gear",
         "image_path": "images/products/FlexMount Saddle Rail Tool Roll.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 75,
@@ -821,8 +821,8 @@
         "stock": 18,
         "category": "cockpit",
         "image_path": "images/products/TrailBar Riser Handlebar (31.8mm, 780mm).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 76,
@@ -832,8 +832,8 @@
         "stock": 10,
         "category": "cockpit",
         "image_path": "images/products/RoadPro Carbon Drop Bar (420mm).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 77,
@@ -843,8 +843,8 @@
         "stock": 40,
         "category": "cockpit",
         "image_path": "images/products/ComfyGrip Ergonomic Bar Grips.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 78,
@@ -854,8 +854,8 @@
         "stock": 20,
         "category": "cockpit",
         "image_path": "images/products/AeroStem Alloy Stem (90mm, ±7°).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 79,
@@ -865,8 +865,8 @@
         "stock": 25,
         "category": "cockpit",
         "image_path": "images/products/UltraGel Bar Tape (Black).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 80,
@@ -876,8 +876,8 @@
         "stock": 15,
         "category": "cockpit",
         "image_path": "images/products/FlexMount Out-Front GPS Mount.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 81,
@@ -887,8 +887,8 @@
         "stock": 30,
         "category": "cockpit",
         "image_path": "images/products/RideView Bar-End Mirror (Left).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 82,
@@ -898,8 +898,8 @@
         "stock": 12,
         "category": "cockpit",
         "image_path": "images/products/GravelControl Flared Drop Bar (460mm).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 83,
@@ -909,8 +909,8 @@
         "stock": 50,
         "category": "cockpit",
         "image_path": "images/products/VibeLock Stem Spacer Set (5pcs).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 84,
@@ -920,8 +920,8 @@
         "stock": 40,
         "category": "cockpit",
         "image_path": "images/products/QuickClick Bar End Plugs with Reflectors.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 85,
@@ -931,8 +931,8 @@
         "stock": 7,
         "category": "drivetrain",
         "image_path": "images/products/Shimano Deore M6100 12-Speed Groupset.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 86,
@@ -942,8 +942,8 @@
         "stock": 12,
         "category": "drivetrain",
         "image_path": "images/products/SRAM GX Eagle 12-Speed Cassette.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 87,
@@ -953,8 +953,8 @@
         "stock": 5,
         "category": "drivetrain",
         "image_path": "images/products/Shimano Ultegra R8000 Crankset.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 88,
@@ -964,8 +964,8 @@
         "stock": 8,
         "category": "drivetrain",
         "image_path": "images/products/SRAM Rival 1 Wide Crankset.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 89,
@@ -975,8 +975,8 @@
         "stock": 15,
         "category": "drivetrain",
         "image_path": "images/products/Shimano SLX M7100 Rear Derailleur.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 90,
@@ -986,8 +986,8 @@
         "stock": 20,
         "category": "drivetrain",
         "image_path": "images/products/FSA Omega MegaExo Bottom Bracket.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 91,
@@ -997,8 +997,8 @@
         "stock": 3,
         "category": "drivetrain",
         "image_path": "images/products/SRAM Force eTap AXS Wireless Rear Derailleur.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 92,
@@ -1008,8 +1008,8 @@
         "stock": 30,
         "category": "drivetrain",
         "image_path": "images/products/Shimano XT M8000 Chain.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 93,
@@ -1019,8 +1019,8 @@
         "stock": 25,
         "category": "drivetrain",
         "image_path": "images/products/KMC X11SL Super Light Chain.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 94,
@@ -1030,8 +1030,8 @@
         "stock": 18,
         "category": "drivetrain",
         "image_path": "images/products/Race Face Chester Pedals.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 95,
@@ -1041,8 +1041,8 @@
         "stock": 20,
         "category": "attachments",
         "image_path": "images/products/OnelapFit Smart LED Rear Light.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 96,
@@ -1052,8 +1052,8 @@
         "stock": 15,
         "category": "attachments",
         "image_path": "images/products/AeroPack Saddle Bag (2L).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 97,
@@ -1063,8 +1063,8 @@
         "stock": 60,
         "category": "attachments",
         "image_path": "images/products/ReflectoClip Pedal Reflectors (Set of 4).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 98,
@@ -1074,8 +1074,8 @@
         "stock": 30,
         "category": "attachments",
         "image_path": "images/products/RideSafe Rearview Mirror (Left Mount).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 99,
@@ -1085,8 +1085,8 @@
         "stock": 45,
         "category": "attachments",
         "image_path": "images/products/QuickFix Kickstand (Adjustable).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 100,
@@ -1096,8 +1096,8 @@
         "stock": 12,
         "category": "attachments",
         "image_path": "images/products/GravelMate Frame Bag (1.5L).png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 101,
@@ -1107,8 +1107,8 @@
         "stock": 30,
         "category": "attachments",
         "image_path": "images/products/UltraGrip Anti-Slip Bar Tape.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 102,
@@ -1118,8 +1118,8 @@
         "stock": 10,
         "category": "seating-area",
         "image_path": "images/products/Fizik Argo Tempo R5.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 103,
@@ -1129,8 +1129,8 @@
         "stock": 7,
         "category": "seating-area",
         "image_path": "images/products/Prologo Dimension NDR.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 104,
@@ -1140,8 +1140,8 @@
         "stock": 15,
         "category": "seating-area",
         "image_path": "images/products/WTB Pure V Comp.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 105,
@@ -1151,8 +1151,8 @@
         "stock": 4,
         "category": "seating-area",
         "image_path": "images/products/Selle Italia X-LR Kit Carbonio.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 106,
@@ -1162,8 +1162,8 @@
         "stock": 8,
         "category": "seating-area",
         "image_path": "images/products/Ergon SMC Sport Gel.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 107,
@@ -1173,8 +1173,8 @@
         "stock": 12,
         "category": "seating-area",
         "image_path": "images/products/Fabric Line Elite Shallow.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 108,
@@ -1184,8 +1184,8 @@
         "stock": 20,
         "category": "seating-area",
         "image_path": "images/products/Selle SMP TRK Medium.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 109,
@@ -1195,8 +1195,8 @@
         "stock": 9,
         "category": "seating-area",
         "image_path": "images/products/Bontrager Verse Comp.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 110,
@@ -1206,8 +1206,8 @@
         "stock": 18,
         "category": "seating-area",
         "image_path": "images/products/Prologo Kappa RS.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 111,
@@ -1217,8 +1217,8 @@
         "stock": 5,
         "category": "seating-area",
         "image_path": "images/products/SQLab 611 Ergowave Active.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 112,
@@ -1228,8 +1228,8 @@
         "stock": 12,
         "category": "tools",
         "image_path": "images/products/Topeak SmartGauge D2X.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 113,
@@ -1239,8 +1239,8 @@
         "stock": 30,
         "category": "tools",
         "image_path": "images/products/Park Tool TL-1.2 Tire Levers.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 114,
@@ -1250,8 +1250,8 @@
         "stock": 3,
         "category": "tools",
         "image_path": "images/products/Birzman Studio Tool Box.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 115,
@@ -1261,8 +1261,8 @@
         "stock": 6,
         "category": "tools",
         "image_path": "images/products/Lezyne CNC Digital Drive.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 116,
@@ -1272,8 +1272,8 @@
         "stock": 15,
         "category": "tools",
         "image_path": "images/products/Crankbrothers F15 Multi Tool.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 117,
@@ -1283,8 +1283,8 @@
         "stock": 5,
         "category": "tools",
         "image_path": "images/products/Feedback Sports Torque Ratchet Combo.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 118,
@@ -1294,8 +1294,8 @@
         "stock": 20,
         "category": "tools",
         "image_path": "images/products/Muc-Off 8-in-1 Cleaning Kit.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 119,
@@ -1305,8 +1305,8 @@
         "stock": 18,
         "category": "tools",
         "image_path": "images/products/Park Tool CM-5.3 Chain Cleaner.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 120,
@@ -1316,8 +1316,8 @@
         "stock": 10,
         "category": "tools",
         "image_path": "images/products/Pedro's Chain Pig II Kit.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 121,
@@ -1327,8 +1327,8 @@
         "stock": 25,
         "category": "tools",
         "image_path": "images/products/Elite Tools Capsule.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 122,
@@ -1338,8 +1338,8 @@
         "stock": 6,
         "category": "mtb",
         "image_path": "images/products/Trek X-Caliber 8.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 123,
@@ -1349,8 +1349,8 @@
         "stock": 5,
         "category": "mtb",
         "image_path": "images/products/Giant Fathom 2.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 124,
@@ -1360,8 +1360,8 @@
         "stock": 8,
         "category": "mtb",
         "image_path": "images/products/Polygon Xtrada 7.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 125,
@@ -1371,8 +1371,8 @@
         "stock": 4,
         "category": "mtb",
         "image_path": "images/products/Specialized Chisel Comp.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 126,
@@ -1382,8 +1382,8 @@
         "stock": 3,
         "category": "mtb",
         "image_path": "images/products/Marin Rift Zone 27.5 1.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 127,
@@ -1393,8 +1393,8 @@
         "stock": 4,
         "category": "mtb",
         "image_path": "images/products/Orbea Laufey H30.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 128,
@@ -1404,8 +1404,8 @@
         "stock": 9,
         "category": "mtb",
         "image_path": "images/products/Cannondale Trail 5.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 129,
@@ -1415,8 +1415,8 @@
         "stock": 7,
         "category": "mtb",
         "image_path": "images/products/Merida Big Nine 300.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 130,
@@ -1426,8 +1426,8 @@
         "stock": 2,
         "category": "mtb",
         "image_path": "images/products/Santa Cruz 5010 Alloy D.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 131,
@@ -1437,8 +1437,8 @@
         "stock": 3,
         "category": "mtb",
         "image_path": "images/products/Cube Reaction TM.png",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2025-05-22 08:31:35",
+        "updated_at": "2025-05-22 08:31:35"
     },
     {
         "id": 132,
@@ -1734,8 +1734,8 @@
         "stock": 1,
         "category": "road-bike",
         "image_path": "images/products/qs1kEOkMXTu7Red14mssRJSnahaTb7T6cWB0Ngva.jpg",
-        "created_at": "2025-05-21 06:12:38",
-        "updated_at": "2025-05-22 11:18:22"
+        "created_at": "2025-05-24 06:12:38",
+        "updated_at": "2025-05-24 11:18:22"
     },
     {
         "id": 159,
@@ -1745,8 +1745,8 @@
         "stock": 1,
         "category": "road-bike",
         "image_path": "images/products/7iKsNVoF7CE2KgW8Rb37fRNR0Hw5szt1VJd3rM5b.jpg",
-        "created_at": "2025-05-21 06:14:16",
-        "updated_at": "2025-05-22 11:19:08"
+        "created_at": "2025-05-24 06:14:16",
+        "updated_at": "2025-05-24 11:19:08"
     },
     {
         "id": 160,

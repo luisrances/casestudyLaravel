@@ -34,10 +34,20 @@
         </div>
 
         <!-- Submit Button -->
-        <button
-            type="submit"
-            class="bg-purple-800 hover:bg-purple-900 text-white text-sm font-medium px-10 py-3 rounded-lg">
-            Submit
-        </button>
+        @if (Route::has('login'))
+            @auth
+                <button
+                    type="submit"
+                    class="bg-purple-800 hover:bg-purple-900 text-white text-sm font-medium px-10 py-3 rounded-lg">
+                    Submit
+                </button>
+        @else
+                <button
+                    onclick="showLoginAlert()"
+                    class="bg-purple-800 hover:bg-purple-900 text-white text-sm font-medium px-10 py-3 rounded-lg">
+                    Submit
+                </button>
+            @endauth
+        @endif
     </form>
 </x-layout>
