@@ -34,7 +34,7 @@
   </div>
 
   <!-- Prev Button -->
-  <button type="button" class="hs-carousel-prev absolute inset-y-0 start-0 inline-flex justify-center items-center w-11.5 h-full text-gray-800 hover:bg-gray-800/10 focus:outline-hidden focus:bg-gray-800/10 rounded-s-lg dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+  <button type="button" class="hs-carousel-prev absolute top-1/2 -translate-y-1/2 -left-6 inline-flex justify-center items-center w-12 h-12 bg-white text-gray-600 hover:text-blue-500 hover:bg-blue-50 focus:outline-none focus:text-blue-500 focus:bg-blue-50 rounded-full shadow-lg hover:shadow-xl transition-colors duration-200 z-10">
     <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path d="m15 18-6-6 6-6" />
     </svg>
@@ -42,10 +42,11 @@
   </button>
 
   <!-- Next Button -->
-  <button type="button" class="hs-carousel-next absolute inset-y-0 end-0 inline-flex justify-center items-center w-11.5 h-full text-gray-800 hover:bg-gray-800/10 focus:outline-hidden focus:bg-gray-800/10 rounded-e-lg dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+  <button type="button" class="hs-carousel-next absolute top-1/2 -translate-y-1/2 -right-6 inline-flex justify-center items-center w-12 h-12 bg-white text-gray-600 hover:text-blue-500 hover:bg-blue-50 focus:outline-none focus:text-blue-500 focus:bg-blue-50 rounded-full shadow-lg hover:shadow-xl transition-colors duration-200 z-10">
     <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path d="m9 18 6-6-6-6" />
     </svg>
     <span class="sr-only">Next</span>
   </button>
+
 </div>
