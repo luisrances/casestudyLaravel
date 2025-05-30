@@ -70,7 +70,7 @@
               alt="{{ $product->name }}"
               class="w-full h-40 object-cover">
             <div class="p-4">
-              <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
+              <h3 class="text-lg font-semibold overflow-hidden h-[60px]">{{ \Illuminate\Support\Str::limit($product->name, 40, '...') }}</h3>
               <p class="text-sm text-gray-600 truncate" title="{{ $cleanDescription }}">{{ $cleanDescription }}</p>
               <p class="text-blue-600 font-semibold mt-2">Php {{ number_format($product->price, 2) }}</p>
               <p class="text-sm mt-1 {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">

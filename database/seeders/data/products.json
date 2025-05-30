@@ -633,7 +633,7 @@
         "price": 2750.0,
         "stock": 10,
         "category": "apparel",
-        "image_path": "images/products/RainRide Waterproof Jacket.png",
+        "image_path": "images/products/RainRide Waterproof Jacket.jpg",
         "created_at": null,
         "updated_at": null
     },
@@ -666,7 +666,7 @@
         "price": 1950.0,
         "stock": 12,
         "category": "apparel",
-        "image_path": "images/products/TrailFlex Elbow PadsTrailFlex Elbow Pads.png.png",
+        "image_path": "images/products/TrailFlex Elbow PadsTrailFlex Elbow Pads.png",
         "created_at": null,
         "updated_at": null
     },
@@ -1750,7 +1750,7 @@
     },
     {
         "id": 160,
-        "name": "PROFILE DEISGN DRV/AEROA",
+        "name": "PROFILE DESIGN DRV/AEROA",
         "description": "#Intermediate\r\n\r\n\r\nDrive 105mm, Reach 70mm, Drop 122mm\r\nTECH SPECS\r\nWeight: 315g (38cm)\r\nSize: 36, 38, 40, 42, 44cm (center to center)\r\nReach: 70, 75, 80mm\r\nClamp Width: 100mm\r\nClamp Diameter: 31.8mm\r\nClip Compatible: Yes\r\nDrop:  122mm, 136mm, 148mm\r\nDrop Outsweep: 4°\r\nDrive: 105mm, 120mm, 135mm\r\nInternal Cable Routing: Yes (Mechanical / Di2)\r\nMax Brake Lever Torque: 10Nm\r\nMax Torque Clamping to Bar: 6Nm\r\nMaterial: 6061-T6 A",
         "price": 3500.0,
         "stock": 5,

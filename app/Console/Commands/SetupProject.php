@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 class SetupProject extends Command
 {
     protected $signature = 'setup:project';
-    protected $description = 'Set up the project by creating the database and running migrations';
+    protected $description = 'Set up the project by creating the database and running migrations and seeders';
 
     public function handle()
     {
@@ -17,14 +17,24 @@ class SetupProject extends Command
         $charset = config('database.connections.mysql.charset', 'utf8mb4');
         $collation = config('database.connections.mysql.collation', 'utf8mb4_unicode_ci');
 
+        // Temporarily set database name to null to allow CREATE DATABASE
         config(['database.connections.mysql.database' => null]);
         DB::statement("CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET $charset COLLATE $collation");
 
+        // Restore database name and reconnect
         config(['database.connections.mysql.database' => $dbName]);
         DB::reconnect();
 
+        // Run migrations
         Artisan::call('migrate', ['--force' => true]);
+        $this->info("Database '$dbName' migrated successfully.");
 
-        $this->info("Database '$dbName' created and migrated successfully.");
+        // Run seeders
+        Artisan::call('db:seed', ['--force' => true]);
+        $this->info("Database seeded successfully.");
+
+        // Create storage symlink
+        Artisan::call('storage:link');
+        $this->info("Storage link created successfully.");
     }
 }
