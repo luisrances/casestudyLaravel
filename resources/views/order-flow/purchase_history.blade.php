@@ -79,7 +79,7 @@
                                                             </button>
                                                         </form>
                                                     @endif
-                                                    <form onsubmit="handleBuyAgain(event, {{ $product->id }})" class="buy-again-form">
+                                                    <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         <button type="submit" class="min-w-[max-content] font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -105,13 +105,13 @@
     </main>
 
     <script>
-        function handleBuyAgain(event, productId) {
+        function handleBuyAgainPurchaseHistory(event, productId) {
             event.preventDefault();
             
             // Create a form and submit it instead of using fetch
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '{{ route('checkout.buyAgain') }}';
+            form.action = '{{ route('checkout.buyAgain.single') }}';
             
             // Add CSRF token
             const csrfToken = document.createElement('input');

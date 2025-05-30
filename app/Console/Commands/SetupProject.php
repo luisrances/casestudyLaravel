@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 class SetupProject extends Command
 {
     protected $signature = 'setup:project';
-    protected $description = 'Set up the project by creating the database and running migrations and seeders';
+    protected $description = 'Set up the project by creating the database and running migrations, seeders, and optimizations';
 
     public function handle()
     {
@@ -36,5 +36,9 @@ class SetupProject extends Command
         // Create storage symlink
         Artisan::call('storage:link');
         $this->info("Storage link created successfully.");
+
+        // Optimize the application
+        Artisan::call('optimize');
+        $this->info("Application optimized successfully.");
     }
 }

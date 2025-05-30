@@ -117,7 +117,7 @@ class OrderController extends Controller
         return view('order-flow.purchase_history', compact('orders', 'products', 'accounts'));
     }
 
-    //checkout buyAgain
+    //checkout buyAgain multiple order
     public function checkout_buyAgain(Request $request)
     {
         $validated = $request->validate([
@@ -160,6 +160,47 @@ class OrderController extends Controller
         $cartItems = Cart::where('id', $cartItem->id)->get();
         // $cartItems = collect([$cartItem]);
         // $cartItems = new Collection([$cartItem]);
+        $products = Product::where('id', $validated['product_id'])->get();
+        $paymentDetails = PaymentDetail::where('account_id', $account->id)->get();
+
+        return view('order-flow.checkout', compact('cartItems', 'products', 'account', 'paymentDetails'));
+    }
+
+    //checkout buyAgain single order
+    public function checkout_buyAgain_single(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|integer'
+        ]);
+
+        $account = Auth::user();
+        $validated['account_id'] = Auth::user()->id;
+
+        // Check if product already exists in user's cart
+        $existingCart = Cart::where([
+            'product_id' => $validated['product_id'],
+            'account_id' => $validated['account_id']
+        ])->first();
+
+        if ($existingCart) {
+            // If exists, increment quantity by 1
+            $existingCart->quantity += 1;
+            $existingCart->save();
+            $cartItem = $existingCart;
+            $message = 'Product quantity updated in cart';
+        } else {
+            // $cartItem = new Cart([
+            $cartItem = new Cart([
+                'product_id' => $validated['product_id'],
+                'account_id' => $account->id,
+                'quantity' => 1
+            ]);
+            $message = 'Product added to cart successfully';
+        }
+
+        // Get necessary data for checkout
+        // $cartItems = Cart::where('id', $cartItem->id)->get();
+        $cartItems = collect([$cartItem]);
         $products = Product::where('id', $validated['product_id'])->get();
         $paymentDetails = PaymentDetail::where('account_id', $account->id)->get();
 

@@ -67,6 +67,7 @@ Route::post('/wishlist/cart', [WishlistController::class, 'add_cart_wishlist'])-
 //purchase history
 Route::get('/purchase_history', [OrderController::class, 'purchase_history_user'])->name('purchase_history.user');
 Route::post('/purchase_history/buyAgain', [OrderController::class, 'checkout_buyAgain'])->name('checkout.buyAgain');
+Route::post('/purchase_history/buyAgain/single', [OrderController::class, 'checkout_buyAgain_single'])->name('checkout.buyAgain.single');
 Route::post('/purchase_history/refund', [OrderController::class, 'refundOrder'])->name('purchase_history.refund');
 Route::post('/purchase_history/cancel', [OrderController::class, 'cancelOrder'])->name('purchase_history.cancel');
 

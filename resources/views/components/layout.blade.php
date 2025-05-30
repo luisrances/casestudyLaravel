@@ -219,7 +219,7 @@
         @if (Route::has('login'))
             @auth
                 <div class="flex gap-3 w-full">
-                    <form method="POST" action="{{ route('checkout.buyAgain') }}" class="flex-1 buy-again-form">
+                    <form method="POST" action="{{ route('checkout.buyAgain.single') }}" class="flex-1 buy-again-form">
                         @csrf
                         <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
                         <input type="hidden" name="product_id" value="${id}">
