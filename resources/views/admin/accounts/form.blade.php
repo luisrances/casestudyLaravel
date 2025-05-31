@@ -1,17 +1,17 @@
 <div class="card shadow p-3 custom-scroll submain">
     <div class="mb-3">
-        <label for="first_name" class="form-label">First Name</label>
-        <input type="text" class="form-control form-control-md" id="first_name" name="first_name" value="{{ old('first_name', $account->first_name ?? '') }}" placeholder="Enter first name">
+        <label for="first_name" class="form-label">First Name<span class="text-danger"> *</span></label>
+        <input type="text" class="form-control form-control-md" id="first_name" name="first_name" value="{{ old('first_name', $account->first_name ?? '') }}" placeholder="Enter first name" required>
     </div>
 
     <div class="mb-3">
-        <label for="last_name" class="form-label">Last Name</label>
-        <input type="text" class="form-control form-control-md" id="last_name" name="last_name" value="{{ old('last_name', $account->last_name ?? '') }}" placeholder="Enter last name">
+        <label for="last_name" class="form-label">Last Name<span class="text-danger"> *</span></label>
+        <input type="text" class="form-control form-control-md" id="last_name" name="last_name" value="{{ old('last_name', $account->last_name ?? '') }}" placeholder="Enter last name" required>
     </div>
 
     <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control form-control-md" id="email" name="email" value="{{ old('email', $account->email ?? '') }}" placeholder="Enter email address">
+        <label for="email" class="form-label">Email<span class="text-danger"> *</span></label>
+        <input type="email" class="form-control form-control-md" id="email" name="email" value="{{ old('email', $account->email ?? '') }}" placeholder="Enter email address" required>
     </div>
 
     <div class="mb-3">

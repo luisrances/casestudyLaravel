@@ -1,6 +1,6 @@
 <div class="card shadow p-3 custom-scroll submain">
     <div class="mb-3">
-        <label for="account_id" class="form-label">Customer</label>
+        <label for="account_id" class="form-label">Customer<span class="text-danger"> *</span></label>
         <select class="form-control form-control-md" id="account_id" name="account_id" required>
             <option value="">Select</option>
             @foreach ($accounts as $account)
@@ -12,49 +12,49 @@
     </div>
 
     <div class="mb-3">
-        <label for="recipient_name" class="form-label">Recipient Name</label>
+        <label for="recipient_name" class="form-label">Recipient Name<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="recipient_name" name="recipient_name" 
                value="{{ old('recipient_name', $paymentDetail->recipient_name ?? '') }}" 
                placeholder="Enter recipient name" required>
     </div>
 
     <div class="mb-3">
-        <label for="phone_number" class="form-label">Phone Number</label>
+        <label for="phone_number" class="form-label">Phone Number<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="phone_number" name="phone_number" 
                value="{{ old('phone_number', $paymentDetail->phone_number ?? '') }}" 
                placeholder="Enter phone number" required>
     </div>
 
     <div class="mb-3">
-        <label for="district" class="form-label">District</label>
+        <label for="district" class="form-label">District<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="district" name="district" 
                value="{{ old('district', $paymentDetail->district ?? '') }}" 
                placeholder="Enter district" required>
     </div>
 
     <div class="mb-3">
-        <label for="city" class="form-label">City</label>
+        <label for="city" class="form-label">City<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="city" name="city" 
                value="{{ old('city', $paymentDetail->city ?? '') }}" 
                placeholder="Enter city" required>
     </div>
 
     <div class="mb-3">
-        <label for="region" class="form-label">Region</label>
+        <label for="region" class="form-label">Region<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="region" name="region" 
                value="{{ old('region', $paymentDetail->region ?? '') }}" 
                placeholder="Enter region" required>
     </div>
 
     <div class="mb-3">
-        <label for="street" class="form-label">Street</label>
+        <label for="street" class="form-label">Street<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="street" name="street" 
                value="{{ old('street', $paymentDetail->street ?? '') }}" 
                placeholder="Enter street address" required>
     </div>
 
     <div class="mb-3">
-        <label for="address_category" class="form-label">Address Category</label>
+        <label for="address_category" class="form-label">Address Category<span class="text-danger"> *</span></label>
         <select class="form-control form-control-md" id="address_category" name="address_category" required>
             <option value="home address" {{ old('address_category', $paymentDetail->address_category ?? '') == 'home address' ? 'selected' : '' }}>Home Address</option>
             <option value="office address" {{ old('address_category', $paymentDetail->address_category ?? '') == 'office address' ? 'selected' : '' }}>Office Address</option>

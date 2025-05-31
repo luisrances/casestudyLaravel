@@ -1,6 +1,6 @@
 <div class="card shadow p-3 custom-scroll submain">
     <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label">Name<span class="text-danger"> *</span></label>
         <input type="text" class="form-control form-control-md" id="name" name="name" value="{{ old('name', $product->name ?? '') }}" placeholder="Enter product name" required>
     </div>
 
@@ -10,7 +10,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="price" class="form-label">Price</label>
+        <label for="price" class="form-label">Price<span class="text-danger"> *</span></label>
         <div class="input-group">
             <span class="input-group-text">₱</span>
             <input type="number" step="0.01" class="form-control form-control-md" id="price" name="price" value="{{ old('price', $product->price ?? '') }}" placeholder="0.00" required>
@@ -18,13 +18,13 @@
     </div>
 
     <div class="mb-3">
-        <label for="stock" class="form-label">Stock</label>
+        <label for="stock" class="form-label">Stock<span class="text-danger"> *</span></label>
         <input type="number" class="form-control form-control-md" id="stock" name="stock" value="{{ old('stock', $product->stock ?? '') }}" placeholder="Available quantity" required>
     </div>
 
     <div class="mb-3">
-        <label for="category" class="form-label">Category</label>
-        <select class="form-select form-select-md" id="category" name="category">
+        <label for="category" class="form-label">Category<span class="text-danger"> *</span></label>
+        <select class="form-select form-select-md" id="category" name="category" required>
             <option value="" disabled selected>Select a category</option>
             @foreach ([
             'attachments', 'apparel', 'gear',

@@ -1,7 +1,7 @@
 <div class="card shadow p-3 custom-scroll submain">
     {{-- Account selection --}}
     <div class="mb-3">
-        <label for="account_id" class="form-label">Account</label>
+        <label for="account_id" class="form-label">Account<span class="text-danger"> *</span></label>
         <select class="form-control form-control-md" id="account_id" name="account_id" required>
             <option value="">Select</option>
             @foreach($accounts as $account)
@@ -14,15 +14,15 @@
 
     {{-- Birthdate --}}
     <div class="mb-3">
-        <label for="birthdate" class="form-label">Birthdate</label>
+        <label for="birthdate" class="form-label">Birthdate<span class="text-danger"> *</span></label>
         <input type="date" class="form-control form-control-md" id="birthdate" name="birthdate"
-               value="{{ old('birthdate', $userProfiling->birthdate ?? '') }}">
+               value="{{ old('birthdate', $userProfiling->birthdate ?? '') }}" required>
     </div>
 
     {{-- Sex --}}
     <div class="mb-3">
-        <label for="sex" class="form-label">Sex</label>
-        <select class="form-control form-control-md" id="sex" name="sex">
+        <label for="sex" class="form-label">Sex<span class="text-danger"> *</span></label>
+        <select class="form-control form-control-md" id="sex" name="sex" required>
             <option value="">Select</option>
             <option value="Male" {{ old('sex', $userProfiling->sex ?? '') == 'Male' ? 'selected' : '' }}>Male</option>
             <option value="Female" {{ old('sex', $userProfiling->sex ?? '') == 'Female' ? 'selected' : '' }}>Female</option>
@@ -31,21 +31,21 @@
 
     {{-- Height --}}
     <div class="mb-3">
-        <label for="height" class="form-label">Height (cm)</label>
-        <input type="number" class="form-control form-control-md" id="height" name="height"
+        <label for="height" class="form-label">Height (cm)<span class="text-danger"> *</span></label>
+        <input type="number" class="form-control form-control-md" id="height" name="height" required
                value="{{ old('height', $userProfiling->height ?? '') }}" step="0.1" placeholder="e.g. 170">
     </div>
 
     {{-- Weight --}}
     <div class="mb-3">
-        <label for="weight" class="form-label">Weight (kg)</label>
-        <input type="number" class="form-control form-control-md" id="weight" name="weight"
+        <label for="weight" class="form-label">Weight (kg)<span class="text-danger"> *</span></label>
+        <input type="number" class="form-control form-control-md" id="weight" name="weight" required
                value="{{ old('weight', $userProfiling->weight ?? '') }}" step="0.1" placeholder="e.g. 65">
     </div>
 
     {{-- Activity Type --}}
     <div class="mb-3">
-        <label class="form-label">Activity Type</label><br>
+        <label class="form-label">Activity Type<span class="text-danger"> *</span></label><br>
         @php
             $activityOptions = ['Recreational', 'Commuting', 'Racing', 'Adventure'];
             $selectedActivities = old('activity_type', json_decode($userProfiling->activity_type ?? '[]', true));
@@ -61,7 +61,7 @@
 
     {{-- Terrain --}}
     <div class="mb-3">
-        <label class="form-label">Preferred Terrain</label><br>
+        <label class="form-label">Preferred Terrain<span class="text-danger"> *</span></label><br>
         @php
             $terrainOptions = ['Road', 'Trail', 'Mountain', 'Urban'];
             $selectedTerrains = old('terrain', json_decode($userProfiling->terrain ?? '[]', true));
@@ -77,8 +77,8 @@
 
     {{-- Experience Level --}}
     <div class="mb-3">
-        <label for="experience_level" class="form-label">Experience Level</label>
-        <select class="form-control form-control-md" id="experience_level" name="experience_level">
+        <label for="experience_level" class="form-label">Experience Level<span class="text-danger"> *</span></label>
+        <select class="form-control form-control-md" id="experience_level" name="experience_level" required>
             <option value="">Select</option>
             <option value="Beginner" {{ old('experience_level', $userProfiling->experience_level ?? '') == 'Beginner' ? 'selected' : '' }}>Beginner</option>
             <option value="Intermediate" {{ old('experience_level', $userProfiling->experience_level ?? '') == 'Intermediate' ? 'selected' : '' }}>Intermediate</option>

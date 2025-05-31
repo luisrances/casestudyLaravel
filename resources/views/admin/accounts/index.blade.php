@@ -108,7 +108,14 @@
                     previous: '<i class="fas fa-chevron-left"></i>'
                 }
             },
-            dom: '<"row mb-3"<"col-md-6 d-flex align-items-center"l><"col-md-6 d-flex justify-content-end align-items-center"f>>rtip',
+            dom: '<"row mb-3"<"col-md-6 d-flex align-items-center"B l><"col-md-6 d-flex justify-content-end align-items-center"f>>rtip',
+            buttons: [
+                {
+                    extend: 'csvHtml5',
+                    text: '<i class="bi bi-download"></i> Export CSV',
+                    className: 'btn btn-export-csv border-0'
+                }
+            ],
             lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
             pageLength: 5,
             ordering: true,

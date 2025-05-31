@@ -12,6 +12,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- DataTables and Buttons CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+    <!-- DataTables and Buttons JS -->
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
     <div class="container-fluid p-0 d-flex vh-100 text-right">
@@ -72,7 +80,7 @@
                             <span>Collapse</span>
                         </button>
                     </li>
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Logout">
+                    {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Logout">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}" 
@@ -81,7 +89,7 @@
                                 <i class="bi bi-box-arrow-left fs-4"></i> <span>Logout</span>
                             </a>
                         </form>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -258,7 +266,7 @@
 <style>
     body {
         background-color: #f8f9fa;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     }
     
     .card {
@@ -477,6 +485,26 @@
         .mobile-content {
             display: block;
         }
+    }
+</style>
+
+{{-- export to csv button --}}
+<style>
+    .btn-export-csv {
+        background-color: #82C3EC !important;
+        background-image: none !important;
+        color: black !important;
+        border: none;
+        font-weight: 400;
+        padding: 10px 20px;
+        width: 150px;
+        
+        border-radius: 5px !important;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-export-csv:hover {
+        background-color: #6FB3DC !important;
     }
 </style>
 

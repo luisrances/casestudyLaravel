@@ -1,7 +1,7 @@
 <div class="card shadow p-3 custom-scroll submain">
     {{-- Account selection --}}
     <div class="mb-3">
-        <label for="account_id" class="form-label">Account</label>
+        <label for="account_id" class="form-label">Account<span class="text-danger"> *</span></label>
         <select class="form-control form-control-md" id="account_id" name="account_id" required>
             <option value="">Select</option>
             @foreach($accounts as $account)
@@ -14,7 +14,7 @@
 
     {{-- Comment --}}
     <div class="mb-3">
-        <label for="comment" class="form-label">Comment</label>
+        <label for="comment" class="form-label">Comment<span class="text-danger"> *</span></label>
         <textarea class="form-control form-control-md" id="comment" name="comment" rows="4" required>{{ old('comment', $feedback->comment ?? '') }}</textarea>
     </div>
 
