@@ -181,7 +181,7 @@
     "product_id": 1,
     "account_id": 1,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-01-05",
     "updated_at": "2024-01-05"
   },
@@ -190,7 +190,7 @@
     "product_id": 2,
     "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-01-12",
     "updated_at": "2024-01-12"
   },
@@ -199,7 +199,7 @@
     "product_id": 3,
     "account_id": 3,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-01-19",
     "updated_at": "2024-01-19"
   },
@@ -208,7 +208,7 @@
     "product_id": 4,
     "account_id": 4,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-02-01",
     "updated_at": "2024-02-01"
   },
@@ -217,52 +217,52 @@
     "product_id": 5,
     "account_id": 5,
     "quantity": 4,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-02-10",
     "updated_at": "2024-02-10"
   },
   {
     "id": 6,
     "product_id": 6,
-    "account_id": 6,
+    "account_id": 1,
     "quantity": 5,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-02-18",
     "updated_at": "2024-02-18"
   },
   {
     "id": 7,
     "product_id": 7,
-    "account_id": 7,
+    "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-03-02",
     "updated_at": "2024-03-02"
   },
   {
     "id": 8,
     "product_id": 8,
-    "account_id": 8,
+    "account_id": 3,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-03-08",
     "updated_at": "2024-03-08"
   },
   {
     "id": 9,
     "product_id": 9,
-    "account_id": 9,
+    "account_id": 4,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-03-16",
     "updated_at": "2024-03-16"
   },
   {
     "id": 10,
     "product_id": 10,
-    "account_id": 10,
+    "account_id": 5,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "Completed",
     "created_at": "2024-03-22",
     "updated_at": "2024-03-22"
   },
@@ -271,7 +271,7 @@
     "product_id": 11,
     "account_id": 1,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-04-01",
     "updated_at": "2024-04-01"
   },
@@ -280,7 +280,7 @@
     "product_id": 12,
     "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-04-07",
     "updated_at": "2024-04-07"
   },
@@ -289,7 +289,7 @@
     "product_id": 13,
     "account_id": 3,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-04-13",
     "updated_at": "2024-04-13"
   },
@@ -298,7 +298,7 @@
     "product_id": 14,
     "account_id": 4,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-04-21",
     "updated_at": "2024-04-21"
   },
@@ -307,52 +307,52 @@
     "product_id": 15,
     "account_id": 5,
     "quantity": 4,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-04-30",
     "updated_at": "2024-04-30"
   },
   {
     "id": 16,
     "product_id": 16,
-    "account_id": 6,
+    "account_id": 1,
     "quantity": 5,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-05-06",
     "updated_at": "2024-05-06"
   },
   {
     "id": 17,
     "product_id": 17,
-    "account_id": 7,
+    "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-05-12",
     "updated_at": "2024-05-12"
   },
   {
     "id": 18,
     "product_id": 18,
-    "account_id": 8,
+    "account_id": 3,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-05-18",
     "updated_at": "2024-05-18"
   },
   {
     "id": 19,
     "product_id": 19,
-    "account_id": 9,
+    "account_id": 4,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-05-24",
     "updated_at": "2024-05-24"
   },
   {
     "id": 20,
     "product_id": 20,
-    "account_id": 10,
+    "account_id": 5,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-06-01",
     "updated_at": "2024-06-01"
   },
@@ -361,7 +361,7 @@
     "product_id": 21,
     "account_id": 1,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "Cancelled",
     "created_at": "2024-06-06",
     "updated_at": "2024-06-06"
   },
@@ -370,7 +370,7 @@
     "product_id": 22,
     "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "Cancelled",
     "created_at": "2024-06-10",
     "updated_at": "2024-06-10"
   },
@@ -379,7 +379,7 @@
     "product_id": 23,
     "account_id": 3,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "Cancelled",
     "created_at": "2024-06-14",
     "updated_at": "2024-06-14"
   },
@@ -388,7 +388,7 @@
     "product_id": 24,
     "account_id": 4,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "Cancelled",
     "created_at": "2024-06-18",
     "updated_at": "2024-06-18"
   },
@@ -397,52 +397,52 @@
     "product_id": 25,
     "account_id": 5,
     "quantity": 4,
-    "order_status": "completed",
+    "order_status": "Cancelled",
     "created_at": "2024-06-22",
     "updated_at": "2024-06-22"
   },
   {
     "id": 26,
     "product_id": 26,
-    "account_id": 6,
+    "account_id": 1,
     "quantity": 5,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-06-26",
     "updated_at": "2024-06-26"
   },
   {
     "id": 27,
     "product_id": 27,
-    "account_id": 7,
+    "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-06-30",
     "updated_at": "2024-06-30"
   },
   {
     "id": 28,
     "product_id": 28,
-    "account_id": 8,
+    "account_id": 3,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-07-03",
     "updated_at": "2024-07-03"
   },
   {
     "id": 29,
     "product_id": 29,
-    "account_id": 9,
+    "account_id": 4,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-07-06",
     "updated_at": "2024-07-06"
   },
   {
     "id": 30,
     "product_id": 30,
-    "account_id": 10,
+    "account_id": 5,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "To receive",
     "created_at": "2024-07-10",
     "updated_at": "2024-07-10"
   },
@@ -451,7 +451,7 @@
     "product_id": 31,
     "account_id": 1,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-07-15",
     "updated_at": "2024-07-15"
   },
@@ -460,7 +460,7 @@
     "product_id": 32,
     "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-07-20",
     "updated_at": "2024-07-20"
   },
@@ -469,7 +469,7 @@
     "product_id": 33,
     "account_id": 3,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-07-25",
     "updated_at": "2024-07-25"
   },
@@ -478,7 +478,7 @@
     "product_id": 34,
     "account_id": 4,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-07-30",
     "updated_at": "2024-07-30"
   },
@@ -487,52 +487,52 @@
     "product_id": 35,
     "account_id": 5,
     "quantity": 4,
-    "order_status": "completed",
+    "order_status": "To ship",
     "created_at": "2024-08-04",
     "updated_at": "2024-08-04"
   },
   {
     "id": 36,
     "product_id": 36,
-    "account_id": 6,
+    "account_id": 1,
     "quantity": 5,
-    "order_status": "completed",
+    "order_status": "Refunded",
     "created_at": "2024-08-09",
     "updated_at": "2024-08-09"
   },
   {
     "id": 37,
     "product_id": 37,
-    "account_id": 7,
+    "account_id": 2,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "Refunded",
     "created_at": "2024-08-14",
     "updated_at": "2024-08-14"
   },
   {
     "id": 38,
     "product_id": 38,
-    "account_id": 8,
+    "account_id": 3,
     "quantity": 2,
-    "order_status": "completed",
+    "order_status": "Refunded",
     "created_at": "2024-08-19",
     "updated_at": "2024-08-19"
   },
   {
     "id": 39,
     "product_id": 39,
-    "account_id": 9,
+    "account_id": 4,
     "quantity": 3,
-    "order_status": "completed",
+    "order_status": "Refunded",
     "created_at": "2024-08-24",
     "updated_at": "2024-08-24"
   },
   {
     "id": 40,
     "product_id": 40,
-    "account_id": 10,
+    "account_id": 5,
     "quantity": 1,
-    "order_status": "completed",
+    "order_status": "Refunded",
     "created_at": "2024-08-29",
     "updated_at": "2024-08-29"
   }
