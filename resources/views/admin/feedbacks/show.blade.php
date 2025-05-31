@@ -34,7 +34,7 @@
                     @if ($feedback->image)
                         <strong class="text-muted">Image:</strong>
                         <div class="overflow-hidden border border-light mt-2" style="width: 200px; height: 200px;">
-                            <img src="{{ asset('storage/' . $feedback->image) }}" alt="feedback image" class="d-flex justify-content-center align-items-md-center align-items-end w-100 h-100 object-cover">
+                            <img src={{ asset('storage/'. $feedback->image) }} alt="feedback image" class="d-flex justify-content-center align-items-md-center align-items-end w-100 h-100 object-cover">
                         </div>
                     @else
                         <i class="bi bi-chat-square-quote rounded-lg overflow-hidden d-flex justify-content-center align-items-md-center align-items-end" style="font-size: 200px; color: black;"></i>

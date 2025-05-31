@@ -318,7 +318,7 @@ class ProductController extends Controller
         \App\Models\Feedback::create([
             'account_id' => Auth::id(),
             'comment' => $request->comment,
-            'image' => json_encode($imagePaths),
+            'image' => $image->store('feedback/images', 'public'),
         ]);
 
         return redirect()->back()->with('success', 'Thank you for your feedback!');

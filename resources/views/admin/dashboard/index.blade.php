@@ -18,7 +18,7 @@
                                         Total Revenue
                                     </div>
                                     <div class="h2 mb-0 font-weight-bold text-gray-800">
-                                        $ {{ $totalRevenue }}
+                                        ₱ {{ $totalRevenue }}
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -159,7 +159,7 @@
         data: {
             labels: {!! json_encode($monthlyRevenue->pluck('month')) !!},
             datasets: [{
-                label: 'Revenue ($)',
+                label: 'Revenue (₱)',
                 data: {!! json_encode($monthlyRevenue->pluck('revenue')) !!},
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
