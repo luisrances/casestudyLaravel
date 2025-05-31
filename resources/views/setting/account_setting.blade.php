@@ -7,8 +7,8 @@
                 <li class="cursor-pointer text-blue-600" onclick="showSection('account')">Account Information</li>
                 <li class="cursor-pointer" onclick="showSection('payment')">Payment Details</li>
                 <li class="cursor-pointer" onclick="showSection('address')">Address Book</li>
-                <li class="cursor-pointer" onclick="showSection('terms')">Terms and Condition</li>
                 <li class="cursor-pointer" onclick="showSection('purchases')">My Purchases</li>
+                <li class="cursor-pointer" onclick="showSection('terms')">Terms and Condition</li>
                 <li class="text-red-600 mt-8 cursor-pointer" onclick="showSection('delete_account')">Delete Account</li>
             </ul>
         </aside>
@@ -17,8 +17,8 @@
             @include('setting.partials.account')
             @include('setting.partials.payment')
             @include('setting.partials.address')
-            @include('setting.partials.terms')
             @include('setting.partials.purchases')
+            @include('setting.partials.terms')
             @include('setting.partials.delete_account')
         </main>
     </section>

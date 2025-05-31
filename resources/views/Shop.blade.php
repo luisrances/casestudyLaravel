@@ -53,62 +53,64 @@
     <main id="main-content" class="flex-1 overflow-y-auto p-8 space-y-1 h-screen scroll-smooth">
       @foreach ($products as $category => $categoryProducts)
       <section id="{{ $category }}" class="scroll-mt-32">
-        <h2 class="text-2xl font-bold capitalize mb-4">{{ str_replace('-', ' ', $category) }}</h2>
+      <h2 class="text-2xl font-bold capitalize mb-4">{{ str_replace('-', ' ', $category) }}</h2>
 
-        @if ($categoryProducts->isEmpty())
-        <div class="w-full py-8 text-center bg-gray-50 border border-gray-300 text-gray-700 rounded-md">
-          ⚠️ No products available.
+      @if ($categoryProducts->isEmpty())
+      <div class="w-full py-8 text-center bg-gray-50 border border-gray-300 text-gray-700 rounded-md">
+      ⚠️ No products available.
+      </div>
+    @else
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        @foreach ($categoryProducts as $product)
+        @php
+        $cleanDescription = preg_replace('/^#.*$\n?/m', '', $product->description); 
+      @endphp
+
+        <div class="bg-white shadow-md rounded-xl overflow-hidden">
+        <img
+        src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}"
+        alt="{{ $product->name }}" class="w-full h-40 object-cover">
+
+        {{-- <div class="p-4">
+        <h3 class="text-lg font-semibold overflow-hidden h-[60px]">{{
+        \Illuminate\Support\Str::limit($product->name, 40, '...') }}</h3> --}}
+        <div class="p-4 grid grid-rows-[3rem_auto_auto_auto_auto] gap-2 min-h-[12rem]">
+        <h3 class="text-lg font-semibold flex items-start leading-tight line-clamp-2 overflow-hidden"
+        style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+        {{ $product->name }}
+        </h3>
+        <p class="text-sm text-gray-600 truncate" title="{{ $cleanDescription }}">{{ $cleanDescription }}</p>
+        <p class="text-blue-600 font-semibold">Php {{ number_format($product->price, 2) }}</p>
+        <p class="text-sm {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
+        Stock: {{ $product->stock > 0 ? $product->stock : 'Out of Stock' }}
+        </p>
+        <button
+        class="inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 justify-self-start"
+        onclick="openProductModal
+        (
+        '{{ addslashes($product->name) }}',
+        `{{ addslashes(preg_replace('/^#.*$\n?/m', '', $product->description)) }}`,
+        {{ $product->stock }},
+        {{ $product->price }},
+        '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
+        {{ $product->id }}
+        )">
+        View Details
+        </button>
         </div>
-        @else
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          @foreach ($categoryProducts as $product)
-          @php
-          $cleanDescription = preg_replace('/^#.*$\n?/m', '', $product->description);
-          @endphp
-          <div class="bg-white shadow-md rounded-xl overflow-hidden">
-            <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}"
-              alt="{{ $product->name }}"
-              class="w-full h-40 object-cover">
-
-            {{-- <div class="p-4">
-              <h3 class="text-lg font-semibold overflow-hidden h-[60px]">{{ \Illuminate\Support\Str::limit($product->name, 40, '...') }}</h3> --}}
-            <div class="p-4 grid grid-rows-[3rem_auto_auto_auto_auto] gap-2 min-h-[12rem]">
-              <h3 class="text-lg font-semibold flex items-start leading-tight line-clamp-2 overflow-hidden"
-                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                {{ $product->name }}
-              </h3>
-              <p class="text-sm text-gray-600 truncate" title="{{ $cleanDescription }}">{{ $cleanDescription }}</p>
-              <p class="text-blue-600 font-semibold">Php {{ number_format($product->price, 2) }}</p>
-              <p class="text-sm {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
-                Stock: {{ $product->stock > 0 ? $product->stock : 'Out of Stock' }}
-              </p>
-              <button
-                class="inline-block text-sm bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 justify-self-start"
-                onclick="openProductModal
-          (
-            '{{ addslashes($product->name) }}',
-            `{{ addslashes(preg_replace('/^#.*$\n?/m', '', $product->description)) }}`,
-            {{ $product->stock }},
-            {{ $product->price }},
-            '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
-            {{ $product->id }}
-          )">
-                View Details
-              </button>
-            </div>
-          </div>
-          @endforeach
-
         </div>
-        @endif
-      </section>
       @endforeach
+
+        </div>
+      @endif
+      </section>
+    @endforeach
     </main>
   </div>
 
   <!-- Scroll Spy Script -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const mainContent = document.getElementById('main-content');
       const sections = mainContent.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.nav-link');
@@ -137,7 +139,7 @@
       onScroll();
 
       navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
           e.preventDefault();
           const id = this.getAttribute('href').substring(1);
           const target = document.getElementById(id);
