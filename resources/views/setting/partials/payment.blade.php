@@ -3,19 +3,21 @@
     <h2 class="text-2xl font-bold mb-2">PAYMENT DETAILS</h2>
     <p class="text-sm text-gray-600 mb-6">(This is for default payment)</p>
 
-    <div class="border-b mb-10"> 
+    <div class="border-b mb-10">
         <div class="flex flex-col md:flex-row gap-4 mb-5">
             <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
                 <input type="radio" name="payment_method" value="cod" class="mr-2" checked>
-                <img src="./Images/COD.png" alt="COD" width="60" height="30" class="object-contain" />
+                <img src="./Images/COD.png" alt="COD" width="60" height="30" class="object-contain"
+                    title="Cash on Delivery" />
             </label>
             <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
                 <input type="radio" name="payment_method" value="gcash" class="mr-2">
-                <img src="./Images/Gcash.png" alt="Gcash" width="60" height="30" class="object-contain" />
+                <img src="./Images/Gcash.png" alt="Gcash" width="60" height="30" class="object-contain" title="GCash" />
             </label>
             <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
                 <input type="radio" name="payment_method" value="credit_card" class="mr-2">
-                <img src="./Images/Card.png" alt="Card" width="60" height="30" class="object-contain" />
+                <img src="./Images/Card.png" alt="Card" width="60" height="30" class="object-contain"
+                    title="Credit Card" />
             </label>
         </div>
     </div>
@@ -61,7 +63,8 @@
     </div>
 
     <div class="flex justify-end gap-3 pt-6 border-t">
-        <button type="submit" class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+        <button type="submit"
+            class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
             Save Changes
         </button>
     </div>

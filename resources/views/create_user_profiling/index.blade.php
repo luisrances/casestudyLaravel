@@ -57,9 +57,13 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6">
-                        <label for="birthdate" class="form-label" style="margin-bottom: -5px">Birthday</label>
+                        <label for="birthdate" class="form-label" style="margin-bottom: -5px">
+                            Birthday <span class="text-danger">*</span>
+                        </label>
                         <input type="date" class="form-control" name="birthdate" id="birthdate" required max="{{ now()->toDateString() }}">
-                        <label class="form-label d-block">Gender</label>
+                        <label class="form-label d-block">
+                            Gender <span class="text-danger">*</span>
+                        </label>
                         <div class="form-check form-check-inline ps-5">
                             <input class="form-check-input" type="radio" name="sex" id="female" value="female" required>
                             <label class="form-check-label" for="female">Female</label>
@@ -70,9 +74,13 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="height" class="form-label" style="margin-bottom: -5px">Height (cm)</label>
+                        <label for="height" class="form-label" style="margin-bottom: -5px">
+                            Height (cm) <span class="text-danger">*</span>
+                        </label>
                         <input type="number" class="form-control" name="height" id="height" min="0" required>
-                        <label for="weight" class="form-label" style="margin-bottom: -5px">Weight (kg)</label>
+                        <label for="weight" class="form-label" style="margin-bottom: -5px">
+                            Weight (kg) <span class="text-danger">*</span>
+                        </label>
                         <input type="number" class="form-control" name="weight" id="weight" min="0" required>
                     </div>
                 </div>
@@ -83,7 +91,9 @@
         
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Activity Type</label>
+                        <label class="form-label fw-bold">
+                            Activity Type <span class="text-danger">*</span>
+                        </label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="activity_type[]" value="Commuting" id="commuting">
                             <label class="form-check-label" for="commuting">Commuting</label>
@@ -103,7 +113,9 @@
                     </div>
         
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Primary Riding Terrain</label>
+                        <label class="form-label fw-bold">
+                            Primary Riding Terrain <span class="text-danger">*</span>
+                        </label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="terrain[]" value="Off-road trails" id="trails">
                             <label class="form-check-label" for="trails">Off-road trails</label>
@@ -124,7 +136,9 @@
                 </div>
         
                 <div class="mb-2">
-                    <label class="form-label d-block fw-bold">Experience Level</label>
+                    <label class="form-label d-block fw-bold">
+                        Experience Level <span class="text-danger">*</span>
+                    </label>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="experience_level" id="beginner" value="Beginner" required>
                         <label class="form-check-label" for="beginner">Beginner</label>
@@ -142,7 +156,9 @@
                 <hr class="my-1">
         
                 <div class="row mb-2">
-                    <label class="col-8 form-label d-block">Performs Own Maintenance?</label>
+                    <label class="col-8 form-label d-block">
+                        Performs Own Maintenance? <span class="text-danger">*</span>
+                    </label>
                     <div class="col-4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="maintenance" id="maintenance_yes" value="yes" required>
@@ -156,7 +172,9 @@
                 </div>
         
                 <div class="row mb-0">
-                    <label class="col-8 form-label d-block">Interested in Upgrades/Custom Parts?</label>
+                    <label class="col-8 form-label d-block">
+                        Interested in Upgrades/Custom Parts? <span class="text-danger">*</span>
+                    </label>
                     <div class="col-4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="custom_parts" id="custom_yes" value="yes" required>
@@ -183,15 +201,32 @@
     </div>
 
     <script>
-        document.getElementById("profiling_form").addEventListener("submit", function (e) {
-            const activityChecked = document.querySelectorAll("input[name='activity_type[]']:checked").length > 0;
-            const terrainChecked = document.querySelectorAll("input[name='terrain[]']:checked").length > 0;
+    document.getElementById("profiling_form").addEventListener("submit", function (e) {
+        const activityChecked = document.querySelectorAll("input[name='activity_type[]']:checked").length > 0;
+        const terrainChecked = document.querySelectorAll("input[name='terrain[]']:checked").length > 0;
 
-            if (!activityChecked || !terrainChecked) {
-                e.preventDefault();
-                alert("Please select at least one option for Activity Type and Primary Riding Terrain.");
+        // Age validation
+        const birthdateInput = document.getElementById("birthdate").value;
+        if (birthdateInput) {
+            const today = new Date();
+            const birthDate = new Date(birthdateInput);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
             }
-        });
+            if (age < 18) {
+                e.preventDefault();
+                alert("You must be at least 18 years old to register.");
+                return;
+            }
+        }
+
+        if (!activityChecked || !terrainChecked) {
+            e.preventDefault();
+            alert("Please select at least one option for Activity Type and Primary Riding Terrain.");
+        }
+    });
     </script>
 </body>
 </html>

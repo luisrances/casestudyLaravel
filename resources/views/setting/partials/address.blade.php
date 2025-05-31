@@ -60,17 +60,19 @@
         
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                         {{-- Recipient Name --}}
-                        <div>
-                            <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name</label>
-                            <input type="text" 
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
-                                            focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-                                            @error('recipient_name') border-red-500 ring-red-200 @enderror"
-                                    id="recipient_name" name="recipient_name" placeholder="e.g., John Doe" required>
-                            @error('recipient_name')
-                                <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+<div>
+    <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name</label>
+    <input type="text" 
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 bg-gray-100
+            focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+            @error('recipient_name') border-red-500 ring-red-200 @enderror"
+        id="recipient_name" name="recipient_name"
+        value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}"
+        placeholder="e.g., John Doe" readonly>
+    @error('recipient_name')
+        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+    @enderror
+</div>
         
                         {{-- Phone Number --}}
                         <div>

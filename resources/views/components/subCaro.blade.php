@@ -11,23 +11,31 @@
     <div class="relative min-h-72 -mx-1">
       <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap opacity-0 transition-transform duration-700">
 
-        @foreach ($products as $product)
-        <div class="hs-carousel-slide px-1">
-          @if ($product)
-          <a href="{{ route('Shop') }}#{{ Str::slug($product->category) }}" class="block w-full h-full">
-            <div class="flex justify-center items-center h-full bg-[#d9d9d9] cursor-pointer hover:bg-[#c5c5c5] transition rounded-md overflow-hidden">
-              <img src="{{ asset('storage/' . $product->image_path) }}"
-                alt="{{ $product->name }}"
-                class="object-cover h-full w-full rounded-md" />
+@foreach ($products as $product)
+    @php
+        $cleanDescription = preg_replace('/^#.*$\n?/m', '', $product->description);
+    @endphp
+    <div class="hs-carousel-slide px-1">
+        @if ($product)
+        <a href="{{ route('Shop') }}#{{ Str::slug($product->category) }}" class="block w-full h-full">
+            <div class="relative flex justify-center items-center h-full bg-[#d9d9d9] cursor-pointer hover:bg-[#c5c5c5] transition rounded-md overflow-hidden group">
+                <img src="{{ asset('storage/' . $product->image_path) }}"
+                    alt="{{ $product->name }}"
+                    class="object-cover h-full w-full rounded-md transition-transform duration-300 group-hover:scale-105" />
+                <!-- Hover overlay -->
+                <div class="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-4">
+                    <h3 class="text-base font-bold text-white mb-1">{{ $product->name }}</h3>
+                    <p class="text-xs text-gray-200 line-clamp-3">{{ \Illuminate\Support\Str::limit(strip_tags($cleanDescription), 200) }}</p>
+                </div>
             </div>
-          </a>
-          @else
-          <div class="flex justify-center items-center h-full bg-[#f0f0f0] text-gray-400 text-sm font-medium italic p-4 rounded-md">
-            No available product
-          </div>
-          @endif
+        </a>
+        @else
+        <div class="flex justify-center items-center h-full bg-[#f0f0f0] text-gray-400 text-sm font-medium italic p-4 rounded-md">
+            No Available Product
         </div>
-        @endforeach
+        @endif
+    </div>
+@endforeach
 
       </div>
     </div>
