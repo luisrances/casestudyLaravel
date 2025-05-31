@@ -237,6 +237,27 @@
             </div>
         </form>
     </main>
+    {{-- Stock Alert Modal --}}
+    <div id="stock-alert-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+                    <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">Stock Limit Reached</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500" id="stock-message"></p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="stock-alert-close" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     {{-- modal success and submits the form --}}
     <script>
@@ -336,15 +357,32 @@
     </script>
 
     <script>
+        function showStockAlert(maxStock) {
+            document.getElementById('stock-message').textContent = `Maximum available stock is ${maxStock}`;
+            document.getElementById('stock-alert-modal').classList.remove('hidden');
+        }
+
+        // Add event listener for the close button
+        document.getElementById('stock-alert-close').addEventListener('click', function() {
+            document.getElementById('stock-alert-modal').classList.add('hidden');
+        });
         // AJAX quantity update
         document.querySelectorAll('.cart-qty-input').forEach(input => {
+            // Prevent form submission on enter key
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.blur(); // Remove focus from input
+                }
+            });
             input.addEventListener('change', function() {
                 const cartId = this.dataset.cartId;
                 const quantity = this.value;
                 const maxStock = parseInt(this.dataset.maxStock);
                 if (parseInt(this.value) > maxStock) {
                     this.value = maxStock;
-                    alert(`Maximum available stock is ${maxStock}`);
+                    quantity = maxStock;
+                    showStockAlert(maxStock);  // Replace alert with this
                 }
 
                 fetch(`/checkout/update-quantity/${cartId}`, {
@@ -375,12 +413,12 @@
                 const input = document.querySelector(`.cart-qty-input[data-cart-id="${cartId}"]`);
                 const maxStock = parseInt(input.dataset.maxStock);
                     
-                    if (parseInt(input.value) < maxStock) {
-                        input.value = parseInt(input.value) + 1;
-                        input.dispatchEvent(new Event('change'));
-                    } else {
-                        alert(`Maximum available stock is ${maxStock}`);
-                    }
+                if (parseInt(input.value) < maxStock) {
+                    input.value = parseInt(input.value) + 1;
+                    input.dispatchEvent(new Event('change'));
+                } else {
+                    showStockAlert(maxStock);  // Replace alert with this
+                }
                 });
             });
         document.querySelectorAll('.decrement-btn').forEach(btn => {
