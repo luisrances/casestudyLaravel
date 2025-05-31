@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\UserProfiling;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,6 +30,13 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $account = Auth::user();
+
+        if ($account->status !== 'active') {
+            Auth::logout();
+            throw ValidationException::withMessages([
+                'email' => 'These credentials do not match our records.',
+            ]);
+        }
 
         $hasProfile = UserProfiling::where('account_id', $account->id)->exists(); // Check if user has existing profiling data
         if (!$hasProfile) {

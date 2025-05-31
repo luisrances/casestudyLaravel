@@ -101,6 +101,7 @@
                         <p id="modal-product-description" class="leading-relaxed">
                             Lorem ipsum dolor sit amet...
                         </p>
+                        <div id="hashtag-tags" class="d-flex flex-wrap gap-2 mt-2"></div>
                     </div>
                     <p class="hidden" id="modal-product-id">0</p>
                 </div>
@@ -290,6 +291,26 @@
         const cleanedDescription = description.replace(/^#.*$\n?/gm, '').trim();
         elements.description.innerText = cleanedDescription;
     }
+    // if (elements.description) elements.description.innerText = description;
+    const hashtagLines = description.match(/^#.*$/gm);
+    if (hashtagLines) {
+        const tagsContainer = document.getElementById('hashtag-tags');
+        tagsContainer.innerHTML = hashtagLines.map(tag => {
+            const cleanTag = tag.replace(/^#/, ''); // remove leading #
+            return `
+                <div>
+                    <span class="hashtag-tag inline-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags me-1 transform -scale-x-100" viewBox="0 0 16 16">
+                            <path d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"/>
+                            <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"/>
+                        </svg>
+                        <span>${cleanTag}</span>
+                    </span>
+                </div>
+            `;
+        }).join('');
+    }
+
     if (elements.stock) elements.stock.innerText = `Stock: ${stock}`;
     if (elements.price) elements.price.innerText = `₱${parseFloat(price).toFixed(2)}`;
     if (elements.productId) elements.productId.value = id;
@@ -344,7 +365,8 @@
                     alert.style.display = 'block';
                     setTimeout(() => {
                         alert.style.display = 'none';
-                    }, 2000);
+                        window.location.href = '{{ route('Shop') }}';
+                    }, 1000);
                 }
             })
             .catch(error => console.error('Error:', error));
@@ -381,6 +403,20 @@
             .catch(error => console.error('Error:', error));
         }
     </script>
+    <style>
+        .tag-shape {
+            position: relative; /* Needed for absolute positioning of pseudo-elements */
+            display: inline-flex; /* To make it wrap content and allow flex alignment */
+            align-items: center; /* Vertically center content */
+            background-color: #3b82f6; /* Tailwind's blue-500 */
+            color: white;
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            padding-left: 1.5rem; /* Extra padding on the left for the circle and shape */
+            border-radius: 0.375rem; /* rounded-md */
+            font-family: 'Inter', sans-serif;
+            height: 40px; /* Fixed height for better shape control */
+        }
+    </style>
 </body>
 
 </html>

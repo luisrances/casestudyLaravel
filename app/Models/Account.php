@@ -23,7 +23,8 @@ class Account extends Authenticatable
         'last_name',
         'email',
         'password',
-        'image',
+        'status',
+        'image'
     ];
 
     /**

@@ -48,8 +48,9 @@ class AccountController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
             'email'      => 'required|email|unique:accounts,email',
-            'password'       => 'required|string|min:6',
+            'password'   => 'required|string|min:6',
             'image'      => 'nullable|image|max:2048',
+            'status'     => 'required|in:active,not active',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -78,9 +79,10 @@ class AccountController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
-            'email'      => 'required|email|unique:accounts,email,' . $account->id,
-            'password'       => 'nullable|string|min:6',
+            'email'      => 'required|email|unique:accounts,email',
+            'password'   => 'required|string|min:6',
             'image'      => 'nullable|image|max:2048',
+            'status'     => 'required|in:active,not active',
         ]);
 
         if (!empty($validated['password'])) {
@@ -173,28 +175,19 @@ class AccountController extends Controller
                 return redirect()->route('login')->with('error', 'User not authenticated.');
             }
 
-            // Delete account image if exists
-            if ($account->image && \Storage::disk('public')->exists($account->image)) {
-                \Storage::disk('public')->delete($account->image);
-            }
+            // Update status to 'not active'
+            \App\Models\Account::where('id', $account->id)->update([
+                'status' => 'not active'
+            ]);
 
-            // Get the account ID before logging out
-            $accountId = $account->id;
-
-            // Logout first
+            // Logout and end session
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            // Delete the account using find and delete
-            $accountToDelete = Account::find($accountId);
-            if ($accountToDelete) {
-                $accountToDelete->forceDelete();
-            }
-
-            return redirect()->route('Home')->with('success', 'Your account has been permanently deleted.');
+            return redirect()->route('Home')->with('success', 'Your account has been deactivated.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to delete account. Please try again.');
+            return redirect()->back()->with('error', 'Failed to deactivate account. Please try again.');
         }
     }
 }

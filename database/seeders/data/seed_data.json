@@ -6,6 +6,7 @@
       "last_name": "Rafer",
       "email": "britney.rafer@gmail.com",
       "password":"$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
+      "status": "active",
       "image": "images/accounts/1.png"
     },
     {
@@ -14,6 +15,7 @@
       "last_name": "Perin",
       "email": "mariel.perin@gmail.com",
       "password":"$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
+      "status": "active",
       "image": "images/accounts/2.png"
     },
     {
@@ -22,6 +24,7 @@
       "last_name": "DeJusto",
       "email": "izzy.dejusto@gmail.com",
       "password": "$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
+      "status": "active",
       "image": "images/accounts/3.png"
     },
     {
@@ -30,6 +33,7 @@
       "last_name": "Rances",
       "email": "francis.rances@gmail.com",
       "password": "$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
+      "status": "active",
       "image": "images/accounts/4.png"
     },
     {
@@ -38,6 +42,7 @@
       "last_name": "Guiaya",
       "email": "angelito.guiaya@gmail.com",
       "password": "$2y$12$pkgLgVh8QKaRk9Q4is5AWu1K1jFesLTdyFxGym.OBe1KF7ZDf4jc.",
+      "status": "active",
       "image": "images/accounts/5.png"
     }
   ],

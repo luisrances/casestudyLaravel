@@ -60,23 +60,23 @@
         
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                         {{-- Recipient Name --}}
-<div>
-    <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name</label>
-    <input type="text" 
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 bg-gray-100
-            focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
-            @error('recipient_name') border-red-500 ring-red-200 @enderror"
-        id="recipient_name" name="recipient_name"
-        value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}"
-        placeholder="e.g., John Doe" readonly>
-    @error('recipient_name')
-        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-    @enderror
-</div>
+                    <div>
+                        <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name<span class="text-gray-500"> (not editable)</span></label>
+                        <input type="text" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 bg-gray-100
+                                focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
+                                @error('recipient_name') border-red-500 ring-red-200 @enderror"
+                            id="recipient_name" name="recipient_name"
+                            value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}"
+                            placeholder="e.g., John Doe" readonly>
+                        @error('recipient_name')
+                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
         
                         {{-- Phone Number --}}
                         <div>
-                            <label for="phone_number" class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+                            <label for="phone_number" class="block text-gray-700 text-sm font-medium mb-1">Phone Number<span class="text-red-500"> *</span></label>
                             <input type="text"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -89,7 +89,7 @@
         
                         {{-- District --}}
                         <div>
-                            <label for="district" class="block text-gray-700 text-sm font-medium mb-1">District</label>
+                            <label for="district" class="block text-gray-700 text-sm font-medium mb-1">District<span class="text-red-500"> *</span></label>
                             <input type="text"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -102,7 +102,7 @@
         
                         {{-- City --}}
                         <div>
-                            <label for="city" class="block text-gray-700 text-sm font-medium mb-1">City</label>
+                            <label for="city" class="block text-gray-700 text-sm font-medium mb-1">City<span class="text-red-500"> *</span></label>
                             <input type="text"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -115,7 +115,7 @@
         
                         {{-- Region --}}
                         <div>
-                            <label for="region" class="block text-gray-700 text-sm font-medium mb-1">Region</label>
+                            <label for="region" class="block text-gray-700 text-sm font-medium mb-1">Region<span class="text-red-500"> *</span></label>
                             <input type="text"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -128,7 +128,7 @@
         
                         {{-- Street --}}
                         <div>
-                            <label for="street" class="block text-gray-700 text-sm font-medium mb-1">Street Address</label>
+                            <label for="street" class="block text-gray-700 text-sm font-medium mb-1">Street Address<span class="text-red-500"> *</span></label>
                             <input type="text"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -141,7 +141,7 @@
         
                         {{-- Address Category --}}
                         <div class="md:col-span-2"> {{-- Occupy full width on medium screens and up --}}
-                            <label for="address_category" class="block text-gray-700 text-sm font-medium mb-1">Address Category</label>
+                            <label for="address_category" class="block text-gray-700 text-sm font-medium mb-1">Address Category<span class="text-red-500"> *</span></label>
                             <div class="relative">
                                 <select class="block appearance-none w-full bg-white border border-gray-300 text-gray-700
                                                 py-2 px-4 pr-8 rounded-lg shadow-sm leading-tight
@@ -227,16 +227,16 @@
                     
                     <!-- Recipient Name -->
                     <div>
-                        <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name</label>
+                        <label for="recipient_name" class="block text-gray-700 text-sm font-medium mb-1">Recipient Name<span class="text-gray-500"> (not editable)</span></label>
                         <input type="text" value="${detail.recipient_name}"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 bg-gray-100
                                     focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
-                            id="recipient_name" name="recipient_name" required>
+                            id="recipient_name" name="recipient_name" readonly>
                     </div>
                     
                         {{-- Phone Number --}}
                         <div>
-                            <label for="phone_number" class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+                            <label for="phone_number" class="block text-gray-700 text-sm font-medium mb-1">Phone Number<span class="text-red-500"> *</span></label>
                             <input type="text" value="${detail.phone_number}"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -249,7 +249,7 @@
         
                         {{-- District --}}
                         <div>
-                            <label for="district" class="block text-gray-700 text-sm font-medium mb-1">District</label>
+                            <label for="district" class="block text-gray-700 text-sm font-medium mb-1">District<span class="text-red-500"> *</span></label>
                             <input type="text" value="${detail.district}"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -262,7 +262,7 @@
         
                         {{-- City --}}
                         <div>
-                            <label for="city" class="block text-gray-700 text-sm font-medium mb-1">City</label>
+                            <label for="city" class="block text-gray-700 text-sm font-medium mb-1">City<span class="text-red-500"> *</span></label>
                             <input type="text" value="${detail.city}"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -275,7 +275,7 @@
         
                         {{-- Region --}}
                         <div>
-                            <label for="region" class="block text-gray-700 text-sm font-medium mb-1">Region</label>
+                            <label for="region" class="block text-gray-700 text-sm font-medium mb-1">Region<span class="text-red-500"> *</span></label>
                             <input type="text" value="${detail.region}"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -288,7 +288,7 @@
         
                         {{-- Street --}}
                         <div>
-                            <label for="street" class="block text-gray-700 text-sm font-medium mb-1">Street Address</label>
+                            <label for="street" class="block text-gray-700 text-sm font-medium mb-1">Street Address<span class="text-red-500"> *</span></label>
                             <input type="text" value="${detail.street}"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400
                                             focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none
@@ -301,7 +301,7 @@
         
                         {{-- Address Category --}}
                         <div class="md:col-span-2"> {{-- Occupy full width on medium screens and up --}}
-                            <label for="address_category" class="block text-gray-700 text-sm font-medium mb-1">Address Category</label>
+                            <label for="address_category" class="block text-gray-700 text-sm font-medium mb-1">Address Category<span class="text-red-500"> *</span></label>
                             <div class="relative">
                                 <select class="block appearance-none w-full bg-white border border-gray-300 text-gray-700
                                             py-2 px-4 pr-8 rounded-lg shadow-sm leading-tight

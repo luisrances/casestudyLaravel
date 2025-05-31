@@ -18,6 +18,14 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control form-control-md" id="password" name="password" placeholder="Enter password">
     </div>
+    
+    <div class="mb-3">
+        <label for="status" class="form-label">Status<span class="text-danger"> *</span></label>
+        <select class="form-select form-control-md" id="status" name="status" required>
+            <option value="active" {{ old('status', $account->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
+            <option value="not active" {{ old('status', $account->status ?? '') == 'not active' ? 'selected' : '' }}>Not Active</option>
+        </select>
+    </div>
 
     <div class="mb-3">
         <label for="image" class="form-label">Image</label>

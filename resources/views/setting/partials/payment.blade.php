@@ -16,8 +16,8 @@
             </label>
             <label class="flex items-center border px-4 rounded cursor-pointer w-full md:w-auto h-[50px]">
                 <input type="radio" name="payment_method" value="credit_card" class="mr-2">
-                <img src="./Images/Card.png" alt="Card" width="60" height="30" class="object-contain"
-                    title="Credit Card" />
+                <img src="./Images/Card.png" alt="Card" width="100" height="50" class="object-contain"
+                    title="Credit Card"/>
             </label>
         </div>
     </div>

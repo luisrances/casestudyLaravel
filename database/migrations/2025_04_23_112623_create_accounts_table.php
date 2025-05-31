@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password'); // hashed password
+            $table->enum('status', ['active', 'not active'])->default('active');
             $table->string('image')->nullable();
             $table->timestamps();
         });

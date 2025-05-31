@@ -53,6 +53,6 @@
         alert.style.display = 'block';
         setTimeout(() => {
             alert.style.display = 'none';
-        }, 2000);
+        }, 1000);
     }
 </script>

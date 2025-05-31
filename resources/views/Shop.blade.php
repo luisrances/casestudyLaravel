@@ -89,7 +89,7 @@
         onclick="openProductModal
         (
         '{{ addslashes($product->name) }}',
-        `{{ addslashes(preg_replace('/^#.*$\n?/m', '', $product->description)) }}`,
+        `{{ $product->description }}`,
         {{ $product->stock }},
         {{ $product->price }},
         '{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://via.placeholder.com/300x200?text=' . ucfirst($category) }}',
