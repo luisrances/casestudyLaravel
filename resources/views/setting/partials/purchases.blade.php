@@ -50,7 +50,7 @@
                                                     Cancel
                                                 </button>
                                             </form>
-                                            @if ($product->stock > 0)
+                                            {{-- @if ($product->stock > 0)
                                                 <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
                                                     @csrf
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -62,7 +62,7 @@
                                                 <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
                                                     Out of Stock
                                                 </button>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                                     Cancel
                                                 </button>
                                             </form>
-                                            @if ($product->stock > 0)
+                                            {{-- @if ($product->stock > 0)
                                                 <form onsubmit="handleBuyAgainPurchaseHistory(event, {{ $product->id }})" class="buy-again-form">
                                                     @csrf
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -111,7 +111,7 @@
                                                 <button onclick="showOutOfStockAlert()" class="min-w-[max-content] font-medium text-gray-600 dark:text-gray-500 hover:underline cursor-not-allowed">
                                                     Out of Stock
                                                 </button>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                     </div>
                                 </div>
