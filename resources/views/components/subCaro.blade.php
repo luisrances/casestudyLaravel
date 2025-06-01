@@ -12,9 +12,12 @@
       <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap opacity-0 transition-transform duration-700">
 
 @foreach ($products as $product)
+  
+  @isset($product->description)
     @php
         $cleanDescription = preg_replace('/^#.*$\n?/m', '', $product->description);
     @endphp
+  @endisset
     <div class="hs-carousel-slide px-1">
         @if ($product)
         <a href="{{ route('Shop') }}#{{ Str::slug($product->category) }}" class="block w-full h-full">
